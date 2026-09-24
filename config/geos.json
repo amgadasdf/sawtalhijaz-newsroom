@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "format": "json (بديل عن YAML — قرار B0)",
+    "default_geo": "SA",
+    "lang_params": { "hl": "ar", "gl": "SA", "ceid": "SA:ar" }
+  },
+  "geos": [
+    {
+      "code": "SA",
+      "label_ar": "السعودية",
+      "default": true,
+      "lang_params": { "hl": "ar", "gl": "SA", "ceid": "SA:ar" },
+      "queries_seed": ["السعودية", "الرياض", "جدة", "مكة", "المدينة", "الدمام"],
+      "desks_priority": ["قرارات-أحدث", "تريند-الشارع", "روشن-الرياضية"]
+    },
+    {
+      "code": "GCC",
+      "label_ar": "الخليج",
+      "default": false,
+      "lang_params": { "hl": "ar", "gl": "AE", "ceid": "AE:ar" },
+      "queries_seed": ["الخليج", "الإمارات", "قطر", "الكويت", "البحرين", "عمان"],
+      "desks_priority": ["قرارات-أحدث", "تريند-الشارع"]
+    }
+  ]
+}

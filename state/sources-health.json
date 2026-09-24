@@ -1,0 +1,21 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "صحة المصادر — تُحدّث بعد كل طلب (نجاح/خطأ/حالة)؛ البدء صفر طلبات لكل مصدر."
+  },
+  "sources": {
+    "trends-rss":     { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "gnews-1h":       { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "gnews-desk":     { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "telegram":       { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "wiki-top":       { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "wiki-rc":        { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "wayback-cdx":    { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "gdelt-lastupdate": { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "bing-dorks":     { "status": "سليم", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "gdelt-doc":      { "status": "معطل", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "rsshub":         { "status": "معطل", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "searxng":        { "status": "معطل", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null },
+    "reddit":         { "status": "معطل", "requests": 0, "errors": 0, "last_status": null, "last_ok": null, "last_err": null }
+  }
+}

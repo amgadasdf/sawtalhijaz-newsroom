@@ -1,0 +1,12 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "يمتلئ من خريطة موقعنا (sitemap) في B3. هنا فقط المفاتيح الفارغة."
+  },
+  "sitemap_url": null,
+  "fetched_at": null,
+  "urls": [],
+  "sections": [],
+  "tags": [],
+  "authors": []
+}
