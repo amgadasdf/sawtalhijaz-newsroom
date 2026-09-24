@@ -1,16 +1,20 @@
 {
   "name": "sawtalhijaz-newsroom",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
+    "cli": "node engine/cli.js",
     "status": "node engine/status.js",
-    "resume": "node engine/resume.js",
+    "time": "node engine/cli.js time",
+    "resume": "node engine/cli.js resume all",
+    "runs": "node engine/cli.js runs",
+    "selftest": "node engine/selftest.js",
+    "test": "node engine/selftest.js",
     "radar": "node engine/radar.js",
-    "test": "node engine/test.js",
     "dashboard": "node engine/dashboard.js"
   },
   "dependencies": {},
