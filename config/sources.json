@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "format": "json (بديل عن YAML لعدم توفر parser بلا تبعيات — قرار B0 موثّق في التقرير)",
+    "policy": "free-only، cache-first، backoff أُسّي 2/15/360 د، فاصل عشوائي 2–6ث",
+    "default_geo": "SA",
+    "lang_params": { "hl": "ar", "gl": "SA", "ceid": "SA:ar" }
+  },
+  "sources": {
+    "trends-rss": {
+      "type": "rss",
+      "url": "https://trends.google.com/trending/rss?geo=SA",
+      "enabled": true,
+      "weight": 1.0,
+      "rate_limit_per_hour": 2,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "RSS العام من قوقل ترندز للسعودية"
+    },
+    "gnews-1h": {
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=when:1h&hl=ar&gl=SA&ceid=SA:ar",
+      "enabled": true,
+      "weight": 0.9,
+      "rate_limit_per_hour": 6,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "عائلة GNews — نافذة آخر ساعة (مصدر فرع مفعّل)"
+    },
+    "gnews-desk": {
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q={query}&hl=ar&gl=SA&ceid=SA:ar",
+      "enabled": true,
+      "weight": 0.9,
+      "rate_limit_per_hour": 6,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "عائلة GNews — بحث بالمكتب/الزاوية (مصدر فرع مفعّل)"
+    },
+    "telegram": {
+      "type": "scrape",
+      "url": "https://t.me/s/{channel}",
+      "enabled": true,
+      "weight": 0.6,
+      "rate_limit_per_hour": 4,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "القنوات العامة عبر preview — يلزم تحديد القنوات يدوياً"
+    },
+    "wiki-top": {
+      "type": "api",
+      "url": "https://wikimedia.org/api/rest_v1/...",
+      "enabled": true,
+      "weight": 0.4,
+      "rate_limit_per_hour": 2,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "ويكيميديا top/edits — خلفية معرفية"
+    },
+    "wiki-rc": {
+      "type": "api",
+      "url": "https://wikimedia.org/api/rest_v1/...",
+      "enabled": true,
+      "weight": 0.4,
+      "rate_limit_per_hour": 2,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "ويكيميديا recentchanges — كشف الأحداث أول ساعة"
+    },
+    "wayback-cdx": {
+      "type": "api",
+      "url": "https://web.archive.org/cdx/search/cdx",
+      "enabled": true,
+      "weight": 0.5,
+      "rate_limit_per_hour": 2,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "فهرس أرشيف الويب — للتوثيق والاسترجاع"
+    },
+    "gdelt-lastupdate": {
+      "type": "api",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc",
+      "enabled": true,
+      "weight": 0.7,
+      "rate_limit_per_hour": 2,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "GDELT lastupdate — تغذية أوائل الأحداث"
+    },
+    "bing-dorks": {
+      "type": "scrape",
+      "url": "https://www.bing.com/search?q={dorks}",
+      "enabled": true,
+      "weight": 0.5,
+      "rate_limit_per_hour": 6,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "دوركس بنج — مختبر advanced-search فقط"
+    },
+    "gdelt-doc": {
+      "type": "api",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc",
+      "enabled": false,
+      "weight": 0.6,
+      "rate_limit_per_hour": 0,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "مشروط — يعطي 429 عند الاستخدام المكثف؛ يفعّل بقرار المجلس"
+    },
+    "rsshub": {
+      "type": "rss",
+      "url": "https://rsshub.app/...",
+      "enabled": false,
+      "weight": 0.0,
+      "rate_limit_per_hour": 0,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "مستبعد حالياً — 403 في البيئة"
+    },
+    "searxng": {
+      "type": "scrape",
+      "url": "https://searxng.site/...",
+      "enabled": false,
+      "weight": 0.0,
+      "rate_limit_per_hour": 0,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "مستبعد حالياً — بلا JSON في الاستجابة"
+    },
+    "reddit": {
+      "type": "scrape",
+      "url": "https://www.reddit.com/r/{sub}/.rss",
+      "enabled": false,
+      "weight": 0.0,
+      "rate_limit_per_hour": 0,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "مستبعد حالياً — 403"
+    }
+  }
+}

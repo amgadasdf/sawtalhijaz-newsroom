@@ -1,0 +1,18 @@
+{
+  "name": "sawtalhijaz-newsroom",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "status": "node engine/status.js",
+    "resume": "node engine/resume.js",
+    "radar": "node engine/radar.js",
+    "test": "node engine/test.js",
+    "dashboard": "node engine/dashboard.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
