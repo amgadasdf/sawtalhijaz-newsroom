@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "سجل تشغيل — الزمن الموثق بمصدره إلزامي (بروتوكول B1 الزمني)."
+  },
+  "kind": "B1-selftest",
+  "actor": null,
+  "iso": "2026-09-24T06:50:13.491Z",
+  "source": "unverified",
+  "startedAt": "2026-09-24T06:50:13.488Z",
+  "endedAt": "2026-09-24T06:50:13.604Z",
+  "durationMs": 116,
+  "summary": "[selftest] بوابة B1 — خضراء — timeStructureOK=✓ protocolEnv=✓ protocolHeader=✓ protocolManual=✓ protocolUnverified=✓ atomicOK=✓ patchOK=✓ runOK=✓ resumeOK=✓ allOK=✓",
+  "next": "",
+  "pending": [],
+  "gate": "B1",
+  "checks": {
+    "timeStructureOK": true,
+    "protocolEnv": true,
+    "protocolHeader": true,
+    "protocolManual": true,
+    "protocolUnverified": true,
+    "atomicOK": true,
+    "patchOK": true,
+    "runOK": true,
+    "resumeOK": true,
+    "allOK": true
+  },
+  "net": true,
+  "totalMs": 115
+}

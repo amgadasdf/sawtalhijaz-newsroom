@@ -1,0 +1,10 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "الزمن اليدوي المعتمد من المالك — يُستخدم عند انقطاع الشبكة وفشل هيدر sawtalhijaz.com. الأمر: node engine/cli.js settime \"<ISO>\""
+  },
+  "iso": null,
+  "setAtIso": null,
+  "by": null,
+  "note": ""
+}
