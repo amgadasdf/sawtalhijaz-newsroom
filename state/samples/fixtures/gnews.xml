@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Google News RSS</title>
+    <item>
+      <title>مجلس الوزراء يؤكد متابعة البرامج الوطنية</title>
+      <link>https://news.google.com/rss/articles/CBMi-fixture-1?oc=5</link>
+      <guid isPermaLink="false">fixture-1</guid>
+      <pubDate>Sat, 26 Sep 2026 16:15:00 GMT</pubDate>
+      <source url="https://www.spa.gov.sa/">وكالة الأنباء السعودية</source>
+    </item>
+    <item>
+      <title>روشن تعلن موعد الجولة المقبلة</title>
+      <link>https://news.google.com/rss/articles/CBMi-fixture-2?oc=5</link>
+      <pubDate>Sat, 26 Sep 2026 15:20:00 GMT</pubDate>
+      <source url="https://www.okaz.com.sa/">عكاظ</source>
+    </item>
+  </channel>
+</rss>

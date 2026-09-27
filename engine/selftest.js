@@ -1,4 +1,4 @@
-// engine/selftest.js — بوابة B1 الإلزامية (حزمة B1)
+// engine/selftest.js — بوابة B1 + B2 الحتمية (شبكة محقونة لبوابة الجالبات)
 // يثبت في بيئة معزولة: كتابة→تعديل→قراءة→سجل تشغيل→سطر استئناف كامل→تحقق بنية الزمن.
 // لا يمسّ state الحقيقي إلا بسطر سجل تشغيل واحد (state/runs/) يمثل تشغيل البوابة — ويُمنع بـ --no-record.
 // isolationDir: state/runs/_selftest/<stamp>/ (مستبعد من git — مخلفات اختبار)
@@ -8,6 +8,7 @@ import { pathToFileURL } from "node:url";
 import { createStore } from "./state.js";
 import { nowDoc, timeLine, TIME_SOURCES, setManualTime, clearManualTime } from "./time.js";
 import { buildResume } from "./resume.js";
+import { runFetchersSelftest } from "./fetchers/selftest.js";
 
 const ok = (b) => (b ? "✓" : "✗");
 
@@ -21,7 +22,7 @@ export async function runSelftest({ root = process.cwd(), net = true, keep = fal
     console.log(s);
   };
 
-  say("== B1 SELFTEST ==");
+  say("== B1 + B2 SELFTEST ==");
 
   // — 1) البروتوكول الزمني —
   const t = await nowDoc({ net, root });
@@ -125,6 +126,11 @@ export async function runSelftest({ root = process.cwd(), net = true, keep = fal
   const allOK = allLine.length === 3; // radar + شخص + مختبر
   checks.allOK = allOK;
 
+  // — 6.5) بوابة B2 الحتمية — عينات ثابتة + fetch محقون بلا شبكة —
+  say("\n— بوابة جالبات B2 (fixtures + fetch injection) —");
+  const fetchersGate = await runFetchersSelftest({ root });
+  checks.fetchersB2 = fetchersGate.ok;
+
   // — 7) تنظيف —
   if (keep) {
     say(`\n(--keep: البيئة المعزولة محفوظة في ${path.relative(root, sandbox)})`);
@@ -139,16 +145,16 @@ export async function runSelftest({ root = process.cwd(), net = true, keep = fal
   let registryRun = null;
   if (record) {
     registryRun = realStore.recordRun({
-      kind: "B1-selftest",
+      kind: "B2-selftest",
       actor: null, // سجل بوابة فقط: لا يعدّل عدّادات أي كيان حقيقي
       iso: t.iso,
       source: t.source,
-      summary: `[selftest] بوابة B1 — ${passed ? "خضراء" : "حمراء"} — ${Object.entries(checks).map(([k, v]) => `${k}=${ok(v)}`).join(" ")}`,
+      summary: `[selftest] بوابة B1+B2 — ${passed ? "خضراء" : "حمراء"} — ${Object.entries(checks).map(([k, v]) => `${k}=${ok(v)}`).join(" ")}`,
       next: "",
       pending: passed ? [] : ["إصلاح فاشل البوابة ثم إعادة selftest"],
       startedAt: startedAt.toISOString(),
       endedAt: new Date().toISOString(),
-      extra: { gate: "B1", checks, net, totalMs },
+      extra: { gate: "B1+B2", checks, net, totalMs },
     });
   }
 
@@ -157,8 +163,8 @@ export async function runSelftest({ root = process.cwd(), net = true, keep = fal
   for (const [k, v] of Object.entries(checks)) say(`${k}=${ok(v)}`);
   say(`totalMs=${totalMs}`);
   if (registryRun) say(`سجل التشغيل: ${registryRun.rel}`);
-  say(`\nالنتيجة: ${passed ? "خضراء — بوابة B1 مقفلة" : "حمراء — لا يُقفل B1"}`);
-  say("== B1 SELFTEST END ==");
+  say(`\nالنتيجة: ${passed ? "خضراء — بوابتا B1+B2 مقفلتان" : "حمراء — لا تُقفل B1+B2"}`);
+  say("== B1 + B2 SELFTEST END ==");
 
   return { ok: passed, checks, time: t, lines: out, totalMs, run: registryRun };
 }

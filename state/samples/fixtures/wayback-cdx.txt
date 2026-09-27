@@ -1,0 +1,3 @@
+urlkey	timestamp	original	mimetype	statuscode	digest	length
+sa,gov,spa)/news/123	20260926120000	https://www.spa.gov.sa/news/123	text/html	200	ABC123	4521
+sa,gov,spa)/news/124	20260925110000	https://www.spa.gov.sa/news/124	text/html	200	DEF456	3980

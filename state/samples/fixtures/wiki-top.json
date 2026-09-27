@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "project": "ar.wikipedia",
+      "access": "all-access",
+      "year": "2026",
+      "month": "09",
+      "day": "26",
+      "articles": [
+        { "article": "المملكة العربية السعودية", "views": 42000, "rank": 1 },
+        { "article": "الرياض", "views": 31800, "rank": 2 },
+        { "article": "كرة القدم", "views": 20900, "rank": 3 }
+      ]
+    }
+  ]
+}

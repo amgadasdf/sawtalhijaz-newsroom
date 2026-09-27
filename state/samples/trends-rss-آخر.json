@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "عينة استجابة خام (مقتطف عند كبر الجسم) مع إسقاط العناصر المحللة لإعادة الاستخدام عبر cache-first."
+  },
+  "source": "trends-rss",
+  "fetched_at": "2026-09-27T00:54:08.323Z",
+  "cache_key": "{\"source\":\"trends-rss\",\"url\":\"https://trends.google.com/trending/rss?geo=SA\"}",
+  "success": false,
+  "status": "error",
+  "http_status": null,
+  "response_ms": 118,
+  "request_count": 1,
+  "raw": null,
+  "requests": [
+    {
+      "url": "https://trends.google.com/trending/rss?geo=SA",
+      "status": null,
+      "content_type": null,
+      "response_ms": 118,
+      "ok": false,
+      "error": "TypeError: fetch failed (ECONNRESET)",
+      "raw": null
+    }
+  ],
+  "items": [],
+  "error": "TypeError: fetch failed (ECONNRESET)"
+}

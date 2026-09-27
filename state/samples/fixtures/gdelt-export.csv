@@ -1,0 +1,4 @@
+GlobalEventID,SQLDATE,Actor1Name,Actor2Name,Language,Domain,SourceURL
+111,20260926,وزارة الصحة,المواطنون,ar,spa.gov.sa,https://www.spa.gov.sa/news/العنوان-الأول
+222,20260926,وزارة الصحة,Officials,en,example.com,https://example.com/english-story
+333,20260926,وزارة الرياضة,الجمهور,ar,okaz.com.sa,https://www.okaz.com.sa/sports/خبر-ثان

@@ -2,10 +2,10 @@
 
 غرفة أخبار صوت الحجاز — نظام إعلامي يدوي (رادار + مختبرات + هندسة + 8 مكاتب).
 الحوكمة في GOVERNANCE.md (بصمة المشروع) — اقرأها قبل أي تشغيل.
-شجرة الإعدادات في config/ (JSON في B0، YAML مخطط مستقبلي) ومصادر البيانات في state/.
+شجرة الإعدادات في config/ (إعدادات B0 بصيغة JSON؛ ميزانيات B2 في `config/sources.yaml` بصيغة YAML 1.2 المتوافقة مع JSON لتبقى بلا تبعيات) ومصادر البيانات وعينات الجلب في `state/`.
 اللغة: العربية افتراضياً، والمنطقة الافتراضية SA مع gl/hl/ceid في config/geos.json.
 
-## التشغيل (B1)
+## التشغيل (B1 + B2)
 
 ملف واحد لكل الأوامر — صفر تبعيات (Node ≥ 20، ESM):
 
@@ -17,7 +17,9 @@ node engine/cli.js resume exec-editor         # كيان واحد (أو lab:disc
 node engine/cli.js settime "2026-09-24T09:00:00Z" --note "حقلة يدوية"
 node engine/cli.js settime --clear            # مسح الزمن اليدوي
 node engine/cli.js runs 20                    # آخر التشغيلات المسجلة
-node engine/cli.js selftest                   # بوابة B1 الإلزامية (exit 0 = خضراء)
+node engine/cli.js fetch trends-rss --max-items 5  # جالب واحد من config/sources.yaml
+node engine/cli.js fetch-live                 # البوابة الحية؛ يختبر fixtures عند انقطاع الشبكة
+node engine/cli.js selftest --offline          # بوابة B1+B2 الحتمية (exit 0 = خضراء)
 ```
 
 مكافئ npm: `npm run status | time | resume | runs | selftest`.
@@ -45,10 +47,11 @@ node engine/cli.js selftest                   # بوابة B1 الإلزامية
 
 البوابات تعمل بلا شبكة (حتمية) وتفشل بصوت عالٍ عند أي كسر:
 
-- **بوابة B1 الإلزامية**: `node engine/cli.js selftest` — كتابة→تعديل→قراءة→سجل تشغيل→سطر استئناف+التحقق من بنية الزمن، مع محاكاة الأوضاع الأربعة بحقن fetch.
-- بوابات مساعدة: `status` · `resume <كيان>` · `runs`.
+- **بوابة B1+B2 الإلزامية**: `node engine/cli.js selftest --offline` — اختبارات الزمن والحالة والاستئناف، ثم اختبارات جالبات B2 الحتمية بحقن `fetch` وعينات `state/samples/fixtures/` (RSS، تيليجرام، ويكي، CDX، GDELT ZIP/CSV، Bing، Bridge).
+- **البوابة الحية B2**: `node engine/cli.js fetch-live` — يحاول المصادر بالتتابع ضمن الميزانيات والفواصل والتهدئة؛ عند انقطاع الشبكة يطبع «البوابة الحية معلقة وتُشغَّل أول تشغيل في محادثة المشروع» ويُثبت بوابة fixtures.
+- بوابات مساعدة: `status` · `resume <كيان>` · `runs` · `fetch <source-id>`.
 
 ## أين نحن
 
-مرحلة البناء: B0 (مختومة، PR #1) ← **B1 (مختومة 2026-09-27، PR #2: الزمن + الحالة + الاستئناف + CLI)** ← B2 رادار ← … ← B7 ختم، ثم يبدأ التشغيل التحريري.
+مرحلة البناء: B0 (مختومة، PR #1) ← **B1 (مختومة 2026-09-27، PR #2: الزمن + الحالة + الاستئناف + CLI)** ← **B2 الجالبات** ← … ← B7 ختم، ثم يبدأ التشغيل التحريري.
 قرارات المجلس المؤرشفة وأثرها في `state/decisions.md` — منها: إلزامية البوابة الحتمية بحقن الشبكة في كل حزمة، وإلغاء مسار B2′ أرشيفياً (المرجع الوحيد للرادار هو B2).

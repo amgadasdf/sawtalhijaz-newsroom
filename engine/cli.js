@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// engine/cli.js — واجهة أوامر المغرفة الوحيدة (حزمة B1)
-// أوامر: status · time · resume · settime · runs · selftest — صفر تبعيات، ESM.
+// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2)
+// أوامر: status · time · resume · settime · runs · fetch · fetch-live · selftest — صفر تبعيات، ESM.
 //
 //   node engine/cli.js status [--offline]
 //   node engine/cli.js time [--offline]
@@ -13,6 +13,8 @@ import { nowDoc, timeLine, setManualTime, clearManualTime, readManualTime, SKEW_
 import { buildResume } from "./resume.js";
 import { buildStatus } from "./status.js";
 import { runSelftest } from "./selftest.js";
+import { createFetchers } from "./fetchers/index.js";
+import { runLiveGate } from "./fetchers/live-gate.js";
 
 const USAGE = `الاستخدام:
   node engine/cli.js status [--offline]                    تقرير الحالة من state/
@@ -21,7 +23,9 @@ const USAGE = `الاستخدام:
   node engine/cli.js settime "<ISO>" [--note "…"]          تثبيت الزمن اليدوي المعتمد (عند انقطاع الشبكة)
   node engine/cli.js settime --clear                       مسح الزمن اليدوي
   node engine/cli.js runs [n]                              آخر n تشغيل (افتراضي 12)
-  node engine/cli.js selftest [--offline] [--keep]         بوابة B1 الإلزامية`;
+  node engine/cli.js fetch <source-id> [--weekly]           تشغيل جالب واحد من config/sources.yaml
+  node engine/cli.js fetch-live                            بوابة B2 الحية (مع fallback fixtures عند انقطاع الشبكة)
+  node engine/cli.js selftest [--offline] [--keep]         بوابة B1+B2 الحتمية الإلزامية`;
 
 const args = process.argv.slice(2);
 const noteIdx = args.indexOf("--note");
@@ -86,6 +90,30 @@ switch (cmd) {
     const runs = store.listRuns(Number.isFinite(n) && n > 0 ? n : 12);
     if (!runs.length) console.log("لا تشغيلات مسجلة بعد.");
     for (const r of runs) console.log(`${r.iso} | ${r.kind} | actor=${r.actor ?? "—"} | source=${r.source ?? "—"} | ${r.rel}`);
+    break;
+  }
+
+  case "fetch": {
+    const sourceId = positional[1];
+    if (!sourceId) die(`fetch يحتاج source-id من config/sources.yaml.\n\n${USAGE}`);
+    const fetchers = createFetchers();
+    const fetcher = fetchers.byId[sourceId];
+    if (!fetcher) die(`جالب غير معروف: ${sourceId}\nالمصادر: ${Object.keys(fetchers.byId).join(", ")}\n\n${USAGE}`);
+    const maxIndex = args.indexOf("--max-items");
+    const maxItems = maxIndex >= 0 ? Number(args[maxIndex + 1]) : undefined;
+    const options = {
+      ...(Number.isFinite(maxItems) ? { maxItems } : {}),
+      ...(args.includes("--weekly") ? { mode: "weekly" } : {}),
+    };
+    const result = await fetcher(options);
+    console.log(JSON.stringify(result, null, 2));
+    process.exit(["ok", "partial", "cache", "disabled"].includes(result.status) ? 0 : 1);
+    break;
+  }
+
+  case "fetch-live": {
+    const result = await runLiveGate();
+    process.exit(result.ok ? 0 : 1);
     break;
   }
 
