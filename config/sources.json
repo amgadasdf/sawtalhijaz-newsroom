@@ -1,9 +1,23 @@
 {
   "_meta": {
-    "format": "json (بديل عن YAML لعدم توفر parser بلا تبعيات — قرار B0 موثّق في التقرير)",
-    "policy": "free-only، cache-first، backoff أُسّي 2/15/360 د، فاصل عشوائي 2–6ث",
+    "format": "json",
+    "decision": "B0 reactivated by Council: JSON is the sole configuration format; no YAML source of truth.",
+    "policy": "free-only, cache-first, rolling-hour request budgets, 2-6 second random spacing, 429 backoff 2/15/360 minutes",
     "default_geo": "SA",
+    "jitter_seconds": [2, 6],
+    "backoff_minutes": [2, 15, 360],
     "lang_params": { "hl": "ar", "gl": "SA", "ceid": "SA:ar" }
+  },
+  "site_inventory": {
+    "enabled": true,
+    "sitemap_url": "https://sawtalhijaz.com/sitemap.xml",
+    "content_sitemap_url": "https://sawtalhijaz.com/sitemap-0.xml",
+    "rate_limit_per_hour": 2,
+    "requests_per_run": 2,
+    "cache_ttl_seconds": 21600,
+    "timeout_ms": 15000,
+    "jitter_seconds": [2, 6],
+    "notes": "جرد خريطة الموقع العامة فقط؛ طلبان كحد أقصى/ساعة، cache-first لمدة 6 ساعات."
   },
   "sources": {
     "trends-rss": {
@@ -12,98 +26,148 @@
       "enabled": true,
       "weight": 1.0,
       "rate_limit_per_hour": 2,
+      "cache_ttl_seconds": 1800,
+      "max_items": 5,
+      "timeout_ms": 20000,
       "backoff_minutes": [2, 15, 360],
       "jitter_seconds": [2, 6],
       "cache_first": true,
-      "notes": "RSS العام من قوقل ترندز للسعودية"
+      "notes": "RSS العام من Google Trends للسعودية"
     },
-    "gnews-1h": {
+    "gnews": {
       "type": "rss",
-      "url": "https://news.google.com/rss/search?q=when:1h&hl=ar&gl=SA&ceid=SA:ar",
+      "url": "https://news.google.com/rss/search",
       "enabled": true,
       "weight": 0.9,
       "rate_limit_per_hour": 6,
+      "cache_ttl_seconds": 600,
+      "max_items": 5,
+      "timeout_ms": 20000,
+      "params": { "hl": "ar", "gl": "SA", "ceid": "SA:ar" },
+      "general_query": "when:1h",
+      "desk_queries": {
+        "قرارات-أحداث": { "label": "قرار مجلس الوزراء", "query": "قرار مجلس الوزراء" },
+        "تريند-الشارع": { "label": "تريند", "query": "تريند" },
+        "روشن-الرياضية": { "label": "روشن رياضية", "query": "روشن رياضية" }
+      },
       "backoff_minutes": [2, 15, 360],
       "jitter_seconds": [2, 6],
       "cache_first": true,
-      "notes": "عائلة GNews — نافذة آخر ساعة (مصدر فرع مفعّل)"
-    },
-    "gnews-desk": {
-      "type": "rss",
-      "url": "https://news.google.com/rss/search?q={query}&hl=ar&gl=SA&ceid=SA:ar",
-      "enabled": true,
-      "weight": 0.9,
-      "rate_limit_per_hour": 6,
-      "backoff_minutes": [2, 15, 360],
-      "jitter_seconds": [2, 6],
-      "cache_first": true,
-      "notes": "عائلة GNews — بحث بالمكتب/الزاوية (مصدر فرع مفعّل)"
+      "notes": "GNews: when:1h عام + استعلام لكل قسم من desks"
     },
     "telegram": {
-      "type": "scrape",
-      "url": "https://t.me/s/{channel}",
+      "type": "html-preview",
+      "url_template": "https://t.me/s/{channel}",
       "enabled": true,
       "weight": 0.6,
+      "channels": ["SabqOrg", "SaudiNews50", "AjelNews"],
       "rate_limit_per_hour": 4,
+      "cache_ttl_seconds": 900,
+      "max_items": 5,
+      "timeout_ms": 20000,
       "backoff_minutes": [2, 15, 360],
       "jitter_seconds": [2, 6],
       "cache_first": true,
-      "notes": "القنوات العامة عبر preview — يلزم تحديد القنوات يدوياً"
+      "notes": "ثلاث قنوات سعودية عامة عبر HTML preview"
     },
     "wiki-top": {
-      "type": "api",
-      "url": "https://wikimedia.org/api/rest_v1/...",
+      "type": "json-api",
+      "url_template": "https://wikimedia.org/api/rest_v1/metrics/pageviews/top/ar.wikipedia.org/all-access/{date}",
       "enabled": true,
       "weight": 0.4,
       "rate_limit_per_hour": 2,
+      "cache_ttl_seconds": 21600,
+      "max_items": 5,
+      "timeout_ms": 20000,
       "backoff_minutes": [2, 15, 360],
       "jitter_seconds": [2, 6],
       "cache_first": true,
-      "notes": "ويكيميديا top/edits — خلفية معرفية"
+      "notes": "مشاهدات ويكيبيديا العربية لليوم السابق"
     },
     "wiki-rc": {
-      "type": "api",
-      "url": "https://wikimedia.org/api/rest_v1/...",
+      "type": "json-api",
+      "url": "https://ar.wikipedia.org/w/api.php",
       "enabled": true,
       "weight": 0.4,
+      "params": {
+        "action": "query",
+        "list": "recentchanges",
+        "rclimit": "50",
+        "format": "json",
+        "rcprop": "title|timestamp|user|comment|flags|ids"
+      },
       "rate_limit_per_hour": 2,
+      "cache_ttl_seconds": 1800,
+      "max_items": 5,
+      "timeout_ms": 20000,
       "backoff_minutes": [2, 15, 360],
       "jitter_seconds": [2, 6],
       "cache_first": true,
-      "notes": "ويكيميديا recentchanges — كشف الأحداث أول ساعة"
+      "notes": "recentchanges من واجهة ويكيبيديا العربية"
     },
     "wayback-cdx": {
-      "type": "api",
+      "type": "cdx",
       "url": "https://web.archive.org/cdx/search/cdx",
       "enabled": true,
+      "daily_enabled": false,
+      "run_mode": "weekly",
       "weight": 0.5,
-      "rate_limit_per_hour": 2,
+      "domains": ["spa.gov.sa"],
+      "match_type": "domain",
+      "weekly_limit": 5,
+      "rate_limit_per_hour": 1,
+      "cache_ttl_seconds": 604800,
+      "max_items": 5,
+      "timeout_ms": 25000,
       "backoff_minutes": [2, 15, 360],
       "jitter_seconds": [2, 6],
       "cache_first": true,
-      "notes": "فهرس أرشيف الويب — للتوثيق والاسترجاع"
+      "notes": "تقارير أسبوعية فقط؛ معطل في الرادار اليومي"
     },
-    "gdelt-lastupdate": {
-      "type": "api",
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc",
+    "gdelt-files": {
+      "type": "zip-csv",
+      "lastupdate_url": "https://data.gdeltproject.org/gdeltv2/lastupdate.txt",
       "enabled": true,
       "weight": 0.7,
       "rate_limit_per_hour": 2,
+      "cache_ttl_seconds": 1800,
+      "max_items": 5,
+      "max_export_files_per_run": 1,
+      "max_uncompressed_bytes": 50000000,
+      "timeout_ms": 30000,
       "backoff_minutes": [2, 15, 360],
       "jitter_seconds": [2, 6],
       "cache_first": true,
-      "notes": "GDELT lastupdate — تغذية أوائل الأحداث"
+      "notes": "lastupdate.txt ثم ملف export.CSV.zip الأحدث وحده، مع فلترة الصفوف العربية"
     },
     "bing-dorks": {
-      "type": "scrape",
-      "url": "https://www.bing.com/search?q={dorks}",
+      "type": "html-search",
+      "url": "https://www.bing.com/search",
       "enabled": true,
       "weight": 0.5,
       "rate_limit_per_hour": 6,
+      "cache_ttl_seconds": 600,
+      "max_items": 10,
+      "timeout_ms": 20000,
       "backoff_minutes": [2, 15, 360],
       "jitter_seconds": [2, 6],
       "cache_first": true,
-      "notes": "دوركس بنج — مختبر advanced-search فقط"
+      "notes": "دوركس البحث الأولية من config/dorks-init.json؛ سقف عشرة نتائج"
+    },
+    "bridge": {
+      "type": "rss-bridge",
+      "url": "https://rss-bridge.org/bridge01/",
+      "enabled": false,
+      "approval_required": true,
+      "weight": 0.3,
+      "rate_limit_per_hour": 1,
+      "cache_ttl_seconds": 21600,
+      "max_items": 5,
+      "timeout_ms": 20000,
+      "backoff_minutes": [2, 15, 360],
+      "jitter_seconds": [2, 6],
+      "cache_first": true,
+      "notes": "معطل؛ لا يفعّل إلا باعتماد مجلس موثق"
     },
     "gdelt-doc": {
       "type": "api",

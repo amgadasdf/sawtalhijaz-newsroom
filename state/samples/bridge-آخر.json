@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "لا توجد استجابة خام في هذا الاستدعاء؛ لم يصدر طلب شبكة (معطل/ميزانية/تبريد)."
+  },
+  "source": "bridge",
+  "fetched_at": "2026-09-27T02:07:36.404Z",
+  "cache_key": "{\"source\":\"bridge\",\"url\":\"https://rss-bridge.org/bridge01/\"}",
+  "success": false,
+  "status": "disabled",
+  "http_status": null,
+  "response_ms": 0,
+  "request_count": 0,
+  "raw": null,
+  "requests": [],
+  "items": []
+}

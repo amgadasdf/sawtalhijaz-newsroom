@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2)
-// أوامر: status · time · resume · settime · runs · fetch · fetch-live · selftest — صفر تبعيات، ESM.
+// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2+B3)
+// أوامر: status · time · resume · settime · runs · fetch · fetch-live · radar · selftest — صفر تبعيات، ESM.
 //
 //   node engine/cli.js status [--offline]
 //   node engine/cli.js time [--offline]
@@ -15,6 +15,8 @@ import { buildStatus } from "./status.js";
 import { runSelftest } from "./selftest.js";
 import { createFetchers } from "./fetchers/index.js";
 import { runLiveGate } from "./fetchers/live-gate.js";
+import { runRadar } from "./radar.mjs";
+import { runB3FixtureGate } from "./radar-selftest.mjs";
 
 const USAGE = `الاستخدام:
   node engine/cli.js status [--offline]                    تقرير الحالة من state/
@@ -23,9 +25,11 @@ const USAGE = `الاستخدام:
   node engine/cli.js settime "<ISO>" [--note "…"]          تثبيت الزمن اليدوي المعتمد (عند انقطاع الشبكة)
   node engine/cli.js settime --clear                       مسح الزمن اليدوي
   node engine/cli.js runs [n]                              آخر n تشغيل (افتراضي 12)
-  node engine/cli.js fetch <source-id> [--weekly]           تشغيل جالب واحد من config/sources.yaml
+  node engine/cli.js fetch <source-id> [--weekly]           تشغيل جالب واحد من config/sources.json
   node engine/cli.js fetch-live                            بوابة B2 الحية (مع fallback fixtures عند انقطاع الشبكة)
-  node engine/cli.js selftest [--offline] [--keep]         بوابة B1+B2 الحتمية الإلزامية`;
+  node engine/cli.js radar [--section ID] [--scope daily|all] [--depth quick|deep|weekly]
+                                                          تشغيل B3؛ --fixtures/--offline يشغل بوابة معزولة بلا شبكة
+  node engine/cli.js selftest [--offline] [--keep]         بوابات B1+B2+B3 الحتمية الإلزامية`;
 
 const args = process.argv.slice(2);
 const noteIdx = args.indexOf("--note");
@@ -38,6 +42,12 @@ const noteVal = noteIdx >= 0 ? args[noteIdx + 1] ?? "" : "";
 function die(msg) {
   console.error(msg);
   process.exit(1);
+}
+
+function flagValue(flag, fallback = null) {
+  const index = args.indexOf(flag);
+  const value = index >= 0 ? args[index + 1] : null;
+  return value && !value.startsWith("--") ? value : fallback;
 }
 
 switch (cmd) {
@@ -95,7 +105,7 @@ switch (cmd) {
 
   case "fetch": {
     const sourceId = positional[1];
-    if (!sourceId) die(`fetch يحتاج source-id من config/sources.yaml.\n\n${USAGE}`);
+    if (!sourceId) die(`fetch يحتاج source-id من config/sources.json.\n\n${USAGE}`);
     const fetchers = createFetchers();
     const fetcher = fetchers.byId[sourceId];
     if (!fetcher) die(`جالب غير معروف: ${sourceId}\nالمصادر: ${Object.keys(fetchers.byId).join(", ")}\n\n${USAGE}`);
@@ -113,6 +123,29 @@ switch (cmd) {
 
   case "fetch-live": {
     const result = await runLiveGate();
+    process.exit(result.ok ? 0 : 1);
+    break;
+  }
+
+  case "radar": {
+    if (args.includes("--fixtures") || args.includes("--offline")) {
+      const gate = await runB3FixtureGate();
+      process.exit(gate.ok ? 0 : 1);
+    }
+    const sourceIds = flagValue("--sources")?.split(/[;,،]/u).map((entry) => entry.trim()).filter(Boolean) ?? null;
+    const result = await runRadar({
+      section: flagValue("--section", "تريند-الشارع"),
+      scope: flagValue("--scope", "daily"),
+      depth: flagValue("--depth", "quick"),
+      sourceIds,
+      net,
+    });
+    for (const line of result.lines) console.log(line);
+    for (const source of result.sourceStatuses) {
+      console.log(`[${source.sourceId}] ${source.status} | count=${source.count} | requests=${source.requestCount}${source.error ? ` | ${source.error}` : ""}`);
+    }
+    console.log(`topics=${result.topics.length} | items=${result.summary.normalizedItems} | inventory=${result.summary.inventoryStatus}`);
+    console.log(`state/topics-latest.json | run=${result.run.rel}`);
     process.exit(result.ok ? 0 : 1);
     break;
   }

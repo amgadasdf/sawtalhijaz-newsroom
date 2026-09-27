@@ -99,7 +99,13 @@ export function createStore(root = process.cwd()) {
   function writeRun({ kind, actor = null, iso = new Date().toISOString(), source = "env", summary = "", next = "", pending = null, startedAt = null, endedAt = null, extra = {} }) {
     if (!kind) throw new Error("writeRun: kind مطلوب");
     const stamp = iso.replace(/[:.]/g, "-");
-    const rel = `${REL.runsDir}/${stamp}-${kind}.json`;
+    const baseRel = `${REL.runsDir}/${stamp}-${kind}.json`;
+    let rel = baseRel;
+    let collision = 2;
+    while (exists(rel)) {
+      rel = `${REL.runsDir}/${stamp}-${kind}-${String(collision).padStart(4, "0")}.json`;
+      collision += 1;
+    }
     const start = startedAt ?? iso;
     const end = endedAt ?? iso;
     const doc = {
@@ -159,17 +165,17 @@ export function createStore(root = process.cwd()) {
 
   function listRuns(limit = 20) {
     if (!fs.existsSync(abs(REL.runsDir))) return [];
+    const maximum = Number.isFinite(Number(limit)) && Number(limit) > 0 ? Number(limit) : 20;
     return fs
       .readdirSync(abs(REL.runsDir))
       .filter((f) => f.endsWith(".json"))
-      .sort()
-      .reverse()
-      .slice(0, limit)
       .map((f) => {
         const rel = `${REL.runsDir}/${f}`;
         const doc = readJsonSafe(rel, {});
         return { file: f, rel, iso: doc.iso ?? null, kind: doc.kind ?? null, actor: doc.actor ?? null, source: doc.source ?? null };
-      });
+      })
+      .sort((a, b) => String(b.iso ?? "").localeCompare(String(a.iso ?? "")) || b.file.localeCompare(a.file))
+      .slice(0, maximum);
   }
 
   // آخر تشغيل لكيان معيّن من سجل runs (يستخدم للرادار أو أي كيان بلا ملف حالة)

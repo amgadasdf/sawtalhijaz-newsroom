@@ -3,21 +3,21 @@
     "format": "json",
     "notes": "عينة استجابة خام (مقتطف عند كبر الجسم) مع إسقاط العناصر المحللة لإعادة الاستخدام عبر cache-first."
   },
-  "source": "trends-rss",
-  "fetched_at": "2026-09-27T02:07:11.380Z",
-  "cache_key": "{\"source\":\"trends-rss\",\"url\":\"https://trends.google.com/trending/rss?geo=SA\"}",
+  "source": "telegram",
+  "fetched_at": "2026-09-27T02:07:19.384Z",
+  "cache_key": "{\"source\":\"telegram\",\"channels\":[\"SabqOrg\",\"SaudiNews50\",\"AjelNews\"]}",
   "success": false,
   "status": "error",
   "http_status": null,
-  "response_ms": 8.3,
+  "response_ms": 7.5,
   "request_count": 1,
   "raw": null,
   "requests": [
     {
-      "url": "https://trends.google.com/trending/rss?geo=SA",
+      "url": "https://t.me/s/SabqOrg",
       "status": null,
       "content_type": null,
-      "response_ms": 8.3,
+      "response_ms": 7.5,
       "ok": false,
       "error": "TypeError: fetch failed (ECONNRESET)",
       "raw": null

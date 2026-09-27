@@ -41,12 +41,19 @@ function makeSandbox(sourceRoot, label) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), `sawtalhijaz-b2-${label}-`));
   fs.mkdirSync(path.join(root, "config"), { recursive: true });
   fs.mkdirSync(path.join(root, "state", "samples"), { recursive: true });
-  fs.copyFileSync(path.join(sourceRoot, "config", "sources.yaml"), path.join(root, "config", "sources.yaml"));
+  fs.copyFileSync(path.join(sourceRoot, "config", "sources.json"), path.join(root, "config", "sources.json"));
   fs.copyFileSync(path.join(sourceRoot, "config", "desks.json"), path.join(root, "config", "desks.json"));
   fs.copyFileSync(path.join(sourceRoot, "config", "dorks-init.json"), path.join(root, "config", "dorks-init.json"));
+  const sourceConfig = JSON.parse(fs.readFileSync(path.join(root, "config", "sources.json"), "utf8"));
+  const sources = Object.fromEntries(Object.entries(sourceConfig.sources).map(([id, source]) => [id, {
+    status: source.enabled ? "سليم" : "معطل",
+    requests: 0, errors: 0, invocations: 0, cache_hits: 0,
+    last_status: null, last_ok: null, last_err: null, last_invocation: null,
+    last_response_ms: null, backoff_stage: 0, blocked_until: null, request_times: [],
+  }]));
   writeJson(path.join(root, "state", "sources-health.json"), {
-    _meta: { format: "json", notes: "isolated B2 test health" },
-    sources: {},
+    _meta: { format: "json", notes: "isolated B2 test health", source_count: Object.keys(sources).length },
+    sources,
   });
   return root;
 }
@@ -196,8 +203,14 @@ export async function runFetchersSelftest({ root = process.cwd(), log = console.
     printCheck(log, checks, "jitterTwoToSixSeconds", sleeps.length === networkCalls.length - 1 && sleeps.every((ms) => ms >= 2000 && ms <= 6000), `delays=${sleeps.length}`);
 
     const health = JSON.parse(fs.readFileSync(path.join(sandbox, "state", "sources-health.json"), "utf8"));
-    const expectedHealthIds = ["trends-rss", "gnews", "telegram", "wiki-top", "wiki-rc", "wayback-cdx", "gdelt-files", "bing-dorks", "bridge"];
-    const healthOkay = expectedHealthIds.every((id) => Number(health.sources?.[id]?.invocations) >= 1 && Number.isFinite(health.sources?.[id]?.last_response_ms))
+    const sourceConfig = JSON.parse(fs.readFileSync(path.join(sandbox, "config", "sources.json"), "utf8"));
+    const expectedHealthIds = Object.keys(sourceConfig.sources);
+    const invokedIds = ["trends-rss", "gnews", "telegram", "wiki-top", "wiki-rc", "wayback-cdx", "gdelt-files", "bing-dorks", "bridge"];
+    const disabledIds = expectedHealthIds.filter((id) => sourceConfig.sources[id].enabled === false);
+    const healthOkay = expectedHealthIds.length === 13
+      && expectedHealthIds.every((id) => Object.hasOwn(health.sources ?? {}, id))
+      && invokedIds.every((id) => Number(health.sources?.[id]?.invocations) >= 1 && Number.isFinite(health.sources?.[id]?.last_response_ms))
+      && disabledIds.every((id) => health.sources[id].status === "معطل" || id === "wayback-cdx" || id === "bridge")
       && health.sources["trends-rss"].cache_hits === 1
       && health.sources["gdelt-files"].invocations === 2;
     const sampleOkay = ["trends-rss", "gnews", "telegram", "wiki-top", "wiki-rc", "wayback-cdx", "gdelt-files", "bing-dorks", "bridge"]
@@ -209,7 +222,7 @@ export async function runFetchersSelftest({ root = process.cwd(), log = console.
     printCheck(log, checks, "rawSamplesSaved", sampleOkay, "state/samples/<source>-آخر.json");
 
     backoffSandbox = makeSandbox(root, "429-backoff");
-    const backoffConfigFile = path.join(backoffSandbox, "config", "sources.yaml");
+    const backoffConfigFile = path.join(backoffSandbox, "config", "sources.json");
     const backoffConfig = JSON.parse(fs.readFileSync(backoffConfigFile, "utf8"));
     backoffConfig.sources["wiki-rc"].rate_limit_per_hour = 10;
     writeJson(backoffConfigFile, backoffConfig);
@@ -240,7 +253,7 @@ export async function runFetchersSelftest({ root = process.cwd(), log = console.
     printCheck(log, checks, "429BackoffTwoFifteenSixHours", first429.status === "cooldown" && duringFirstCooldown.status === "cooldown" && second429.status === "cooldown" && third429.status === "cooldown" && firstHealth.backoff_stage === 1 && secondHealth.backoff_stage === 2 && thirdHealth.backoff_stage === 3 && firstDelayMs === 120000 && secondDelayMs === 900000 && thirdDelayMs === 21600000 && backoffCalls === 3, `calls=${backoffCalls}; delays_ms=${firstDelayMs}/${secondDelayMs}/${thirdDelayMs}`);
 
     budgetSandbox = makeSandbox(root, "budget");
-    const budgetConfigFile = path.join(budgetSandbox, "config", "sources.yaml");
+    const budgetConfigFile = path.join(budgetSandbox, "config", "sources.json");
     const budgetConfig = JSON.parse(fs.readFileSync(budgetConfigFile, "utf8"));
     budgetConfig.sources["trends-rss"].rate_limit_per_hour = 1;
     writeJson(budgetConfigFile, budgetConfig);

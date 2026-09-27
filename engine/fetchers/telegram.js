@@ -19,7 +19,7 @@ function roundRobin(groups, maximum) {
 export function fetchTelegram(runtime, { maxItems = 5, forceRefresh = false } = {}) {
   const source = runtime.source("telegram");
   const channels = [...new Set((source.channels ?? []).map((value) => String(value).trim()).filter(Boolean))];
-  if (!channels.length) throw new Error("telegram: sources.yaml must list public channels");
+  if (!channels.length) throw new Error("telegram: config/sources.json must list public channels");
   const cacheKey = JSON.stringify({ source: "telegram", channels });
   return runtime.execute("telegram", { cacheKey, maxItems, forceRefresh, requiredRequests: channels.length }, async (context) => {
     const groups = [];

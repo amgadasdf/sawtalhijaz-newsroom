@@ -1,11 +1,12 @@
 import { parseBingHtml } from "./parsers.js";
 
-function buildQueries(runtime) {
+function buildQueries(runtime, { section: selectedSection = null } = {}) {
   const source = runtime.source("bing-dorks");
   const dorks = JSON.parse(runtime.store.readText("config/dorks-init.json"));
   const maxQueries = Math.max(1, Number(dorks.max_queries) || 6);
   const queries = [];
   for (const section of dorks.sections ?? []) {
+    if (selectedSection && selectedSection !== section.id) continue;
     for (const pattern of dorks.patterns ?? []) {
       const query = String(pattern.template ?? "").replaceAll("{term}", String(section.term ?? "")).trim();
       if (query) queries.push({ section: section.id, term: section.term, pattern: pattern.id, query });
@@ -42,11 +43,11 @@ function roundRobin(groups, maximum) {
   return out;
 }
 
-export function fetchBingDorks(runtime, { maxItems = 10, forceRefresh = false, queries: overrideQueries = null } = {}) {
+export function fetchBingDorks(runtime, { maxItems = 10, forceRefresh = false, queries: overrideQueries = null, section = null } = {}) {
   const source = runtime.source("bing-dorks");
   const queries = Array.isArray(overrideQueries)
     ? overrideQueries.map((query) => typeof query === "string" ? { query, section: null, pattern: "manual" } : query)
-    : buildQueries(runtime);
+    : buildQueries(runtime, { section });
   if (!queries.length) throw new Error("bing-dorks: no initial dorks are configured");
   const requestPlan = queries.map((entry) => ({ ...entry, url: resultUrl(source, entry.query) }));
   const cacheKey = JSON.stringify({ source: "bing-dorks", queries: requestPlan.map(({ query }) => query) });

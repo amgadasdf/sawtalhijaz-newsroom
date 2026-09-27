@@ -11,6 +11,7 @@ import { fetchBingDorks } from "./bing-dorks.js";
 import { fetchBridge } from "./bridge.js";
 
 export { FetcherError, FetcherRuntime, createFetcherRuntime } from "./runtime.js";
+export { probeConnectivity, CONNECTIVITY_PROBES } from "./connectivity.js";
 export * from "./parsers.js";
 
 export function createFetchers(options = {}) {

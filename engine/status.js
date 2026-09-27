@@ -12,7 +12,8 @@ export async function buildStatus({ root = process.cwd(), net = false } = {}) {
   lines.push(timeLine(t));
 
   const topics = store.readJsonSafe("state/topics.json", []);
-  lines.push(`topics: ${Array.isArray(topics) ? topics.length : "غير صالح"}`);
+  const topicCount = Array.isArray(topics) ? topics.length : Array.isArray(topics?.topics) ? topics.topics.length : null;
+  lines.push(`topics: ${topicCount ?? "غير صالح"}`);
 
   const sh = store.readJsonSafe("state/sources-health.json", { sources: {} });
   const entries = Object.entries(sh?.sources ?? {});

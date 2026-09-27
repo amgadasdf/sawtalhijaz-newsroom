@@ -137,8 +137,8 @@ export class FetcherRuntime {
     this.random = random;
     this.clock = clock;
     this.userAgent = userAgent;
-    this.config = this.loadJson("config/sources.yaml");
-    if (!this.config?.sources || typeof this.config.sources !== "object") throw new Error("config/sources.yaml must contain a sources mapping");
+    this.config = this.loadJson("config/sources.json");
+    if (!this.config?.sources || typeof this.config.sources !== "object") throw new Error("config/sources.json must contain a sources mapping");
     this.queue = Promise.resolve();
     this.runLimits = new Map();
     const health = this.readHealth();
@@ -149,13 +149,13 @@ export class FetcherRuntime {
     try {
       return JSON.parse(this.store.readText(rel));
     } catch (error) {
-      throw new Error(`تعذرت قراءة ${rel} (ملف YAML بصيغة JSON-compatible): ${error.message}`, { cause: error });
+      throw new Error(`تعذرت قراءة ${rel} JSON: ${error.message}`, { cause: error });
     }
   }
 
   source(sourceId) {
     const source = this.config?.sources?.[sourceId];
-    if (!source) throw new Error(`مصدر غير معرّف في config/sources.yaml: ${sourceId}`);
+    if (!source) throw new Error(`مصدر غير معرّف في config/sources.json: ${sourceId}`);
     return source;
   }
 
@@ -281,7 +281,9 @@ export class FetcherRuntime {
 
     const approved = source.approval_required
       ? source.enabled === true && Boolean(options.councilApproval && String(options.councilApproval).trim())
-      : source.enabled === true || (sourceId === "wayback-cdx" && source.run_mode === "weekly" && options.mode === "weekly");
+      : sourceId === "wayback-cdx"
+        ? source.enabled === true && (options.mode === "weekly" ? source.run_mode === "weekly" : source.daily_enabled !== false)
+        : source.enabled === true;
     if (!approved) return finishWithoutRequest("disabled");
 
     if (!options.forceRefresh && isFreshSample(sample, cacheKey, source.cache_ttl_seconds, nowMs)) {

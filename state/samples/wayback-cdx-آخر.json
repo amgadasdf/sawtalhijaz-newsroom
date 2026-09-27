@@ -3,21 +3,21 @@
     "format": "json",
     "notes": "عينة استجابة خام (مقتطف عند كبر الجسم) مع إسقاط العناصر المحللة لإعادة الاستخدام عبر cache-first."
   },
-  "source": "trends-rss",
-  "fetched_at": "2026-09-27T02:07:11.380Z",
-  "cache_key": "{\"source\":\"trends-rss\",\"url\":\"https://trends.google.com/trending/rss?geo=SA\"}",
+  "source": "wayback-cdx",
+  "fetched_at": "2026-09-27T02:07:30.395Z",
+  "cache_key": "{\"source\":\"wayback-cdx\",\"domain\":\"spa.gov.sa\",\"mode\":\"weekly\",\"url\":\"https://web.archive.org/cdx/search/cdx?url=spa.gov.sa&matchType=domain&limit=5\"}",
   "success": false,
   "status": "error",
   "http_status": null,
-  "response_ms": 8.3,
+  "response_ms": 9.9,
   "request_count": 1,
   "raw": null,
   "requests": [
     {
-      "url": "https://trends.google.com/trending/rss?geo=SA",
+      "url": "https://web.archive.org/cdx/search/cdx?url=spa.gov.sa&matchType=domain&limit=5",
       "status": null,
       "content_type": null,
-      "response_ms": 8.3,
+      "response_ms": 9.9,
       "ok": false,
       "error": "TypeError: fetch failed (ECONNRESET)",
       "raw": null

@@ -2,11 +2,29 @@
   "_meta": {
     "format": "json",
     "notes": "صحة المصادر — تحديث ذري بعد كل استدعاء جالب، مع عدد الطلبات وزمن الاستجابة والتهدئة.",
-    "updated_at": "2026-09-27T00:54:08.323Z",
-    "last_request_at": "2026-09-27T00:54:08.203Z"
+    "source_count": 13,
+    "updated_at": "2026-09-27T02:07:36.405Z",
+    "last_request_at": "2026-09-27T02:07:36.389Z"
   },
   "sources": {
     "trends-rss": {
+      "status": "فشل",
+      "requests": 2,
+      "errors": 2,
+      "invocations": 2,
+      "cache_hits": 0,
+      "last_status": null,
+      "last_ok": null,
+      "last_err": "TypeError: fetch failed (ECONNRESET)",
+      "last_invocation": "2026-09-27T02:07:11.380Z",
+      "last_response_ms": 8.3,
+      "backoff_stage": 0,
+      "blocked_until": null,
+      "request_times": [
+        "2026-09-27T02:07:11.371Z"
+      ]
+    },
+    "gnews": {
       "status": "فشل",
       "requests": 1,
       "errors": 1,
@@ -15,154 +33,127 @@
       "last_status": null,
       "last_ok": null,
       "last_err": "TypeError: fetch failed (ECONNRESET)",
-      "last_invocation": "2026-09-27T00:54:08.323Z",
-      "last_response_ms": 118,
+      "last_invocation": "2026-09-27T02:07:16.384Z",
+      "last_response_ms": 9.5,
       "backoff_stage": 0,
       "blocked_until": null,
       "request_times": [
-        "2026-09-27T00:54:08.203Z"
+        "2026-09-27T02:07:16.374Z"
       ]
     },
-    "gnews": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "invocations": 0,
-      "cache_hits": 0,
-      "last_status": null,
-      "last_ok": null,
-      "last_err": null,
-      "last_invocation": null,
-      "last_response_ms": null,
-      "backoff_stage": 0,
-      "blocked_until": null,
-      "request_times": []
-    },
-    "gnews-1h": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "last_status": null,
-      "last_ok": null,
-      "last_err": null
-    },
-    "gnews-desk": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "last_status": null,
-      "last_ok": null,
-      "last_err": null
-    },
     "telegram": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "invocations": 0,
+      "status": "فشل",
+      "requests": 1,
+      "errors": 1,
+      "invocations": 1,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null,
-      "last_invocation": null,
-      "last_response_ms": null,
+      "last_err": "TypeError: fetch failed (ECONNRESET)",
+      "last_invocation": "2026-09-27T02:07:19.385Z",
+      "last_response_ms": 7.5,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [
+        "2026-09-27T02:07:19.377Z"
+      ]
     },
     "wiki-top": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "invocations": 0,
+      "status": "فشل",
+      "requests": 1,
+      "errors": 1,
+      "invocations": 1,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null,
-      "last_invocation": null,
-      "last_response_ms": null,
+      "last_err": "TypeError: fetch failed (ECONNRESET)",
+      "last_invocation": "2026-09-27T02:07:23.404Z",
+      "last_response_ms": 25.1,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [
+        "2026-09-27T02:07:23.379Z"
+      ]
     },
     "wiki-rc": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "invocations": 0,
+      "status": "فشل",
+      "requests": 1,
+      "errors": 1,
+      "invocations": 1,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null,
-      "last_invocation": null,
-      "last_response_ms": null,
+      "last_err": "TypeError: fetch failed (ECONNRESET)",
+      "last_invocation": "2026-09-27T02:07:27.409Z",
+      "last_response_ms": 26.3,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [
+        "2026-09-27T02:07:27.382Z"
+      ]
     },
     "wayback-cdx": {
-      "status": "معطل",
-      "requests": 0,
-      "errors": 0,
-      "invocations": 0,
+      "status": "فشل",
+      "requests": 1,
+      "errors": 1,
+      "invocations": 1,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null,
-      "last_invocation": null,
-      "last_response_ms": null,
+      "last_err": "TypeError: fetch failed (ECONNRESET)",
+      "last_invocation": "2026-09-27T02:07:30.396Z",
+      "last_response_ms": 9.9,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [
+        "2026-09-27T02:07:30.385Z"
+      ]
     },
     "gdelt-files": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "invocations": 0,
+      "status": "فشل",
+      "requests": 1,
+      "errors": 1,
+      "invocations": 1,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null,
-      "last_invocation": null,
-      "last_response_ms": null,
+      "last_err": "TypeError: fetch failed (ECONNRESET)",
+      "last_invocation": "2026-09-27T02:07:32.392Z",
+      "last_response_ms": 5.5,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
-    },
-    "gdelt-lastupdate": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "last_status": null,
-      "last_ok": null,
-      "last_err": null
+      "request_times": [
+        "2026-09-27T02:07:32.386Z"
+      ]
     },
     "bing-dorks": {
-      "status": "سليم",
-      "requests": 0,
-      "errors": 0,
-      "invocations": 0,
+      "status": "فشل",
+      "requests": 1,
+      "errors": 1,
+      "invocations": 1,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null,
-      "last_invocation": null,
-      "last_response_ms": null,
+      "last_err": "TypeError: fetch failed (ECONNRESET)",
+      "last_invocation": "2026-09-27T02:07:36.404Z",
+      "last_response_ms": 14.1,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [
+        "2026-09-27T02:07:36.389Z"
+      ]
     },
     "bridge": {
       "status": "معطل",
       "requests": 0,
       "errors": 0,
-      "invocations": 0,
+      "invocations": 1,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
       "last_err": null,
-      "last_invocation": null,
-      "last_response_ms": null,
+      "last_invocation": "2026-09-27T02:07:36.405Z",
+      "last_response_ms": 0,
       "backoff_stage": 0,
       "blocked_until": null,
       "request_times": []
@@ -171,33 +162,61 @@
       "status": "معطل",
       "requests": 0,
       "errors": 0,
+      "invocations": 0,
+      "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null
+      "last_err": null,
+      "last_invocation": null,
+      "last_response_ms": null,
+      "backoff_stage": 0,
+      "blocked_until": null,
+      "request_times": []
     },
     "rsshub": {
       "status": "معطل",
       "requests": 0,
       "errors": 0,
+      "invocations": 0,
+      "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null
+      "last_err": null,
+      "last_invocation": null,
+      "last_response_ms": null,
+      "backoff_stage": 0,
+      "blocked_until": null,
+      "request_times": []
     },
     "searxng": {
       "status": "معطل",
       "requests": 0,
       "errors": 0,
+      "invocations": 0,
+      "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null
+      "last_err": null,
+      "last_invocation": null,
+      "last_response_ms": null,
+      "backoff_stage": 0,
+      "blocked_until": null,
+      "request_times": []
     },
     "reddit": {
       "status": "معطل",
       "requests": 0,
       "errors": 0,
+      "invocations": 0,
+      "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
-      "last_err": null
+      "last_err": null,
+      "last_invocation": null,
+      "last_response_ms": null,
+      "backoff_stage": 0,
+      "blocked_until": null,
+      "request_times": []
     }
   }
 }
