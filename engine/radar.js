@@ -7,7 +7,7 @@ import { nowDoc, timeLine } from "./time.js";
 import { createFetchers } from "./fetchers/index.js";
 import { normalizeItems } from "./normalizer.js";
 import { clusterItems, normalizeTopicsState } from "./cluster.js";
-import { scoreTopics } from "./metrics.js";
+import { applyTopicClassification, scoreTopics } from "./metrics.js";
 import { computeBurst } from "./burst.js";
 import { refreshInventory } from "./inventory.js";
 import { runB3FixtureGate } from "./radar-selftest.js";
@@ -154,7 +154,7 @@ export async function runRadar({
   }
 
   const hasNewItems = normalizedItems.length > 0;
-  let topics = previousTopics;
+  let topics = previousTopics.map((topic) => applyTopicClassification(topic));
   if (hasNewItems) {
     const clusters = clusterItems(normalizedItems, { previousTopics });
     const scoredTopics = scoreTopics(clusters, {
@@ -271,7 +271,7 @@ export async function runRadar({
     },
     topics,
   };
-  if (hasNewItems) store.writeJsonAtomic("state/topics.json", topicsState);
+  if (hasNewItems || JSON.stringify(topics) !== JSON.stringify(previousTopics)) store.writeJsonAtomic("state/topics.json", topicsState);
   store.writeJsonAtomic("state/radar.json", {
     _meta: { format: "json", updatedAt: time.iso, timeSource: time.source, kind: "B3-radar", success: runSucceeded, dataFresh: hasNewItems },
     lastRun: time.iso,

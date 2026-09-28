@@ -4,19 +4,39 @@ const clamp = (value, low = 0, high = 100) => Math.min(high, Math.max(low, value
 const finite = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
 const rounded = (value, places = 4) => Number(finite(value).toFixed(places));
 
-export const CLASSIFICATIONS = Object.freeze([
-  { key: "golden", label: "ذهب", min: 0, max: 25 },
-  { key: "window", label: "نافذة", min: 25, max: 50 },
-  { key: "crowded", label: "مزدحم", min: 50, max: 75 },
-  { key: "missed", label: "فائت", min: 75, max: 100.0000001 },
-]);
+export const CLASSIFICATION_RULES = Object.freeze({
+  golden: "accelerationPerHour > 0 && saturationPercent < 25",
+  window: "25 <= saturationPercent < 50; below 25 without positive acceleration",
+  crowded: "saturationPercent >= 50 && saturationPercent <= 75",
+  missed: "saturationPercent > 75",
+});
 
-export function classifyOpportunityScore(value) {
-  const score = clamp(finite(value));
-  if (score < 25) return { key: "golden", label: "ذهب" };
-  if (score < 50) return { key: "window", label: "نافذة" };
-  if (score <= 75) return { key: "crowded", label: "مزدحم" };
+// التصنيف وصفي مستقل عن OpportunityScore؛ الدرجة أداة ترتيب فقط.
+// التشبع الأقل من 25% بلا تسارع موجب يبقى «نافذة» لا «نافذة ذهبية».
+export function classifyOpportunity({ accelerationPerHour = 0, saturationPercent = 0 } = {}) {
+  const acceleration = finite(accelerationPerHour);
+  const saturation = clamp(finite(saturationPercent));
+  if (acceleration > 0 && saturation < 25) return { key: "golden", label: "نافذة ذهبية" };
+  if (saturation < 50) return { key: "window", label: "نافذة" };
+  if (saturation <= 75) return { key: "crowded", label: "مزدحم" };
   return { key: "missed", label: "فائت" };
+}
+
+export function applyTopicClassification(topic) {
+  const metrics = topic?.metrics ?? {};
+  const classification = classifyOpportunity({
+    accelerationPerHour: metrics.accelerationPerHour ?? topic?.acceleration,
+    saturationPercent: metrics.saturationPercent ?? topic?.saturation,
+  });
+  return {
+    ...topic,
+    classification: classification.label,
+    metrics: {
+      ...metrics,
+      classification: classification.label,
+      classificationKey: classification.key,
+    },
+  };
 }
 
 function activeDailySources(sourceConfig) {
@@ -105,7 +125,10 @@ export function calculateTopicMetrics(topic, {
     sourceReliability: rounded(reliability.percent * 0.15),
   };
   const score = clamp(Object.values(contributions).reduce((sum, value) => sum + finite(value), 0));
-  const classification = classifyOpportunityScore(score);
+  const classification = classifyOpportunity({
+    accelerationPerHour,
+    saturationPercent: saturation.percent,
+  });
 
   return {
     elapsedHours: rounded(elapsedHours),
