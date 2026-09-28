@@ -1,0 +1,9 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "recentchanges": [
+      { "type": "edit", "ns": 0, "title": "الرياض", "timestamp": "2026-09-27T05:10:00Z", "user": "محرر تجريبي", "comment": "تحديث معلومات" },
+      { "type": "new", "ns": 0, "title": "موسم الرياض 2026", "timestamp": "2026-09-27T05:04:00Z", "user": "مساهم", "comment": "إنشاء الصفحة" }
+    ]
+  }
+}

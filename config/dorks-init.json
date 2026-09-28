@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "أنماط Bing الابتدائية لحزم B2؛ لا مفاتيح API ولا خدمات مدفوعة."
+  },
+  "sections": [
+    { "id": "قرارات-أحداث", "term": "قرار مجلس الوزراء" },
+    { "id": "تريند-الشارع", "term": "تريند" },
+    { "id": "روشن-الرياضية", "term": "روشن رياضية" }
+  ],
+  "patterns": [
+    { "id": "x-search", "template": "site:x.com \"{term}\"" },
+    { "id": "feed-search", "template": "feed: {term}" }
+  ],
+  "max_queries": 6,
+  "max_results_per_query": 10
+}

@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "عينة استجابة خام (مقتطف عند كبر الجسم) مع إسقاط العناصر المحللة لإعادة الاستخدام عبر cache-first."
+  },
+  "source": "wiki-top",
+  "fetched_at": "2026-09-27T02:07:23.404Z",
+  "cache_key": "{\"source\":\"wiki-top\",\"date\":\"2026/09/26\",\"url\":\"https://wikimedia.org/api/rest_v1/metrics/pageviews/top/ar.wikipedia.org/all-access/2026/09/26\"}",
+  "success": false,
+  "status": "error",
+  "http_status": null,
+  "response_ms": 25.1,
+  "request_count": 1,
+  "raw": null,
+  "requests": [
+    {
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/top/ar.wikipedia.org/all-access/2026/09/26",
+      "status": null,
+      "content_type": null,
+      "response_ms": 25.1,
+      "ok": false,
+      "error": "TypeError: fetch failed (ECONNRESET)",
+      "raw": null
+    }
+  ],
+  "items": [],
+  "error": "TypeError: fetch failed (ECONNRESET)"
+}

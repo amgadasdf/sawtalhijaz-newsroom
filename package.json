@@ -14,7 +14,7 @@
     "runs": "node engine/cli.js runs",
     "selftest": "node engine/selftest.js",
     "test": "node engine/selftest.js",
-    "radar": "node engine/radar.js",
+    "radar": "node engine/cli.js radar",
     "dashboard": "node engine/dashboard.js"
   },
   "dependencies": {},

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ht="https://trends.google.com/trending/rss">
+  <channel>
+    <title>Google Trends Saudi Arabia</title>
+    <item>
+      <title>مباراة الهلال اليوم</title>
+      <link>https://trends.google.com/trends/explore?geo=SA&amp;q=الهلال</link>
+      <pubDate>Sat, 26 Sep 2026 18:00:00 GMT</pubDate>
+      <ht:approx_traffic>100K+</ht:approx_traffic>
+      <ht:news_item>
+        <ht:news_item_title>الهلال يعلن قائمة مواجهة السبت</ht:news_item_title>
+        <ht:news_item_url>https://www.spa.gov.sa/news/456</ht:news_item_url>
+        <ht:news_item_source>وكالة الأنباء السعودية</ht:news_item_source>
+      </ht:news_item>
+    </item>
+    <item>
+      <title>طقس الرياض</title>
+      <link>https://trends.google.com/trends/explore?geo=SA&amp;q=طقس</link>
+      <pubDate>Sat, 26 Sep 2026 17:00:00 GMT</pubDate>
+      <ht:approx_traffic>20K+</ht:approx_traffic>
+      <ht:news_item>
+        <ht:news_item_title>تنبيه من أمطار متوقعة في الرياض</ht:news_item_title>
+        <ht:news_item_url>https://example.sa/weather</ht:news_item_url>
+        <ht:news_item_source>مثال إخباري</ht:news_item_source>
+      </ht:news_item>
+    </item>
+  </channel>
+</rss>

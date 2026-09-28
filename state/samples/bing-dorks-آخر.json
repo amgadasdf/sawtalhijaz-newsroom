@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "عينة استجابة خام (مقتطف عند كبر الجسم) مع إسقاط العناصر المحللة لإعادة الاستخدام عبر cache-first."
+  },
+  "source": "bing-dorks",
+  "fetched_at": "2026-09-27T02:07:36.404Z",
+  "cache_key": "{\"source\":\"bing-dorks\",\"queries\":[\"site:x.com \\\"قرار مجلس الوزراء\\\"\",\"feed: قرار مجلس الوزراء\",\"site:x.com \\\"تريند\\\"\",\"feed: تريند\",\"site:x.com \\\"روشن رياضية\\\"\",\"feed: روشن رياضية\"]}",
+  "success": false,
+  "status": "error",
+  "http_status": null,
+  "response_ms": 14.1,
+  "request_count": 1,
+  "raw": null,
+  "requests": [
+    {
+      "url": "https://www.bing.com/search?q=site%3Ax.com+%22%D9%82%D8%B1%D8%A7%D8%B1+%D9%85%D8%AC%D9%84%D8%B3+%D8%A7%D9%84%D9%88%D8%B2%D8%B1%D8%A7%D8%A1%22",
+      "status": null,
+      "content_type": null,
+      "response_ms": 14.1,
+      "ok": false,
+      "error": "TypeError: fetch failed (ECONNRESET)",
+      "raw": null
+    }
+  ],
+  "items": [],
+  "error": "TypeError: fetch failed (ECONNRESET)"
+}
