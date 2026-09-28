@@ -8,7 +8,7 @@ import { createStore } from "./state.js";
 import { runRadar, BASELINE_LINE, selectRadarSources } from "./radar.js";
 import { normalizeItem, normalizedItemIsComplete, normalizeArabicText } from "./normalizer.js";
 import { clusterItems, compareTitles } from "./cluster.js";
-import { calculateTopicMetrics, classifyOpportunityScore } from "./metrics.js";
+import { applyTopicClassification, calculateTopicMetrics, classifyOpportunity } from "./metrics.js";
 import { calculateZScore, isForecastedWithinHours } from "./burst.js";
 import { parseSitemapXml, INVENTORY_URLS, refreshInventory } from "./inventory.js";
 
@@ -198,13 +198,38 @@ export async function runB3FixtureGate({ root = process.cwd(), log = console.log
       return normalizedItemIsComplete(item) && Object.keys(item).length === 8;
     });
 
-    check(log, checks, "scoreClassificationThresholds", () =>
-      classifyOpportunityScore(24.99).key === "golden" &&
-      classifyOpportunityScore(25).key === "window" &&
-      classifyOpportunityScore(49.99).key === "window" &&
-      classifyOpportunityScore(50).key === "crowded" &&
-      classifyOpportunityScore(75).key === "crowded" &&
-      classifyOpportunityScore(75.01).key === "missed");
+    check(log, checks, "classificationUsesAccelerationAndSaturationNotScore", () => {
+      // Fixture de decisión del Consejo: aceleración positiva + saturación 10% => ventana dorada.
+      const goldenFixture = calculateTopicMetrics(
+        { id: "classification-fixture", currentCount: 6, sources: ["covered"] },
+        {
+          previousTopic: { currentCount: 2, metrics: { speedPerHour: 1 } },
+          previousRunIso: "2026-09-27T10:00:00.000Z",
+          nowIso: "2026-09-27T12:00:00.000Z",
+          sourceConfig: {
+            covered: { enabled: true, weight: 1 },
+            uncovered: { enabled: true, weight: 9 },
+          },
+        },
+      );
+      return goldenFixture.accelerationPerHour === 0.5 &&
+        goldenFixture.saturationPercent === 10 &&
+        goldenFixture.classificationKey === "golden" &&
+        goldenFixture.classification === "نافذة ذهبية" &&
+        applyTopicClassification({
+          score: 1,
+          acceleration: 0.5,
+          saturation: 10,
+          classification: "فائت",
+          metrics: { score: 1, accelerationPerHour: 0.5, saturationPercent: 10, classification: "فائت", classificationKey: "missed" },
+        }).metrics.classificationKey === "golden" &&
+        classifyOpportunity({ accelerationPerHour: 0, saturationPercent: 10 }).key === "window" &&
+        classifyOpportunity({ accelerationPerHour: 1, saturationPercent: 25 }).key === "window" &&
+        classifyOpportunity({ accelerationPerHour: 1, saturationPercent: 49.99 }).key === "window" &&
+        classifyOpportunity({ accelerationPerHour: 1, saturationPercent: 50 }).key === "crowded" &&
+        classifyOpportunity({ accelerationPerHour: 1, saturationPercent: 75 }).key === "crowded" &&
+        classifyOpportunity({ accelerationPerHour: 1, saturationPercent: 75.01 }).key === "missed";
+    }, "fixture: acceleration=0.5; saturation=10%; classification=نافذة ذهبية; score remains ranking only");
 
     check(log, checks, "knownSpeedAndAcceleration", () => {
       const topic = { currentCount: 6, count: 6, sources: ["gnews"], deskGuess: "تريند-الشارع" };

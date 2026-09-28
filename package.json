@@ -19,7 +19,8 @@
     "fetchers-gate": "node engine/fetchers/selftest.js",
     "dashboard": "node engine/cli.js dashboard",
     "dashboard-fixtures": "node engine/cli.js dashboard --from-fixtures",
-    "dashboard-gate": "node engine/dashboard-selftest.js"
+    "dashboard-gate": "node engine/dashboard-selftest.js",
+    "b5-gate": "node engine/b5-selftest.js"
   },
   "dependencies": {},
   "devDependencies": {}

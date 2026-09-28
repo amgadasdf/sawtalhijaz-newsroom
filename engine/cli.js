@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2+B3+B4)
+// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2+B3+B4+B5)
 // أوامر: status · time · resume · settime · runs · fetch · fetch-live · radar · dashboard · selftest — صفر تبعيات، ESM.
 //
 //   node engine/cli.js status [--offline]
@@ -19,6 +19,7 @@ import { runLiveGate } from "./fetchers/live-gate.js";
 import { runRadar } from "./radar.js";
 import { runB3FixtureGate } from "./radar-selftest.js";
 import { runDashboardGate } from "./dashboard-selftest.js";
+import { runB5Selftest } from "./b5-selftest.js";
 import { generateDashboard, generateFixtureDashboard, inspectDashboard, formatHours } from "./dashboard.js";
 
 const USAGE = `الاستخدام:
@@ -35,7 +36,8 @@ const USAGE = `الاستخدام:
   node engine/cli.js dashboard [--from-fixtures] [--out FILE] [--provenance "…"] [--print [N]] [--inspect] [--no-record]
                                                           توليد out/radar-<طابع زمني موثق>.html (B4، صفحة RTL مضمّنة بالكامل)
                                                           --fixtures يشغل بوابة B4 الحتمية المعزولة
-  node engine/cli.js selftest [--offline] [--keep]         بوابات B1+B2+B3+B4 الحتمية الإلزامية`;
+  node engine/cli.js selftest [--offline] [--keep]         بوابات B1+B2+B3+B4+B5 الحتمية الإلزامية
+  node engine/cli.js b5-gate                              بوابة برومتات B5 وتجربة fixtures غير حية`;
 
 const args = process.argv.slice(2);
 const noteIdx = args.indexOf("--note");
@@ -208,6 +210,12 @@ switch (cmd) {
     printHeadLines(result.html, args);
     if (result.run) console.log(`سجل التشغيل: ${result.run.rel}`);
     process.exit(result.ok && inspection.selfContained && inspection.sectionsPresent && inspection.everyNumberTraceable ? 0 : 1);
+  }
+
+  case "b5-gate": {
+    const result = await runB5Selftest();
+    process.exit(result.ok ? 0 : 1);
+    break;
   }
 
   case "selftest": {

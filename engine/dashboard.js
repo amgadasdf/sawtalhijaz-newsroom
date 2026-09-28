@@ -11,7 +11,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { createStore } from "./state.js";
 import { nowDoc, timeLine } from "./time.js";
-import { classifyOpportunityScore } from "./metrics.js";
+import { classifyOpportunity } from "./metrics.js";
 import { tokenizeArabic } from "./cluster.js";
 
 // —— الأقسام الست (بوابة B4 تفحص حضورها كلها) ——
@@ -24,9 +24,9 @@ export const DASHBOARD_SECTIONS = Object.freeze([
   { id: "internal-links", index: 6, tag: "section", label: "الذيل — مواضعنا ذات الصلة من inventory.json (ربط داخلي مقترح)" },
 ]);
 
-// تسمية التصنيف المعتمدة في مواصفة B4 (نافذة ذهبية/نافذة/مزدحمة/فائت) فوق مفاتيح محرك B3 (ذهب/نافذة/مزدحم/فائت).
+// تسميات الواجهة تطابق مفاتيح التصنيف الوصفية من B3؛ OpportunityScore للترتيب فقط.
 export const CLASSIFICATION_LABELS = Object.freeze({
-  golden: Object.freeze({ council: "نافذة ذهبية", engine: "ذهب", className: "cls-golden" }),
+  golden: Object.freeze({ council: "نافذة ذهبية", engine: "نافذة ذهبية", className: "cls-golden" }),
   window: Object.freeze({ council: "نافذة", engine: "نافذة", className: "cls-window" }),
   crowded: Object.freeze({ council: "مزدحمة", engine: "مزدحم", className: "cls-crowded" }),
   missed: Object.freeze({ council: "فائت", engine: "فائت", className: "cls-missed" }),
@@ -99,7 +99,10 @@ function hoursBetween(fromIso, toIso) {
 }
 
 export function classificationOf(topic) {
-  const key = topic?.metrics?.classificationKey ?? classifyOpportunityScore(finite(topic?.score)).key;
+  const key = classifyOpportunity({
+    accelerationPerHour: finite(topic?.metrics?.accelerationPerHour ?? topic?.acceleration),
+    saturationPercent: finite(topic?.metrics?.saturationPercent ?? topic?.saturation),
+  }).key;
   return { key, ...(CLASSIFICATION_LABELS[key] ?? CLASSIFICATION_LABELS.missed) };
 }
 
@@ -503,7 +506,7 @@ function renderTopbar(data) {
     kpi("موضوعات", formatNumber(finite(summary.topics, data.topics.length)), "في topics-latest"),
     kpi("عناصر مطبّعة", formatNumber(finite(summary.normalizedItems)), `من ${formatNumber(finite(summary.rawItems))} خام`),
     kpi("مصادر مستدعاة", formatNumber(finite(summary.sourceCount)), `متعثرة: ${formatNumber(finite(summary.failedSources))}`),
-    kpi("نوافذ ذهبية", formatNumber(data.goldenTopics.length), "درجة فرصة < 25"),
+    kpi("نوافذ ذهبية", formatNumber(data.goldenTopics.length), "تسارع موجب + تشبع أقل من 25%"),
     kpi("تنبؤات", formatNumber(data.forecastTopics.length), FORECAST_LABEL),
     kpi("جرد الموقع", formatNumber(inventoryUrls), `الحالة: ${inventoryStatusOf(data)}`),
   ].join("");
@@ -599,10 +602,9 @@ function renderTopicCard(topic, { highlighted = false } = {}) {
 }
 
 function renderGoldenWindows(data) {
-  const lowestScore = data.topics.length ? Math.min(...data.topics.map((topic) => finite(topic.score))) : null;
   const body = data.goldenTopics.length
     ? `<div class="grid">${data.goldenTopics.map((topic) => renderTopicCard(topic, { highlighted: true })).join("")}</div>`
-    : `<div class="empty">لا نوافذ ذهبية في هذا التشغيل (درجة فرصة &lt; 25). أدنى درجة مسجّلة: <b>${lowestScore === null ? "—" : esc(formatNumber(lowestScore, 2))}</b> من ${data.topics.length} موضوعاً. بحسب معادلة B3 تتطلب «النافذة الذهبية» تشبعاً شبه كامل مع صلة قسم ضعيفة وتسارعاً شديد الانخفاض — لا تُصنَّع بطاقات غير موجودة في البيانات.</div>`;
+    : `<div class="empty">لا توجد نافذة ذهبية في هذا التشغيل: يلزم تسارع موجب وتشبع أقل من 25%. عدد الموضوعات المفحوصة: ${data.topics.length}. التصنيف مستقل عن OpportunityScore الذي يُستخدم للترتيب فقط؛ لا تُصنَّع بطاقات غير موجودة في البيانات.</div>`;
   return `
   <section id="golden-windows" data-count="${esc(formatNumber(data.goldenTopics.length))}">
     <div class="panel">

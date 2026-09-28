@@ -21,6 +21,7 @@ import {
   collectDashboardData,
   computeForecastExpectation,
   computePreviousVerification,
+  classificationOf,
   dashboardFileName,
   findExternalReferences,
   generateDashboard,
@@ -85,26 +86,29 @@ function buildCraftedLatest({ base, sourceConfig, timeSource }) {
     { sourceId: "gnews", sourceWeight: 0.9, fetchedAt: RUN_ISO, desks: { desks: [{ section: "قرارات-أحداث" }] } }
   );
 
-  // (أ) نافذة ذهبية: تشبع كامل + صلة قسم ضعيفة + تسارع شديد الانخفاض ← درجة < 25 بحسب معادلة B3.
+  // (أ) نافذة ذهبية من القاعدة المعتمدة: تسارع موجب وتشبع 10%؛ لا علاقة بالدرجة.
   const goldenCluster = {
     id: "topic-golden-gate",
-    title: "بوابة B4: موضوع ذهبي مصنّع بتشبع كامل وتراجع حاد",
+    title: "بوابة B4: تسارع موجب وتشبع 10%",
     firstSeen: previousRunIso,
     lastSeen: RUN_ISO,
-    count: 1,
-    currentCount: 1,
+    count: 6,
+    currentCount: 6,
     totalObservations: 22,
-    sources: [...tracked],
-    deskGuess: "روشن-الرياضية",
+    sources: ["fixture-covered"],
+    deskGuess: "قرارات-أحداث",
     sharedKeywords: ["بوابة"],
     memberIds: [member.id],
     members: [member],
   };
   const goldenMetrics = calculateTopicMetrics(goldenCluster, {
-    previousTopic: { currentCount: 21, metrics: { speedPerHour: 0 } },
+    previousTopic: { currentCount: 2, metrics: { speedPerHour: 1 } },
     previousRunIso,
     nowIso: RUN_ISO,
-    sourceConfig,
+    sourceConfig: {
+      "fixture-covered": { enabled: true, weight: 1 },
+      "fixture-uncovered": { enabled: true, weight: 9 },
+    },
     requestedSection: "قرارات-أحداث",
   });
   const goldenTopic = withBurst(goldenCluster, goldenMetrics, { previousTopic: null, history: [3, 5, 21] });
@@ -118,7 +122,7 @@ function buildCraftedLatest({ base, sourceConfig, timeSource }) {
     count: 6,
     currentCount: 6,
     totalObservations: 8,
-    sources: ["gnews"],
+    sources: ["gnews", "telegram"],
     deskGuess: "قرارات-أحداث",
     sharedKeywords: ["بوابة"],
     memberIds: [member.id],
@@ -196,6 +200,9 @@ export async function runDashboardGate({ root = process.cwd(), log = console.log
       const sourceConfig = sourceDocument.sources;
 
       check(log, checks, "b4InputFromB3FixtureRadar", () => radar.ok === true && latest.topics.length === radar.topics.length && latest.topics.length > 0, `topics=${latest.topics.length}`);
+      check(log, checks, "classificationDerivedOnlyFromAccelerationAndSaturation", () =>
+        classificationOf({ score: 1, metrics: { score: 1, accelerationPerHour: 0.5, saturationPercent: 10, classificationKey: "missed" } }).key === "golden",
+        "stale key/low OpportunityScore do not override acceleration+saturation");
 
       // (1) توليد من بيانات B3 المعزولة + كتابة ذرية في out/
       const payload = collectDashboardData({ root: sandbox, generatedAt: GENERATED_AT, provenance: "fixtures B3 معزولة (بوابة B4)" });
@@ -300,11 +307,14 @@ export async function runDashboardGate({ root = process.cwd(), log = console.log
       const craftedHtml = renderDashboardHtml(craftedPayload);
       const craftedGolden = sectionHtml(craftedHtml, "golden-windows") ?? "";
       check(log, checks, "goldenWindowsHighlightedOnTop", () =>
-        payload.goldenTopics.length === 0 && goldenFragment.includes("لا نوافذ ذهبية في هذا التشغيل") && !goldenFragment.includes("<article") &&
+        payload.goldenTopics.length === 0 && goldenFragment.includes("لا توجد نافذة ذهبية في هذا التشغيل") && !goldenFragment.includes("<article") &&
         goldenIndex > 0 && opportunitiesIndex > goldenIndex &&
         craftedPayload.goldenTopics.length === 1 && craftedGolden.includes(crafted.goldenTopic.title) &&
         craftedGolden.includes(CLASSIFICATION_LABELS.golden.council) && craftedGolden.includes('data-count="1"') &&
-        crafted.goldenTopic.metrics.classificationKey === "golden" && craftedGolden.includes(`data-score="${crafted.goldenTopic.score}"`),
+        crafted.goldenTopic.metrics.classificationKey === "golden" &&
+        crafted.goldenTopic.metrics.accelerationPerHour > 0 &&
+        crafted.goldenTopic.metrics.saturationPercent === 10 &&
+        craftedGolden.includes(`data-score="${crafted.goldenTopic.score}"`),
         `fixtureGolden=${payload.goldenTopics.length}; craftedGolden=${craftedPayload.goldenTopics.length}`);
 
       // (9) التنبؤات: موعد التحقق المتوقع + حالة التحقق السابقة
