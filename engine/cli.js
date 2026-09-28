@@ -1,12 +1,13 @@
 #!/usr/bin/env node
-// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2+B3)
-// أوامر: status · time · resume · settime · runs · fetch · fetch-live · radar · selftest — صفر تبعيات، ESM.
+// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2+B3+B4)
+// أوامر: status · time · resume · settime · runs · fetch · fetch-live · radar · dashboard · selftest — صفر تبعيات، ESM.
 //
 //   node engine/cli.js status [--offline]
 //   node engine/cli.js time [--offline]
 //   node engine/cli.js resume <person|lab:<id>|radar|all> [--offline]
 //   node engine/cli.js settime "<ISO>" | --clear
 //   node engine/cli.js runs [n]
+//   node engine/cli.js dashboard [--from-fixtures] [--out FILE] [--print N] [--inspect] [--no-record]
 //   node engine/cli.js selftest [--offline] [--keep] [--no-record]
 import { createStore } from "./state.js";
 import { nowDoc, timeLine, setManualTime, clearManualTime, readManualTime, SKEW_THRESHOLD_SECONDS, TIME_REFERENCE_URL } from "./time.js";
@@ -15,8 +16,10 @@ import { buildStatus } from "./status.js";
 import { runSelftest } from "./selftest.js";
 import { createFetchers } from "./fetchers/index.js";
 import { runLiveGate } from "./fetchers/live-gate.js";
-import { runRadar } from "./radar.mjs";
-import { runB3FixtureGate } from "./radar-selftest.mjs";
+import { runRadar } from "./radar.js";
+import { runB3FixtureGate } from "./radar-selftest.js";
+import { runDashboardGate } from "./dashboard-selftest.js";
+import { generateDashboard, generateFixtureDashboard, inspectDashboard, formatHours } from "./dashboard.js";
 
 const USAGE = `الاستخدام:
   node engine/cli.js status [--offline]                    تقرير الحالة من state/
@@ -29,7 +32,10 @@ const USAGE = `الاستخدام:
   node engine/cli.js fetch-live                            بوابة B2 الحية (مع fallback fixtures عند انقطاع الشبكة)
   node engine/cli.js radar [--section ID] [--scope daily|all] [--depth quick|deep|weekly]
                                                           تشغيل B3؛ --fixtures/--offline يشغل بوابة معزولة بلا شبكة
-  node engine/cli.js selftest [--offline] [--keep]         بوابات B1+B2+B3 الحتمية الإلزامية`;
+  node engine/cli.js dashboard [--from-fixtures] [--out FILE] [--provenance "…"] [--print [N]] [--inspect] [--no-record]
+                                                          توليد out/radar-<طابع زمني موثق>.html (B4، صفحة RTL مضمّنة بالكامل)
+                                                          --fixtures يشغل بوابة B4 الحتمية المعزولة
+  node engine/cli.js selftest [--offline] [--keep]         بوابات B1+B2+B3+B4 الحتمية الإلزامية`;
 
 const args = process.argv.slice(2);
 const noteIdx = args.indexOf("--note");
@@ -48,6 +54,23 @@ function flagValue(flag, fallback = null) {
   const index = args.indexOf(flag);
   const value = index >= 0 ? args[index + 1] : null;
   return value && !value.startsWith("--") ? value : fallback;
+}
+
+// —— مساعدات لوحة B4 ——
+function printHeadLines(html, argv) {
+  const index = argv.indexOf("--print");
+  if (index < 0) return;
+  const requested = Number(argv[index + 1]);
+  const count = argv[index + 1] && !String(argv[index + 1]).startsWith("--") && Number.isFinite(requested) && requested > 0 ? requested : 30;
+  console.log(`— أول ${count} سطراً من HTML المولّد —`);
+  for (const line of String(html).split("\n").slice(0, count)) console.log(line);
+}
+
+function printDashboardGateHead(gate) {
+  const inspection = gate.details?.inspection;
+  if (!inspection) return;
+  console.log(`[بوابة B4] بايت=${inspection.bytes} | أسطر=${inspection.lines} | أقسام=${inspection.sections.filter((section) => section.present).length}/6 | مكتفية ذاتياً=${inspection.selfContained}`);
+  printHeadLines((gate.details?.firstLines ?? []).join("\n"), process.argv.slice(2));
 }
 
 switch (cmd) {
@@ -148,6 +171,43 @@ switch (cmd) {
     console.log(`state/topics-latest.json | run=${result.run.rel}`);
     process.exit(result.ok ? 0 : 1);
     break;
+  }
+
+  case "dashboard": {
+    if (args.includes("--fixtures") || args.includes("--selftest")) {
+      const gate = await runDashboardGate();
+      printDashboardGateHead(gate);
+      process.exit(gate.ok ? 0 : 1);
+    }
+    const generatedAt = new Date().toISOString();
+    const out = flagValue("--out");
+    const provenance = flagValue("--provenance");
+    const record = !args.includes("--no-record");
+    let result;
+    try {
+      result = args.includes("--from-fixtures")
+        ? await generateFixtureDashboard({ out, generatedAt, record, ...(provenance ? { provenance } : {}) })
+        : await generateDashboard({ out, generatedAt, provenance, record, net });
+    } catch (error) {
+      die(`فشل توليد اللوحة: ${error?.message ?? error}`);
+    }
+    const inspection = inspectDashboard(result.html, result.data);
+    console.log(`اللوحة: ${result.rel} (${result.bytes} بايت، ${result.ms}ms، كتابة ذرية)`);
+    console.log(`${result.data.time.line || result.data.time.iso}`);
+    console.log(
+      `رقم التشغيل #${result.data.run.number}/${result.data.run.totalRecorded} | الغياب عن آخر تشغيل: ${result.data.absenceHours === null ? "—" : formatHours(result.data.absenceHours)} | زمن اللوحة: ${result.data.generatedAt}`
+    );
+    console.log(
+      `الأقسام الست: ${inspection.sectionsPresent ? "حاضرة 6/6" : "ناقصة"} | مكتفية ذاتياً: ${inspection.selfContained ? "نعم" : "لا"} | مراجع خارجية: ${inspection.externalReferences.length} | وسوم ربط: ${inspection.anchors} | src/href في الوسوم: ${inspection.externalAttributesInTags}`
+    );
+    console.log(
+      `بطاقات فرص اليوم: ${inspection.opportunityCards}/${result.data.topics.length} | نوافذ ذهبية: ${inspection.goldenCards}/${result.data.goldenTopics.length} | تنبؤات: ${inspection.forecastRows}/${result.data.forecastTopics.length} | صفوف المصادر: ${inspection.sourceRows}/${result.data.sourceRows.length} | ربط داخلي: ${inspection.internalLinkRows}/${result.data.inventoryLinks.length}`
+    );
+    console.log(`الأرقام مطابقة لـstate/topics-latest.json: ${inspection.everyNumberTraceable ? "نعم" : "لا"}`);
+    if (args.includes("--inspect")) console.log(JSON.stringify(inspection, null, 2));
+    printHeadLines(result.html, args);
+    if (result.run) console.log(`سجل التشغيل: ${result.run.rel}`);
+    process.exit(result.ok && inspection.selfContained && inspection.sectionsPresent && inspection.everyNumberTraceable ? 0 : 1);
   }
 
   case "selftest": {

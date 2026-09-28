@@ -15,7 +15,11 @@
     "selftest": "node engine/selftest.js",
     "test": "node engine/selftest.js",
     "radar": "node engine/cli.js radar",
-    "dashboard": "node engine/dashboard.js"
+    "radar-gate": "node engine/radar-selftest.js",
+    "fetchers-gate": "node engine/fetchers/selftest.js",
+    "dashboard": "node engine/cli.js dashboard",
+    "dashboard-fixtures": "node engine/cli.js dashboard --from-fixtures",
+    "dashboard-gate": "node engine/dashboard-selftest.js"
   },
   "dependencies": {},
   "devDependencies": {}

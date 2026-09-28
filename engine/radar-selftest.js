@@ -5,12 +5,12 @@ import os from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { createStore } from "./state.js";
-import { runRadar, BASELINE_LINE, selectRadarSources } from "./radar.mjs";
-import { normalizeItem, normalizedItemIsComplete, normalizeArabicText } from "./normalizer.mjs";
-import { clusterItems, compareTitles } from "./cluster.mjs";
-import { calculateTopicMetrics, classifyOpportunityScore } from "./metrics.mjs";
-import { calculateZScore, isForecastedWithinHours } from "./burst.mjs";
-import { parseSitemapXml, INVENTORY_URLS, refreshInventory } from "./inventory.mjs";
+import { runRadar, BASELINE_LINE, selectRadarSources } from "./radar.js";
+import { normalizeItem, normalizedItemIsComplete, normalizeArabicText } from "./normalizer.js";
+import { clusterItems, compareTitles } from "./cluster.js";
+import { calculateTopicMetrics, classifyOpportunityScore } from "./metrics.js";
+import { calculateZScore, isForecastedWithinHours } from "./burst.js";
+import { parseSitemapXml, INVENTORY_URLS, refreshInventory } from "./inventory.js";
 
 const REQUIRED_FIXTURES = ["trends-rss.xml", "gnews.xml", "telegram.html", "wiki-rc.json", "bing.html", "wordpress-sitemap.xml", "sitemap-0.xml"];
 
@@ -19,7 +19,7 @@ function writeJson(file, value) {
   fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
-function makeSandbox(sourceRoot) {
+export function makeB3Sandbox(sourceRoot) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "sawtalhijaz-b3-radar-"));
   fs.mkdirSync(path.join(root, "config"), { recursive: true });
   fs.mkdirSync(path.join(root, "state", "runs"), { recursive: true });
@@ -65,6 +65,88 @@ function makeResponse(status, contentType, body) {
     text: async () => bytes.toString("utf8"),
     arrayBuffer: async () => bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
   };
+}
+
+// —— بيئة fixtures مشتركة (B3 gate + بوابة لوحة B4) ——
+// تُصدر نفس المسارات المحقونة والساعة الحتمية التي تعتمد عليها بوابة B3؛ لا سلوك جديد.
+export const B3_FIXTURE_TIME = Object.freeze({
+  iso: "2026-09-27T12:00:00.000Z",
+  source: "manual",
+  skewSeconds: 0,
+  envIso: "2026-09-27T12:00:00.000Z",
+  headerIso: null,
+  note: "B3 deterministic fixture time",
+  net: false,
+});
+
+export function makeB3FixtureEnvironment(sandbox, { requestUrls = [], sleeps = [], startIso = B3_FIXTURE_TIME.iso } = {}) {
+  const fixtureDir = path.join(sandbox, "state", "samples", "fixtures");
+  const fixture = (name) => fs.readFileSync(path.join(fixtureDir, name));
+  const routes = new Map([
+    ["trends.google.com", fixture("trends-rss.xml")],
+    ["news.google.com", fixture("gnews.xml")],
+    ["t.me", fixture("telegram.html")],
+    ["ar.wikipedia.org", fixture("wiki-rc.json")],
+    ["www.bing.com", fixture("bing.html")],
+    ["sawtalhijaz.com/sitemap.xml", fixture("wordpress-sitemap.xml")],
+    ["sawtalhijaz.com/sitemap-0.xml", fixture("sitemap-0.xml")],
+  ]);
+  let clockMs = Date.parse(startIso);
+  const fakeFetch = async (input) => {
+    const url = new URL(String(input));
+    requestUrls.push(url.href);
+    const key = `${url.hostname}${url.pathname}`;
+    if (url.hostname === "t.me") return makeResponse(200, "text/html; charset=utf-8", routes.get("t.me"));
+    if (url.hostname === "news.google.com") return makeResponse(200, "application/rss+xml", routes.get("news.google.com"));
+    if (url.hostname === "trends.google.com") return makeResponse(200, "application/rss+xml", routes.get("trends.google.com"));
+    if (url.hostname === "ar.wikipedia.org") return makeResponse(200, "application/json", routes.get("ar.wikipedia.org"));
+    if (url.hostname === "www.bing.com") return makeResponse(200, "text/html; charset=utf-8", routes.get("www.bing.com"));
+    if (url.hostname === "sawtalhijaz.com" && routes.has(key)) return makeResponse(200, "application/xml; charset=utf-8", routes.get(key));
+    throw new Error(`Unexpected non-fixture URL: ${url.href}`);
+  };
+  const sleep = async (ms) => { sleeps.push(ms); clockMs += ms; };
+  return {
+    sandbox,
+    requestUrls,
+    sleeps,
+    routes,
+    fakeFetch,
+    sleep,
+    clock: () => new Date(clockMs),
+    clockMs: () => clockMs,
+    fixedTime: { ...B3_FIXTURE_TIME },
+  };
+}
+
+// تشغيل منسّق B3 كاملاً داخل مسار معزول ببيانات fixtures (يستخدمه بوابة B3 ومولد لوحة B4).
+export async function runB3FixtureRadar({ root = process.cwd(), sandbox = null, env = null, section = "تريند-الشارع", scope = "daily", depth = "quick", inventory = true, pytrends = true } = {}) {
+  const box = sandbox ?? makeB3Sandbox(root);
+  const environment = env ?? makeB3FixtureEnvironment(box);
+  return runRadar({
+    root: box,
+    section,
+    scope,
+    depth,
+    timeDoc: environment.fixedTime,
+    fetchImpl: environment.fakeFetch,
+    sleep: environment.sleep,
+    random: () => 0,
+    clock: environment.clock,
+    inventory,
+    pytrends,
+  });
+}
+
+// مساحة fixtures جاهزة + تشغيل رادار، مع تنظيف مضمون — لبوابة B4 (لوحة من بيانات B3 المعزولة).
+export async function withB3FixtureRadar(root = process.cwd(), handler) {
+  const sandbox = makeB3Sandbox(root);
+  try {
+    const env = makeB3FixtureEnvironment(sandbox);
+    const radar = await runB3FixtureRadar({ root, sandbox, env });
+    return await handler({ root, sandbox, env, radar });
+  } finally {
+    fs.rmSync(sandbox, { recursive: true, force: true });
+  }
 }
 
 function assertNoUndefinedOrNonFinite(value, where = "root") {
@@ -168,56 +250,12 @@ export async function runB3FixtureGate({ root = process.cwd(), log = console.log
       return quick.includes("gnews") && !quick.includes("wiki-top") && deep.includes("wiki-top") && !deep.includes("wayback-cdx") && weekly.includes("wayback-cdx") && !weekly.includes("bridge");
     });
 
-    sandbox = makeSandbox(root);
-    const fixtureDirSandbox = path.join(sandbox, "state", "samples", "fixtures");
-    const fixture = (name) => fs.readFileSync(path.join(fixtureDirSandbox, name));
-    const fixtureText = (name) => fixture(name).toString("utf8");
-    const routes = new Map([
-      ["trends.google.com", fixture("trends-rss.xml")],
-      ["news.google.com", fixture("gnews.xml")],
-      ["t.me", fixture("telegram.html")],
-      ["ar.wikipedia.org", fixture("wiki-rc.json")],
-      ["www.bing.com", fixture("bing.html")],
-      ["sawtalhijaz.com/sitemap.xml", fixture("wordpress-sitemap.xml")],
-      ["sawtalhijaz.com/sitemap-0.xml", fixture("sitemap-0.xml")],
-    ]);
-    let clockMs = Date.parse("2026-09-27T12:00:00.000Z");
-    const fakeFetch = async (input) => {
-      const url = new URL(String(input));
-      requestUrls.push(url.href);
-      const key = `${url.hostname}${url.pathname}`;
-      if (url.hostname === "t.me") return makeResponse(200, "text/html; charset=utf-8", routes.get("t.me"));
-      if (url.hostname === "news.google.com") return makeResponse(200, "application/rss+xml", routes.get("news.google.com"));
-      if (url.hostname === "trends.google.com") return makeResponse(200, "application/rss+xml", routes.get("trends.google.com"));
-      if (url.hostname === "ar.wikipedia.org") return makeResponse(200, "application/json", routes.get("ar.wikipedia.org"));
-      if (url.hostname === "www.bing.com") return makeResponse(200, "text/html; charset=utf-8", routes.get("www.bing.com"));
-      if (url.hostname === "sawtalhijaz.com" && routes.has(key)) return makeResponse(200, "application/xml; charset=utf-8", routes.get(key));
-      throw new Error(`Unexpected non-fixture URL: ${url.href}`);
-    };
-    const sleep = async (ms) => { sleeps.push(ms); clockMs += ms; };
-    const fixedTime = {
-      iso: "2026-09-27T12:00:00.000Z",
-      source: "manual",
-      skewSeconds: 0,
-      envIso: "2026-09-27T12:00:00.000Z",
-      headerIso: null,
-      note: "B3 deterministic fixture time",
-      net: false,
-    };
+    sandbox = makeB3Sandbox(root);
+    // بيئة fixtures المشتركة (B3 + لوحة B4): نفس المسارات المحقونة والساعة الحتمية.
+    const env = makeB3FixtureEnvironment(sandbox, { requestUrls, sleeps });
+    const { fakeFetch, sleep, fixedTime } = env;
 
-    radar = await runRadar({
-      root: sandbox,
-      section: "تريند-الشارع",
-      scope: "daily",
-      depth: "quick",
-      timeDoc: fixedTime,
-      fetchImpl: fakeFetch,
-      sleep,
-      random: () => 0,
-      clock: () => new Date(clockMs),
-      inventory: true,
-      pytrends: true,
-    });
+    radar = await runB3FixtureRadar({ root, sandbox, env });
 
     check(log, checks, "radarGeneratedTopics", () => radar.ok && radar.summary.normalizedItems > 0 && radar.topics.length > 0, `items=${radar.summary.normalizedItems}; topics=${radar.topics.length}`);
     check(log, checks, "sectionScopedQueries", () =>
@@ -248,12 +286,12 @@ export async function runB3FixtureGate({ root = process.cwd(), log = console.log
       inventoryCallUrls.length === 2 && inventoryCallUrls[0] === INVENTORY_URLS.sitemap && inventoryCallUrls[1] === INVENTORY_URLS.content,
       `requests=${inventoryCallUrls.length}`);
     const beforeCachedInventory = requestUrls.length;
-    const cachedInventory = await refreshInventory({ root: sandbox, fetchImpl: fakeFetch, sleep, random: () => 0, clock: () => new Date(clockMs) });
+    const cachedInventory = await refreshInventory({ root: sandbox, fetchImpl: fakeFetch, sleep, random: () => 0, clock: env.clock });
     check(log, checks, "inventoryCacheFirst", () =>
       cachedInventory.ok && cachedInventory.cached === true && cachedInventory.requestCount === 0 &&
       requestUrls.length === beforeCachedInventory && cachedInventory.inventory._meta.rate_limit_per_hour === 2);
     const beforeBudgetedInventory = requestUrls.length;
-    const budgetedInventory = await refreshInventory({ root: sandbox, fetchImpl: fakeFetch, sleep, random: () => 0, clock: () => new Date(clockMs), forceRefresh: true });
+    const budgetedInventory = await refreshInventory({ root: sandbox, fetchImpl: fakeFetch, sleep, random: () => 0, clock: env.clock, forceRefresh: true });
     check(log, checks, "inventoryRollingBudgetEnforced", () =>
       budgetedInventory.ok === false && budgetedInventory.budget === true && budgetedInventory.requestCount === 0 &&
       requestUrls.length === beforeBudgetedInventory && budgetedInventory.inventory._meta.status === "budget");
@@ -293,7 +331,7 @@ export async function runB3FixtureGate({ root = process.cwd(), log = console.log
       fetchImpl: async () => { throw new TypeError("fixture network unavailable"); },
       sleep,
       random: () => 0,
-      clock: () => new Date(clockMs),
+      clock: env.clock,
       inventory: false,
       pytrends: false,
     });

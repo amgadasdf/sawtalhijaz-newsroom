@@ -1,6 +1,6 @@
 // Arabic-aware deterministic clustering using normalized token overlap (Dice coefficient).
 import { createHash } from "node:crypto";
-import { normalizeArabicText } from "./normalizer.mjs";
+import { normalizeArabicText } from "./normalizer.js";
 
 export const DEFAULT_CLUSTER_THRESHOLD = 0.42;
 
