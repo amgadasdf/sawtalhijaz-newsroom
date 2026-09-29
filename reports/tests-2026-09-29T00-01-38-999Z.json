@@ -1,0 +1,1183 @@
+{
+  "_meta": {
+    "format": "json",
+    "kind": "B6-test-report",
+    "schemaVersion": "B6.1",
+    "mode": "fixtures",
+    "sampleSource": "fixtures معزولة — غير حية",
+    "generatedAt": "2026-09-29T00:01:39.207Z",
+    "notes": "تقرير اختبارات B6 بالبنية الثابتة (7 حقول)؛ الأرقام من مخرجات المحرك نفسها ولا تُصنَّع بيانات.",
+    "thresholds": {
+      "detectionWindowHours": 2,
+      "saturationWithinPoints": 10,
+      "saturationNotablePoints": 25,
+      "sourceFreshnessHours": 24,
+      "responseNormalMs": 1500,
+      "responseSlowMs": 4000
+    }
+  },
+  "time": {
+    "iso": "2026-09-29T00:01:38.999Z",
+    "source": "unverified",
+    "skewSeconds": 0,
+    "line": "الزمن: 2026-09-29T00:01:38.999Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime."
+  },
+  "sampleTimeIso": "2026-09-27T12:00:00.000Z",
+  "runNumber": 2,
+  "totalReports": 2,
+  "mode": "fixtures",
+  "sampleSource": "fixtures معزولة — غير حية",
+  "paths": {
+    "markdown": "reports/tests-2026-09-29T00-01-38-999Z.md",
+    "json": "reports/tests-2026-09-29T00-01-38-999Z.json"
+  },
+  "fields": {
+    "time-and-run": {
+      "line": "الزمن: 2026-09-29T00:01:38.999Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime.",
+      "iso": "2026-09-29T00:01:38.999Z",
+      "source": "unverified",
+      "skewSeconds": 0,
+      "runNumber": 2,
+      "totalReports": 2,
+      "sampleSource": "fixtures معزولة — غير حية",
+      "sampleTimeIso": "2026-09-27T12:00:00.000Z",
+      "mode": "fixtures"
+    },
+    "executed": {
+      "count": 4,
+      "total": 4,
+      "rows": [
+        {
+          "kind": "detection",
+          "label": "كشف",
+          "executed": true,
+          "durationMs": 1.1,
+          "sample": "fixtures معزولة — غير حية",
+          "note": "نُفذ"
+        },
+        {
+          "kind": "forecast",
+          "label": "تنبؤ",
+          "executed": true,
+          "durationMs": 0.1,
+          "sample": "fixtures معزولة — غير حية",
+          "note": "نُفذ"
+        },
+        {
+          "kind": "saturation",
+          "label": "تشبع",
+          "executed": true,
+          "durationMs": 0,
+          "sample": "fixtures معزولة — غير حية",
+          "note": "نُفذ"
+        },
+        {
+          "kind": "sources",
+          "label": "مصادر",
+          "executed": true,
+          "durationMs": 0.5,
+          "sample": "fixtures معزولة — غير حية",
+          "note": "نُفذ"
+        }
+      ],
+      "totalMs": 207.5
+    },
+    "results": {
+      "detection": {
+        "available": true,
+        "baselineTopics": 10,
+        "evidenceItems": 5,
+        "inWindowItems": 4,
+        "matchedTopics": 3,
+        "unmatchedTopics": 7,
+        "precisionPercent": 30,
+        "meanConfirmationMinutes": 60,
+        "maxConfirmationMinutes": 90,
+        "meanDetectionLatencyMinutes": 0,
+        "windowHours": 2
+      },
+      "forecast": {
+        "available": true,
+        "total": 4,
+        "verified": 1,
+        "notVerified": 1,
+        "regressed": 1,
+        "pending": 1,
+        "hitRatePercent": 33.33,
+        "definition": "معدل الإصابة = تحقق ÷ (تحقق + لم يتحقق + تراجع). حالات «بانتظار التحقق» (لا تشغيل لاحق بعد) لا تدخل المقام وتُطبع منفصلة."
+      },
+      "saturation": {
+        "available": true,
+        "samples": 3,
+        "matched": 2,
+        "unmatched": 1,
+        "meanAbsGapPoints": 11,
+        "maxAbsGapPoints": 18,
+        "biasPoints": 11,
+        "verdict": "فجوة ملحوظة"
+      },
+      "sources": {
+        "available": true,
+        "total": 13,
+        "enabled": 8,
+        "healthy": 3,
+        "failing": 0,
+        "cooling": 1,
+        "stale": 1,
+        "meanResponseMs": 1188.4,
+        "slowest": {
+          "sourceId": "trends-rss",
+          "responseMs": 5200,
+          "verdict": "بطيء جداً"
+        }
+      }
+    },
+    "improvement": {
+      "compared": false,
+      "previous": {
+        "rel": "/home/user/sawtalhijaz-newsroom/reports/tests-2026-09-29T00-01-38-418Z.json",
+        "sampleSource": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "runNumber": 1,
+        "comparable": false
+      },
+      "reason": "لا تقرير سابق بنفس العينة (fixtures معزولة — غير حية): أحدث تقرير هو /home/user/sawtalhijaz-newsroom/reports/tests-2026-09-29T00-01-38-418Z.json بعينة «حالة المشروع الحقيقية (state/) — بلا شبكة» — المقارنة غير ذات دلالة.",
+      "deltas": [],
+      "currentSummary": {
+        "matchedTopics": 3,
+        "hitRatePercent": 33.33,
+        "meanAbsGapPoints": 11,
+        "healthySources": 3
+      }
+    },
+    "errors": [],
+    "tools": [
+      {
+        "id": "pytrends-hook",
+        "name": "hook pytrends المحلي (tools/pytrends-hook.py)",
+        "cost": 0,
+        "currency": "ريال",
+        "decisionRequired": false,
+        "note": "مجاني. يتطلب python3 ومكتبة pytrends؛ حالياً يعمل كـsafe-stub لأنهما غير متاحين في البيئة — القياس قائم على Z-score من العدّات المحفوظة.",
+        "costLabel": "صفر"
+      },
+      {
+        "id": "arabic-stemmer",
+        "name": "تطبيع/تجذير عربي خفيف داخل المحرك",
+        "cost": 0,
+        "currency": "ريال",
+        "decisionRequired": false,
+        "note": "مجاني (كود محلي): يرفع دقة التجميع ويرفع معدل الكشف؛ لا تبعيات خارجية.",
+        "costLabel": "صفر"
+      },
+      {
+        "id": "fanout-rss",
+        "name": "قائمة RSS موسّعة للمواقع السعودية (بيانات sitemap/RSS المعلنة)",
+        "cost": 0,
+        "currency": "ريال",
+        "decisionRequired": false,
+        "note": "مجاني: كل المصادر المدرجة حالياً بلا مفاتيح؛ التوسّع بإضافة مصادر مجانية في config/sources.json بعد اعتماد المجلس.",
+        "costLabel": "صفر"
+      },
+      {
+        "id": "search-api-key",
+        "name": "مفتاح بحث مدفوع (Bing/Google) لسجل الدوركس",
+        "cost": 1200,
+        "currency": "ريال/شهر",
+        "decisionRequired": true,
+        "note": "عرض لقرار المجلس فقط — لا يُشترى في B6. بدونه تعمل الدوركس عبر HTML العام (config/dorks.yaml) بلا مفاتيح.",
+        "costLabel": "1200 ريال/شهر — عرض لقرار المجلس"
+      },
+      {
+        "id": "social-api",
+        "name": "واجهة منصات اجتماعية رسمية (X/غيرها)",
+        "cost": 4000,
+        "currency": "ريال/شهر",
+        "decisionRequired": true,
+        "note": "عرض لقرار المجلس فقط — غير مدرج ولا مفعّل. البديل الحالي: رصد عام عبر site:x.com في السجل (بلا مفاتيح).",
+        "costLabel": "4000 ريال/شهر — عرض لقرار المجلس"
+      }
+    ],
+    "weights": [
+      {
+        "id": "source-weights-stale",
+        "recommendation": "تثبيت عتبة «تجدد فعلي» أو تخفيض وزن المصادر غير المتجددة (wiki-rc)",
+        "rationale": "عتبة التجدد الحالية 24 ساعة؛ مصادر متأخرة: 1",
+        "status": "معلق على اعتماد المجلس"
+      },
+      {
+        "id": "forecast-threshold",
+        "recommendation": "تثبيت أو تعديل حد التنبؤ المتحفظ (تسارع موجب في تشغيلين متتاليين + تشبع أقل من 50%) على ضوء معدل الإصابة المقيس",
+        "rationale": "معدل الإصابة الحالي: 33.33% (تحقق 1 من 3 قابلة للتحقق)",
+        "status": "معلق على اعتماد المجلس"
+      },
+      {
+        "id": "forecast-run-records",
+        "recommendation": "إضافة وسم التنبؤ (forecast + forecastAtIso) إلى سجل تشغيل B3-radar ليصبح اختبار التنبؤ تاريخياً كاملاً لا لقطة واحدة",
+        "rationale": "سجل التشغيل يحفظ topicCounts فقط؛ المصفوفة الحالية تُبنى من اللقطة الأخيرة + عدّات التشغيلات اللاحقة",
+        "status": "معلق على اعتماد المجلس"
+      },
+      {
+        "id": "detection-window",
+        "recommendation": "تثبيت نافذة الكشف 2 ساعتين وفجوة القياس المسموحة 10 نقطة للتشبع",
+        "rationale": "قيم الاختبار الحالية: زمن تحقق 60 د · فجوة تشبع 11 نقطة (عينات: 3)",
+        "status": "معلق على اعتماد المجلس"
+      }
+    ]
+  },
+  "tests": {
+    "detection": {
+      "kind": "detection",
+      "label": "كشف",
+      "available": true,
+      "ok": true,
+      "windowHours": 2,
+      "baseline": {
+        "source": "sandbox state/topics-latest.json (fixtures معزولة)",
+        "runIso": "2026-09-27T12:00:00.000Z",
+        "timeSource": "manual",
+        "topics": 10
+      },
+      "evidence": {
+        "source": "sandbox state/samples/gnews-آخر.json (عينة اختبار مصنّعة)",
+        "mode": "saved",
+        "status": "ok",
+        "fetchedAt": "2026-09-27T14:00:00.000Z",
+        "items": 5
+      },
+      "window": {
+        "startIso": "2026-09-27T12:00:00.000Z",
+        "endIso": "2026-09-27T14:00:00.000Z",
+        "hours": 2
+      },
+      "matchedTopics": 3,
+      "unmatchedTopics": 7,
+      "matchedItems": 3,
+      "inWindowItems": 4,
+      "outOfWindowItems": 1,
+      "unmatchedEvidenceItems": 1,
+      "precisionPercent": 30,
+      "meanConfirmationMinutes": 60,
+      "minConfirmationMinutes": 30,
+      "maxConfirmationMinutes": 90,
+      "meanDetectionLatencyMinutes": 0,
+      "rows": [
+        {
+          "topicId": "topic-60e120482202c8",
+          "title": "روشن تعلن موعد الجولة المقبلة",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": true,
+          "confirmedTitle": "روشن تعلن موعد الجولة المقبلة — تحديث لاحق",
+          "confirmedLink": "https://news.google.com/rss/articles/fixture-later-1",
+          "similarityScore": 0.8333,
+          "sharedKeywords": [
+            "الجوله",
+            "المقبله",
+            "تعلن",
+            "روشن",
+            "موعد"
+          ],
+          "confirmationLagMinutes": 30,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-3a02952ec6ebe3",
+          "title": "مجلس الوزراء يؤكد متابعة البرامج الوطنية",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": true,
+          "confirmedTitle": "مجلس الوزراء يؤكد متابعة البرامج الوطنية — تحديث لاحق",
+          "confirmedLink": "https://news.google.com/rss/articles/fixture-later-2",
+          "similarityScore": 0.8571,
+          "sharedKeywords": [
+            "البرامج",
+            "الوزراء",
+            "الوطنيه",
+            "متابعه",
+            "مجلس",
+            "يؤكد"
+          ],
+          "confirmationLagMinutes": 60,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-f91b847132a6d8",
+          "title": "تحديث رسمي حول خبر اليوم",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": true,
+          "confirmedTitle": "تحديث رسمي حول خبر اليوم — تحديث لاحق",
+          "confirmedLink": "https://news.google.com/rss/articles/fixture-later-3",
+          "similarityScore": 0.9091,
+          "sharedKeywords": [
+            "اليوم",
+            "تحديث",
+            "حول",
+            "خبر",
+            "رسمي"
+          ],
+          "confirmationLagMinutes": 90,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-ed603affe02326",
+          "title": "وكالة الأنباء السعودية: تفاصيل إضافية",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": false,
+          "confirmedTitle": null,
+          "confirmedLink": null,
+          "similarityScore": null,
+          "sharedKeywords": [],
+          "confirmationLagMinutes": null,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-3084baf640b9d7",
+          "title": "طقس الرياض",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": false,
+          "confirmedTitle": null,
+          "confirmedLink": null,
+          "similarityScore": null,
+          "sharedKeywords": [],
+          "confirmationLagMinutes": null,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-b8dfe45495a803",
+          "title": "تقرير: قراءة التفاصيل وتستمر المتابعة.",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": false,
+          "confirmedTitle": null,
+          "confirmedLink": null,
+          "similarityScore": null,
+          "sharedKeywords": [],
+          "confirmationLagMinutes": null,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-0902db2a01c1a4",
+          "title": "عاجل : إعلان تحديث جديد للخدمات في المملكة",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": false,
+          "confirmedTitle": null,
+          "confirmedLink": null,
+          "similarityScore": null,
+          "sharedKeywords": [],
+          "confirmationLagMinutes": null,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-526d4c147b6bfc",
+          "title": "مباراة الهلال اليوم",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": false,
+          "confirmedTitle": null,
+          "confirmedLink": null,
+          "similarityScore": null,
+          "sharedKeywords": [],
+          "confirmationLagMinutes": null,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-bd607e19c2050d",
+          "title": "الرياض",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": false,
+          "confirmedTitle": null,
+          "confirmedLink": null,
+          "similarityScore": null,
+          "sharedKeywords": [],
+          "confirmationLagMinutes": null,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "topic-3a70c423209014",
+          "title": "موسم الرياض 2026",
+          "classification": "نافذة",
+          "currentCount": 1,
+          "detected": false,
+          "confirmedTitle": null,
+          "confirmedLink": null,
+          "similarityScore": null,
+          "sharedKeywords": [],
+          "confirmationLagMinutes": null,
+          "detectionLatencyMinutes": 0,
+          "firstSeen": "2026-09-27T12:00:00.000Z"
+        }
+      ],
+      "reasons": [],
+      "referenceIso": "2026-09-27T12:00:00.000Z",
+      "reason": null
+    },
+    "forecast": {
+      "kind": "forecast",
+      "label": "تنبؤ",
+      "available": true,
+      "ok": true,
+      "matrix": [
+        {
+          "topicId": "fixture-verified",
+          "title": "موضوع تحقق: ارتفاع العدّ بعد التنبؤ",
+          "classification": "نافذة",
+          "countAtForecast": 5,
+          "accelerationPerHour": 1.5,
+          "saturationPercent": 30,
+          "forecastAtIso": "2026-09-27T12:00:00.000Z",
+          "expectedIso": "2026-09-27T18:00:00.000Z",
+          "expectedHours": 6,
+          "forecastRule": "(50 − 30) ÷ 0.5 = 6 س",
+          "statusKey": "verified",
+          "status": "تحقق",
+          "note": "ارتفع العدّ 5 ← 9 خلال 2 ساعة.",
+          "laterRunsObserved": 2,
+          "lastLaterRunIso": "2026-09-27T14:00:00.000Z",
+          "countAtLastRun": 9,
+          "change": 4,
+          "referenceIso": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "fixture-not-verified",
+          "title": "موضوع ثابت: لم يتحقق",
+          "classification": "نافذة",
+          "countAtForecast": 5,
+          "accelerationPerHour": 1.5,
+          "saturationPercent": 30,
+          "forecastAtIso": "2026-09-27T12:00:00.000Z",
+          "expectedIso": "2026-09-27T18:00:00.000Z",
+          "expectedHours": 6,
+          "forecastRule": "(50 − 30) ÷ 0.5 = 6 س",
+          "statusKey": "not-verified",
+          "status": "لم يتحقق",
+          "note": "العدّ ثابت 5 في آخر تشغيل لاحق (2026-09-27T14:00:00.000Z).",
+          "laterRunsObserved": 2,
+          "lastLaterRunIso": "2026-09-27T14:00:00.000Z",
+          "countAtLastRun": 5,
+          "change": 0,
+          "referenceIso": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "fixture-regressed",
+          "title": "موضوع تراجع: انخفاض العدّ",
+          "classification": "نافذة",
+          "countAtForecast": 7,
+          "accelerationPerHour": 1.5,
+          "saturationPercent": 30,
+          "forecastAtIso": "2026-09-27T12:00:00.000Z",
+          "expectedIso": "2026-09-27T18:00:00.000Z",
+          "expectedHours": 6,
+          "forecastRule": "(50 − 30) ÷ 0.5 = 6 س",
+          "statusKey": "regressed",
+          "status": "تراجع",
+          "note": "انخفض العدّ 7 ← 3 (عكس التنبؤ).",
+          "laterRunsObserved": 2,
+          "lastLaterRunIso": "2026-09-27T14:00:00.000Z",
+          "countAtLastRun": 3,
+          "change": -4,
+          "referenceIso": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "topicId": "fixture-pending",
+          "title": "موضوع بانتظار: لا تشغيل لاحق بعد",
+          "classification": "نافذة",
+          "countAtForecast": 2,
+          "accelerationPerHour": 1.5,
+          "saturationPercent": 30,
+          "forecastAtIso": "2026-09-27T17:00:00.000Z",
+          "expectedIso": "2026-09-27T23:00:00.000Z",
+          "expectedHours": 6,
+          "forecastRule": "(50 − 30) ÷ 0.5 = 6 س",
+          "statusKey": "pending",
+          "status": "بانتظار التحقق",
+          "note": "لا تشغيل رادار لاحق لوسم التنبؤ بعد.",
+          "laterRunsObserved": 0,
+          "lastLaterRunIso": null,
+          "countAtLastRun": null,
+          "change": null,
+          "referenceIso": "2026-09-27T12:00:00.000Z"
+        }
+      ],
+      "aggregates": {
+        "total": 4,
+        "verified": 1,
+        "notVerified": 1,
+        "regressed": 1,
+        "pending": 1,
+        "denominator": 3,
+        "hitRatePercent": 33.33,
+        "definition": "معدل الإصابة = تحقق ÷ (تحقق + لم يتحقق + تراجع). حالات «بانتظار التحقق» (لا تشغيل لاحق بعد) لا تدخل المقام وتُطبع منفصلة."
+      },
+      "runsObserved": 3,
+      "snapshot": {
+        "source": "state/topics-latest.json",
+        "forecastAtIso": "2026-09-27T12:00:00.000Z",
+        "topicsCount": 4
+      },
+      "reason": null
+    },
+    "saturation": {
+      "kind": "saturation",
+      "label": "تشبع",
+      "available": true,
+      "ok": true,
+      "limits": {
+        "withinPoints": 10,
+        "notablePoints": 25
+      },
+      "rows": [
+        {
+          "topicId": "topic-60e120482202c8",
+          "title": "روشن تعلن موعد الجولة المقبلة",
+          "matchKind": "id",
+          "manualSaturationPercent": 24,
+          "engineSaturationPercent": 20,
+          "gapPoints": 4,
+          "absGapPoints": 4,
+          "verdict": "داخل هامش القياس",
+          "countedAtIso": "2026-09-27T12:00:00.000Z",
+          "countedSources": [
+            "gnews",
+            "telegram"
+          ],
+          "note": "داخل الهامش"
+        },
+        {
+          "topicId": "topic-60e120482202c8",
+          "title": "روشن تعلن موعد الجولة المقبلة",
+          "matchKind": "id",
+          "manualSaturationPercent": 38,
+          "engineSaturationPercent": 20,
+          "gapPoints": 18,
+          "absGapPoints": 18,
+          "verdict": "فجوة ملحوظة",
+          "countedAtIso": "2026-09-27T12:00:00.000Z",
+          "countedSources": [
+            "gnews"
+          ],
+          "note": "فجوة ملحوظة"
+        },
+        {
+          "topicId": "topic-not-in-engine",
+          "title": null,
+          "matchKind": "unmatched",
+          "manualSaturationPercent": 33,
+          "engineSaturationPercent": null,
+          "gapPoints": null,
+          "absGapPoints": null,
+          "verdict": "غير قابل للقياس (لا موضوع مطابق)",
+          "countedAtIso": "2026-09-27T12:00:00.000Z",
+          "countedSources": [],
+          "note": "معرّف غير مطابق"
+        }
+      ],
+      "aggregates": {
+        "samples": 3,
+        "matched": 2,
+        "unmatched": 1,
+        "withinMargin": 1,
+        "notable": 1,
+        "large": 0,
+        "meanAbsGapPoints": 11,
+        "maxAbsGapPoints": 18,
+        "meanSignedGapPoints": 11,
+        "verdict": "فجوة ملحوظة"
+      },
+      "manualSource": "state/samples/saturation-manual.json",
+      "referenceIso": "2026-09-27T12:00:00.000Z",
+      "reason": null
+    },
+    "sources": {
+      "kind": "sources",
+      "label": "مصادر",
+      "available": true,
+      "ok": true,
+      "rows": [
+        {
+          "sourceId": "bing-dorks",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.5,
+          "notes": "دوركس البحث الأولية من config/dorks-init.json؛ سقف عشرة نتائج",
+          "healthStatus": "سليم",
+          "verdict": "سليم",
+          "invocations": 1,
+          "requests": 2,
+          "errors": 0,
+          "errorRatePercent": 0,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": "2026-09-27T12:00:16.000Z",
+            "ageHours": 0,
+            "fresh": true,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/bing-dorks-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 0,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 6,
+            "usedInWindow": 0,
+            "remaining": 6
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T12:00:16.000Z"
+        },
+        {
+          "sourceId": "bridge",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0.3,
+          "notes": "معطل؛ لا يفعّل إلا باعتماد مجلس موثق",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/bridge-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 1,
+            "usedInWindow": 0,
+            "remaining": 1
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "gdelt-doc",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0.6,
+          "notes": "مشروط — يعطي 429 عند الاستخدام المكثف؛ يفعّل بقرار المجلس",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/gdelt-doc-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 0,
+            "usedInWindow": 0,
+            "remaining": 0
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "gdelt-files",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.7,
+          "notes": "lastupdate.txt ثم ملف export.CSV.zip الأحدث وحده، مع فلترة الصفوف العربية",
+          "healthStatus": "سليم",
+          "verdict": "بلا سجل",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/gdelt-files-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 2,
+            "usedInWindow": 0,
+            "remaining": 2
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "gnews",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.9,
+          "notes": "GNews: when:1h عام + استعلام لكل قسم من desks",
+          "healthStatus": "تبريد",
+          "verdict": "تبريد",
+          "invocations": 1,
+          "requests": 2,
+          "errors": 0,
+          "errorRatePercent": 0,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": "2026-09-27T12:00:04.000Z",
+            "ageHours": 0,
+            "fresh": true,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "مصنّعة في الاختبار"
+          },
+          "response": {
+            "lastResponseMs": 421.7,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": true,
+            "untilIso": "2026-09-27T12:15:00.000Z",
+            "minutesLeft": 15,
+            "stage": 1
+          },
+          "budget": {
+            "perHour": 6,
+            "usedInWindow": 0,
+            "remaining": 6
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T12:00:04.000Z"
+        },
+        {
+          "sourceId": "reddit",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0,
+          "notes": "مستبعد حالياً — 403",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/reddit-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 0,
+            "usedInWindow": 0,
+            "remaining": 0
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "rsshub",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0,
+          "notes": "مستبعد حالياً — 403 في البيئة",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/rsshub-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 0,
+            "usedInWindow": 0,
+            "remaining": 0
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "searxng",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0,
+          "notes": "مستبعد حالياً — بلا JSON في الاستجابة",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/searxng-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 0,
+            "usedInWindow": 0,
+            "remaining": 0
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "telegram",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.6,
+          "notes": "ثلاث قنوات سعودية عامة عبر HTML preview",
+          "healthStatus": "سليم",
+          "verdict": "سليم",
+          "invocations": 1,
+          "requests": 3,
+          "errors": 0,
+          "errorRatePercent": 0,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": "2026-09-27T12:00:10.000Z",
+            "ageHours": 0,
+            "fresh": true,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/telegram-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 0.1,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 4,
+            "usedInWindow": 0,
+            "remaining": 4
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T12:00:10.000Z"
+        },
+        {
+          "sourceId": "trends-rss",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 1,
+          "notes": "RSS العام من Google Trends للسعودية",
+          "healthStatus": "سليم",
+          "verdict": "سليم",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 0,
+          "errorRatePercent": 0,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": "2026-09-27T10:00:00.000Z",
+            "ageHours": 2,
+            "fresh": true,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/trends-rss-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 5200,
+            "verdict": "بطيء جداً",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 2,
+            "usedInWindow": 1,
+            "remaining": 1
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T12:00:00.000Z"
+        },
+        {
+          "sourceId": "wayback-cdx",
+          "enabled": true,
+          "dailyEnabled": false,
+          "weight": 0.5,
+          "notes": "تقارير أسبوعية فقط؛ معطل في الرادار اليومي",
+          "healthStatus": "سليم",
+          "verdict": "بلا سجل",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/wayback-cdx-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 1,
+            "usedInWindow": 0,
+            "remaining": 1
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "wiki-rc",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.4,
+          "notes": "recentchanges من واجهة ويكيبيديا العربية",
+          "healthStatus": "سليم",
+          "verdict": "متأخر (لم يتجدد خلال 24 ساعة)",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 0,
+          "errorRatePercent": 0,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": "2026-09-25T12:00:00.000Z",
+            "ageHours": 48,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/wiki-rc-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 320,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 2,
+            "usedInWindow": 0,
+            "remaining": 2
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T12:00:12.000Z"
+        },
+        {
+          "sourceId": "wiki-top",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.4,
+          "notes": "مشاهدات ويكيبيديا العربية لليوم السابق",
+          "healthStatus": "سليم",
+          "verdict": "بلا سجل",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/wiki-top-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 2,
+            "usedInWindow": 0,
+            "remaining": 2
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        }
+      ],
+      "aggregates": {
+        "total": 13,
+        "enabled": 8,
+        "disabled": 5,
+        "healthy": 3,
+        "failing": 0,
+        "cooling": 1,
+        "stale": 1,
+        "neverInvoked": 3,
+        "budgetExhausted": 0,
+        "meanResponseMs": 1188.4,
+        "slowest": {
+          "sourceId": "trends-rss",
+          "responseMs": 5200,
+          "verdict": "بطيء جداً"
+        },
+        "coolingList": [
+          {
+            "sourceId": "gnews",
+            "untilIso": "2026-09-27T12:15:00.000Z",
+            "minutesLeft": 15,
+            "stage": 1
+          }
+        ],
+        "thresholds": {
+          "freshnessHours": 24,
+          "responseNormalMs": 1500,
+          "responseSlowMs": 4000
+        }
+      },
+      "referenceIso": "2026-09-27T12:00:00.000Z",
+      "reason": null
+    }
+  },
+  "structure": {
+    "fieldsPresent": 7,
+    "fieldsTotal": 7,
+    "ok": true
+  }
+}

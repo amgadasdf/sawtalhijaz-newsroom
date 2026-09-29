@@ -7,6 +7,7 @@
 // قرار B1 (المؤكد في الخطوة صفر من B4): الامتداد .js حصراً — لا ملفات .mjs في هذا المستودع.
 // الصفحة مضمّنة بالكامل: CSS داخل <style> واحد، صفر JavaScript، صفر موارد خارجية، وصفر وسوم <a>؛
 // كل العناوين (URLs) تظهر كنصّ معزول غير قابل للنقر — تُفتح اللوحة في عارض معزول بلا شبكة.
+import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { createStore } from "./state.js";
@@ -303,6 +304,7 @@ export function buildDashboardPayload({
   inventory = null,
   sourceDocument = { sources: {} },
   run = { number: 0, totalRecorded: 0, path: null, previousRunIso: null, counters: 0, lastSummary: null },
+  testReport = null,
   generatedAt = new Date().toISOString(),
   provenance = null,
 }) {
@@ -324,6 +326,7 @@ export function buildDashboardPayload({
     inventory,
     sourceDocument,
     run,
+    testReport,
     topics,
     goldenTopics: topics.filter((topic) => classificationOf(topic).key === "golden"),
     forecastTopics: topics.filter((topic) => topic?.burst?.forecast === FORECAST_LABEL),
@@ -364,6 +367,7 @@ export function collectDashboardData({ root = process.cwd(), generatedAt = new D
     inventory: store.readJsonSafe("state/inventory.json", null),
     sourceDocument: store.readJsonSafe("config/sources.json", { sources: {} }) ?? { sources: {} },
     run: collectRunInfo({ store, latest }),
+    testReport: store.readJsonSafe("state/tests-latest.json", null), // ملخص آخر تقرير اختبار B6 (اختياري)
     generatedAt,
     provenance,
   });
@@ -496,6 +500,47 @@ function inventoryStatusOf(data) {
   return String(doc?._meta?.status ?? data.latest?.summary?.inventoryStatus ?? "missing");
 }
 
+// —— ملخص تقرير الاختبار B6 داخل الشريط العلوي (يلخّص تقرير reports/tests-*.md بلا أي مورد خارجي، والأقسام تبقى ستة) ——
+function testReportNumber(value, places = 2) {
+  return value === null || value === undefined ? "—" : formatNumber(value, places);
+}
+
+export function findTestReportBlock(data) {
+  const report = data?.testReport ?? null;
+  if (!report) {
+    return '<div class="note" data-test-report="none"><b>تقرير الاختبار:</b> لا تقرير اختبار محفوظ بعد — شغّل <span class="mono">node engine/cli.js tests</span> لتوليد تقرير 7 حقول وتحديث sources-health. لا تُصنَّع أرقام اختبار غير موجودة.</div>';
+  }
+  const numbers = report.numbers ?? {};
+  const verdicts = report.verdicts ?? {};
+  const run = report.run ?? {};
+  const structure = report.structure ?? {};
+  const detection = numbers.detection ?? {};
+  const forecast = numbers.forecast ?? {};
+  const saturation = numbers.saturation ?? {};
+  const sources = numbers.sources ?? {};
+  const chip = (kind, label) => {
+    const entry = verdicts[kind] ?? { available: false, passed: false, label: "غير متاح" };
+    const className = !entry.available ? "badge-manual" : entry.passed ? "badge-ok" : "badge-strong";
+    return badge(`${label}: ${entry.label}`, className);
+  };
+  const forecastDenominator = finite(forecast.verified) + finite(forecast.notVerified) + finite(forecast.regressed);
+  const summaryLine = [
+    `كشف: مطابق ${formatNumber(finite(detection.matchedTopics))}/${formatNumber(finite(detection.baselineTopics))} (${detection.precisionPercent === null || detection.precisionPercent === undefined ? "—" : `${testReportNumber(detection.precisionPercent)}%`})`,
+    `إصابة التنبؤات: ${testReportNumber(forecast.hitRatePercent)}% (${formatNumber(finite(forecast.verified))}/${formatNumber(forecastDenominator)})`,
+    `فجوة التشبع: ${saturation.meanAbsGapPoints === null || saturation.meanAbsGapPoints === undefined ? "—" : `${testReportNumber(saturation.meanAbsGapPoints)} نقطة`} (عينات: ${formatNumber(finite(saturation.samples))})`,
+    `مصادر سليمة: ${formatNumber(finite(sources.healthy))}/${formatNumber(finite(sources.total))}`,
+    `تبريد ${formatNumber(finite(sources.cooling))}`,
+    `متأخر ${formatNumber(finite(sources.stale))}`,
+  ].join(" · ");
+  return `
+    <div class="note" data-test-report="present" data-test-run="${esc(formatNumber(finite(run.number)))}" data-test-sample="${esc(report.sampleSource ?? "")}" data-test-fields="${esc(formatNumber(finite(structure.fieldsPresent)))}" data-test-detection-matched="${esc(formatNumber(finite(detection.matchedTopics)))}" data-test-forecast-hit-rate="${esc(forecast.hitRatePercent === null || forecast.hitRatePercent === undefined ? "" : formatNumber(forecast.hitRatePercent, 2))}" data-test-saturation-gap="${esc(saturation.meanAbsGapPoints === null || saturation.meanAbsGapPoints === undefined ? "" : formatNumber(saturation.meanAbsGapPoints, 2))}" data-test-sources-healthy="${esc(formatNumber(finite(sources.healthy)))}">
+      <b>آخر تقرير اختبار (B6):</b> تشغيل #${esc(formatNumber(finite(run.number)))} من ${esc(formatNumber(finite(run.total)))} — زمن التقرير <span class="mono">${esc(report.time?.iso ?? "—")}</span> (مصدر الزمن: <span class="mono">${esc(report.time?.source ?? "—")}</span>) · عينة القياس: ${esc(report.sampleSource ?? "—")} · البنية ${esc(formatNumber(finite(structure.fieldsPresent)))}/${esc(formatNumber(finite(structure.fieldsTotal, 7)))} ${structure.ok ? '<span class="status-ok">سليمة</span>' : '<span class="status-bad">ناقصة</span>'}
+      <ul class="badges" style="margin-top:6px"><li>${chip("detection", "كشف")}</li><li>${chip("forecast", "تنبؤ")}</li><li>${chip("saturation", "تشبع")}</li><li>${chip("sources", "مصادر")}</li></ul>
+      <span class="small">${esc(summaryLine)}</span>
+      <br><span class="muted small mono">${esc(run.report ?? "—")}</span> <span class="muted small">(التقرير الكامل بسبعة حقول؛ هذا الملخص من state/tests-latest.json)</span>
+    </div>`;
+}
+
 function renderTopbar(data) {
   const summary = data.latest?.summary ?? {};
   const meta = data.latest?._meta ?? {};
@@ -530,6 +575,7 @@ function renderTopbar(data) {
         <tr><th>تنويه المحرك</th><td colspan="3">${esc(meta?.notes ?? "—")}</td></tr>
       </tbody>
     </table>
+    ${findTestReportBlock(data)}
     ${attested ? "" : `<div class="note"><b>تنويه الزمن:</b> ${esc(data.time.note || "زمن غير موثق — يلزم حقلة يدوية عبر settime أو عودة الشبكة لتوثيق هيدر sawtalhijaz.com.")}</div>`}
   </header>`;
 }
@@ -740,7 +786,7 @@ function renderInternalLinks(data) {
 }
 
 function renderFooter(data) {
-  const files = ["state/topics-latest.json", "state/sources-health.json", "state/inventory.json", "config/sources.json", "state/radar.json", "state/runs/"];
+  const files = ["state/topics-latest.json", "state/sources-health.json", "state/inventory.json", "config/sources.json", "state/radar.json", "state/tests-latest.json", "state/runs/"];
   return `
   <footer id="dashboard-footer">
     <p>مُولّدة بواسطة <b>engine/dashboard.js</b> (حزمة B4) في <span class="mono">${esc(data.generatedAt)}</span> من: ${files.map((file) => `<span class="tag mono">${esc(file)}</span>`).join("")}${data.provenance ? ` · مصدر البيانات: <b>${esc(data.provenance)}</b>` : ""}.</p>
@@ -838,6 +884,14 @@ export async function generateFixtureDashboard({
 } = {}) {
   const { withB3FixtureRadar } = await import("./radar-selftest.js");
   return withB3FixtureRadar(root, async ({ sandbox, radar }) => {
+    // نقل ملخص آخر تقرير اختبار B6 إلى المساحة المعزولة (إن وُجد) ليُعرض في الشريط العلوي موسوماً بمصدره؛
+    // لا يُنشأ ملف إن لم يكن موجوداً، ولا تُعدّل بيانات B3 المعزولة.
+    const mirrorRel = "state/tests-latest.json";
+    const mirrorAbs = path.join(root, mirrorRel);
+    if (fs.existsSync(mirrorAbs)) {
+      fs.mkdirSync(path.join(sandbox, "state"), { recursive: true });
+      fs.copyFileSync(mirrorAbs, path.join(sandbox, mirrorRel));
+    }
     const data = collectDashboardData({ root: sandbox, generatedAt, provenance });
     const result = await generateDashboard({ root, out: out ?? dashboardOutputPath(data.time.iso), generatedAt, provenance, data, record });
     return { ...result, radarSummary: radar.summary, sandboxTopics: radar.topics.length };

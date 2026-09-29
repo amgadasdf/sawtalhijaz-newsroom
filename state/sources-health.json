@@ -4,7 +4,20 @@
     "notes": "صحة المصادر — تحديث ذري بعد كل استدعاء جالب، مع عدد الطلبات وزمن الاستجابة والتهدئة.",
     "source_count": 13,
     "updated_at": "2026-09-27T02:07:36.405Z",
-    "last_request_at": "2026-09-27T02:07:36.389Z"
+    "last_request_at": "2026-09-27T02:07:36.389Z",
+    "tests": {
+      "last_run_iso": "2026-09-29T00:01:38.999Z",
+      "time_source": "unverified",
+      "sample_source": "fixtures معزولة — غير حية",
+      "report": "reports/tests-2026-09-29T00-01-38-999Z.md",
+      "report_json": "reports/tests-2026-09-29T00-01-38-999Z.json",
+      "rows": 13,
+      "healthy": 3,
+      "failing": 0,
+      "cooling": 1,
+      "updated_at": "2026-09-29T00:01:39.207Z",
+      "note": "قياسات اختبار B6 — لا تلمس حقول الصحة الحية (status/requests/errors/request_times/blocked_until) التي يكتبها runtime B2."
+    }
   },
   "sources": {
     "trends-rss": {
@@ -22,7 +35,22 @@
       "blocked_until": null,
       "request_times": [
         "2026-09-27T02:07:11.371Z"
-      ]
+      ],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "سليم",
+        "fresh": true,
+        "refresh_age_hours": 2,
+        "last_success_iso": "2026-09-27T10:00:00.000Z",
+        "last_response_ms": 5200,
+        "response_verdict": "بطيء جداً",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 1,
+        "error_rate_percent": 0
+      }
     },
     "gnews": {
       "status": "فشل",
@@ -39,7 +67,22 @@
       "blocked_until": null,
       "request_times": [
         "2026-09-27T02:07:16.374Z"
-      ]
+      ],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "تبريد",
+        "fresh": true,
+        "refresh_age_hours": 0,
+        "last_success_iso": "2026-09-27T12:00:04.000Z",
+        "last_response_ms": 421.7,
+        "response_verdict": "طبيعي",
+        "cooling": true,
+        "cooling_minutes_left": 15,
+        "backoff_stage": 1,
+        "budget_remaining": 6,
+        "error_rate_percent": 0
+      }
     },
     "telegram": {
       "status": "فشل",
@@ -56,7 +99,22 @@
       "blocked_until": null,
       "request_times": [
         "2026-09-27T02:07:19.377Z"
-      ]
+      ],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "سليم",
+        "fresh": true,
+        "refresh_age_hours": 0,
+        "last_success_iso": "2026-09-27T12:00:10.000Z",
+        "last_response_ms": 0.1,
+        "response_verdict": "طبيعي",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 4,
+        "error_rate_percent": 0
+      }
     },
     "wiki-top": {
       "status": "فشل",
@@ -73,7 +131,22 @@
       "blocked_until": null,
       "request_times": [
         "2026-09-27T02:07:23.379Z"
-      ]
+      ],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "بلا سجل",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": null,
+        "response_verdict": "بلا قياس",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 2,
+        "error_rate_percent": null
+      }
     },
     "wiki-rc": {
       "status": "فشل",
@@ -90,7 +163,22 @@
       "blocked_until": null,
       "request_times": [
         "2026-09-27T02:07:27.382Z"
-      ]
+      ],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "متأخر (لم يتجدد خلال 24 ساعة)",
+        "fresh": false,
+        "refresh_age_hours": 48,
+        "last_success_iso": "2026-09-25T12:00:00.000Z",
+        "last_response_ms": 320,
+        "response_verdict": "طبيعي",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 2,
+        "error_rate_percent": 0
+      }
     },
     "wayback-cdx": {
       "status": "فشل",
@@ -107,7 +195,22 @@
       "blocked_until": null,
       "request_times": [
         "2026-09-27T02:07:30.385Z"
-      ]
+      ],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "بلا سجل",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": null,
+        "response_verdict": "بلا قياس",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 1,
+        "error_rate_percent": null
+      }
     },
     "gdelt-files": {
       "status": "فشل",
@@ -124,7 +227,22 @@
       "blocked_until": null,
       "request_times": [
         "2026-09-27T02:07:32.386Z"
-      ]
+      ],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "بلا سجل",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": null,
+        "response_verdict": "بلا قياس",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 2,
+        "error_rate_percent": null
+      }
     },
     "bing-dorks": {
       "status": "فشل",
@@ -141,7 +259,22 @@
       "blocked_until": null,
       "request_times": [
         "2026-09-27T02:07:36.389Z"
-      ]
+      ],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "سليم",
+        "fresh": true,
+        "refresh_age_hours": 0,
+        "last_success_iso": "2026-09-27T12:00:16.000Z",
+        "last_response_ms": 0,
+        "response_verdict": "طبيعي",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 6,
+        "error_rate_percent": 0
+      }
     },
     "bridge": {
       "status": "معطل",
@@ -156,7 +289,22 @@
       "last_response_ms": 0,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "معطل في الإعدادات",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": null,
+        "response_verdict": "بلا قياس",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 1,
+        "error_rate_percent": null
+      }
     },
     "gdelt-doc": {
       "status": "معطل",
@@ -171,7 +319,22 @@
       "last_response_ms": null,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "معطل في الإعدادات",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": null,
+        "response_verdict": "بلا قياس",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 0,
+        "error_rate_percent": null
+      }
     },
     "rsshub": {
       "status": "معطل",
@@ -186,7 +349,22 @@
       "last_response_ms": null,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "معطل في الإعدادات",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": null,
+        "response_verdict": "بلا قياس",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 0,
+        "error_rate_percent": null
+      }
     },
     "searxng": {
       "status": "معطل",
@@ -201,7 +379,22 @@
       "last_response_ms": null,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "معطل في الإعدادات",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": null,
+        "response_verdict": "بلا قياس",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 0,
+        "error_rate_percent": null
+      }
     },
     "reddit": {
       "status": "معطل",
@@ -216,7 +409,22 @@
       "last_response_ms": null,
       "backoff_stage": 0,
       "blocked_until": null,
-      "request_times": []
+      "request_times": [],
+      "tests": {
+        "last_tested_at": "2026-09-29T00:01:38.999Z",
+        "sample_source": "fixtures معزولة — غير حية",
+        "verdict": "معطل في الإعدادات",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": null,
+        "response_verdict": "بلا قياس",
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
+        "budget_remaining": 0,
+        "error_rate_percent": null
+      }
     }
   }
 }

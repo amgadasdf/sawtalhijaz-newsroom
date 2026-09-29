@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "سجل تشغيل — الزمن الموثق بمصدره إلزامي (بروتوكول B1 الزمني)."
+  },
+  "kind": "B4-dashboard",
+  "actor": null,
+  "iso": "2026-09-29T00:01:39.539Z",
+  "source": "unverified",
+  "startedAt": "2026-09-29T00:01:39.289Z",
+  "endedAt": "2026-09-29T00:01:39.540Z",
+  "durationMs": 251,
+  "summary": "B4 dashboard: out/radar-2026-09-27T12-00-00-000Z.html (59382 بايت) من بيانات 2026-09-27T12:00:00.000Z (مصدر الزمن manual) — مواضيع 10 · ذهب 0 · تنبؤات 0 · مصادر 13 · ربط 2",
+  "next": "مراجعة النوافذ الذهبية والربط الداخلي المقترح تحريرياً.",
+  "pending": [],
+  "file": "out/radar-2026-09-27T12-00-00-000Z.html",
+  "bytes": 59382,
+  "provenance": "fixtures B3 معزولة (بوابة حتمية — بلا شبكة)",
+  "dataTimeIso": "2026-09-27T12:00:00.000Z",
+  "dataTimeSource": "manual",
+  "sections": [
+    "topbar",
+    "golden-windows",
+    "todays-opportunities",
+    "forecasts",
+    "sources-health",
+    "internal-links"
+  ],
+  "externalReferences": []
+}

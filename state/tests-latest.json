@@ -1,0 +1,165 @@
+{
+  "_meta": {
+    "format": "json",
+    "kind": "B6-tests-latest",
+    "schemaVersion": "B6.1",
+    "schema_version": "B6.1",
+    "updated_at": "2026-09-29T00:01:39.207Z",
+    "notes": "ملخص آخر تقرير اختبار للوحة (المصدر الكامل: reports/tests-*.json). لا أرقام مصنّعة."
+  },
+  "time": {
+    "iso": "2026-09-29T00:01:38.999Z",
+    "source": "unverified",
+    "line": "الزمن: 2026-09-29T00:01:38.999Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime."
+  },
+  "run": {
+    "number": 2,
+    "total": 2,
+    "kind": "B6-tests",
+    "report": "reports/tests-2026-09-29T00-01-38-999Z.md",
+    "report_json": "reports/tests-2026-09-29T00-01-38-999Z.json"
+  },
+  "sampleSource": "fixtures معزولة — غير حية",
+  "mode": "fixtures",
+  "structure": {
+    "fieldsPresent": 7,
+    "fieldsTotal": 7,
+    "ok": true
+  },
+  "verdicts": {
+    "detection": {
+      "available": true,
+      "passed": true,
+      "label": "نُفذ"
+    },
+    "forecast": {
+      "available": true,
+      "passed": true,
+      "label": "نُفذ"
+    },
+    "saturation": {
+      "available": true,
+      "passed": true,
+      "label": "نُفذ"
+    },
+    "sources": {
+      "available": true,
+      "passed": true,
+      "label": "نُفذ"
+    }
+  },
+  "numbers": {
+    "detection": {
+      "available": true,
+      "baselineTopics": 10,
+      "evidenceItems": 5,
+      "inWindowItems": 4,
+      "matchedTopics": 3,
+      "unmatchedTopics": 7,
+      "precisionPercent": 30,
+      "meanConfirmationMinutes": 60,
+      "maxConfirmationMinutes": 90,
+      "meanDetectionLatencyMinutes": 0,
+      "windowHours": 2
+    },
+    "forecast": {
+      "available": true,
+      "total": 4,
+      "verified": 1,
+      "notVerified": 1,
+      "regressed": 1,
+      "pending": 1,
+      "hitRatePercent": 33.33,
+      "definition": "معدل الإصابة = تحقق ÷ (تحقق + لم يتحقق + تراجع). حالات «بانتظار التحقق» (لا تشغيل لاحق بعد) لا تدخل المقام وتُطبع منفصلة."
+    },
+    "saturation": {
+      "available": true,
+      "samples": 3,
+      "matched": 2,
+      "unmatched": 1,
+      "meanAbsGapPoints": 11,
+      "maxAbsGapPoints": 18,
+      "biasPoints": 11,
+      "verdict": "فجوة ملحوظة"
+    },
+    "sources": {
+      "available": true,
+      "total": 13,
+      "enabled": 8,
+      "healthy": 3,
+      "failing": 0,
+      "cooling": 1,
+      "stale": 1,
+      "meanResponseMs": 1188.4,
+      "slowest": {
+        "sourceId": "trends-rss",
+        "responseMs": 5200,
+        "verdict": "بطيء جداً"
+      }
+    }
+  },
+  "errors": [],
+  "tools": [
+    {
+      "id": "pytrends-hook",
+      "name": "hook pytrends المحلي (tools/pytrends-hook.py)",
+      "cost": 0,
+      "costLabel": "صفر",
+      "decisionRequired": false
+    },
+    {
+      "id": "arabic-stemmer",
+      "name": "تطبيع/تجذير عربي خفيف داخل المحرك",
+      "cost": 0,
+      "costLabel": "صفر",
+      "decisionRequired": false
+    },
+    {
+      "id": "fanout-rss",
+      "name": "قائمة RSS موسّعة للمواقع السعودية (بيانات sitemap/RSS المعلنة)",
+      "cost": 0,
+      "costLabel": "صفر",
+      "decisionRequired": false
+    },
+    {
+      "id": "search-api-key",
+      "name": "مفتاح بحث مدفوع (Bing/Google) لسجل الدوركس",
+      "cost": 1200,
+      "costLabel": "1200 ريال/شهر — عرض لقرار المجلس",
+      "decisionRequired": true
+    },
+    {
+      "id": "social-api",
+      "name": "واجهة منصات اجتماعية رسمية (X/غيرها)",
+      "cost": 4000,
+      "costLabel": "4000 ريال/شهر — عرض لقرار المجلس",
+      "decisionRequired": true
+    }
+  ],
+  "weights": [
+    {
+      "id": "source-weights-stale",
+      "recommendation": "تثبيت عتبة «تجدد فعلي» أو تخفيض وزن المصادر غير المتجددة (wiki-rc)",
+      "status": "معلق على اعتماد المجلس"
+    },
+    {
+      "id": "forecast-threshold",
+      "recommendation": "تثبيت أو تعديل حد التنبؤ المتحفظ (تسارع موجب في تشغيلين متتاليين + تشبع أقل من 50%) على ضوء معدل الإصابة المقيس",
+      "status": "معلق على اعتماد المجلس"
+    },
+    {
+      "id": "forecast-run-records",
+      "recommendation": "إضافة وسم التنبؤ (forecast + forecastAtIso) إلى سجل تشغيل B3-radar ليصبح اختبار التنبؤ تاريخياً كاملاً لا لقطة واحدة",
+      "status": "معلق على اعتماد المجلس"
+    },
+    {
+      "id": "detection-window",
+      "recommendation": "تثبيت نافذة الكشف 2 ساعتين وفجوة القياس المسموحة 10 نقطة للتشبع",
+      "status": "معلق على اعتماد المجلس"
+    }
+  ],
+  "improvement": {
+    "compared": false,
+    "reason": "لا تقرير سابق بنفس العينة (fixtures معزولة — غير حية): أحدث تقرير هو /home/user/sawtalhijaz-newsroom/reports/tests-2026-09-29T00-01-38-418Z.json بعينة «حالة المشروع الحقيقية (state/) — بلا شبكة» — المقارنة غير ذات دلالة."
+  }
+}

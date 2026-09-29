@@ -20,7 +20,11 @@
     "dashboard": "node engine/cli.js dashboard",
     "dashboard-fixtures": "node engine/cli.js dashboard --from-fixtures",
     "dashboard-gate": "node engine/dashboard-selftest.js",
-    "b5-gate": "node engine/b5-selftest.js"
+    "b5-gate": "node engine/b5-selftest.js",
+    "tests": "node engine/tests.js",
+    "tests-fixtures": "node engine/tests.js --from-fixtures",
+    "b6-gate": "node engine/b6-selftest.js",
+    "dorks": "node engine/dorks.js"
   },
   "dependencies": {},
   "devDependencies": {}

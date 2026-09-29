@@ -3,6 +3,7 @@
 // لا يمسّ state الحقيقي إلا بسطر سجل تشغيل واحد يمثل تشغيل البوابة — ويُمنع بـ --no-record.
 // مخلفات اختبار B1: state/runs/_selftest/<stamp>/ (مستبعدة من git).
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { createStore } from "./state.js";
@@ -12,6 +13,7 @@ import { runFetchersSelftest } from "./fetchers/selftest.js";
 import { runB3FixtureGate } from "./radar-selftest.js";
 import { runDashboardGate } from "./dashboard-selftest.js";
 import { runB5Selftest } from "./b5-selftest.js";
+import { runB6Selftest } from "./b6-selftest.js";
 
 const ok = (b) => (b ? "✓" : "✗");
 
@@ -25,7 +27,7 @@ export async function runSelftest({ root = process.cwd(), net = true, keep = fal
     console.log(s);
   };
 
-  say("== B1 + B2 + B3 + B4 + B5 SELFTEST ==");
+  say("== B1 + B2 + B3 + B4 + B5 + B6 SELFTEST ==");
 
   // — 1) البروتوكول الزمني —
   const t = await nowDoc({ net, root });
@@ -149,6 +151,31 @@ export async function runSelftest({ root = process.cwd(), net = true, keep = fal
   const b5Gate = await runB5Selftest({ root });
   checks.promptsB5 = b5Gate.ok;
 
+  // — 6.98) بوابة B6 (الاختبارات الأربعة + التقرير + سجل الدوركس + النماذج) في جذر معزول: لا تلمس reports/ وstate/ الحقيقية —
+  say("\n— بوابة B6 (الاختبارات والتقارير وسجل الدوركس؛ جذر معزول) —");
+  const b6Root = fs.mkdtempSync(path.join(os.tmpdir(), "sawtalhijaz-b6-gate-"));
+  try {
+    fs.cpSync(path.join(root, "config"), path.join(b6Root, "config"), { recursive: true });
+    fs.cpSync(path.join(root, "state"), path.join(b6Root, "state"), { recursive: true });
+    fs.cpSync(path.join(root, "engine"), path.join(b6Root, "engine"), { recursive: true });
+    fs.cpSync(path.join(root, "tools"), path.join(b6Root, "tools"), { recursive: true });
+    fs.mkdirSync(path.join(b6Root, "reports"), { recursive: true });
+    if (fs.existsSync(path.join(root, "reports", "forms"))) {
+      fs.cpSync(path.join(root, "reports", "forms"), path.join(b6Root, "reports", "forms"), { recursive: true });
+    }
+    for (const file of ["package.json", "GOVERNANCE.md"]) fs.copyFileSync(path.join(root, file), path.join(b6Root, file));
+    const b6Gate = await runB6Selftest({ root: b6Root, log: () => {} });
+    checks.testsB6 = b6Gate.ok;
+    const passedCount = Object.values(b6Gate.checks).filter(Boolean).length;
+    say(`testsB6=${b6Gate.ok ? "✓" : "✗"} | فحوص البوابة ${passedCount}/${Object.keys(b6Gate.checks).length} | الجذر المعزول: ${path.relative(root, b6Root) || b6Root}`);
+    for (const [name, value] of Object.entries(b6Gate.checks)) if (!value) say(`  ✗ ${name}`);
+  } catch (error) {
+    checks.testsB6 = false;
+    say(`testsB6=✗ | ${error?.message ?? error}`);
+  } finally {
+    fs.rmSync(b6Root, { recursive: true, force: true });
+  }
+
   // — 7) تنظيف —
   if (keep) {
     say(`\n(--keep: البيئة المعزولة محفوظة في ${path.relative(root, sandbox)})`);
@@ -163,16 +190,16 @@ export async function runSelftest({ root = process.cwd(), net = true, keep = fal
   let registryRun = null;
   if (record) {
     registryRun = realStore.recordRun({
-      kind: "B5-selftest",
+      kind: "B6-selftest",
       actor: null, // سجل بوابة فقط: لا يعدّل عدّادات أي كيان حقيقي
       iso: t.iso,
       source: t.source,
-      summary: `[selftest] بوابة B1+B2+B3+B4+B5 — ${passed ? "خضراء" : "حمراء"} — ${Object.entries(checks).map(([k, v]) => `${k}=${ok(v)}`).join(" ")}`,
+      summary: `[selftest] بوابة B1+B2+B3+B4+B5+B6 — ${passed ? "خضراء" : "حمراء"} — ${Object.entries(checks).map(([k, v]) => `${k}=${ok(v)}`).join(" ")}`,
       next: "",
       pending: passed ? [] : ["إصلاح فاشل البوابة ثم إعادة selftest"],
       startedAt: startedAt.toISOString(),
       endedAt: new Date().toISOString(),
-      extra: { gate: "B1+B2+B3", checks, net, totalMs },
+      extra: { gate: "B1+B2+B3+B4+B5+B6", checks, net, totalMs },
     });
   }
 
@@ -181,8 +208,8 @@ export async function runSelftest({ root = process.cwd(), net = true, keep = fal
   for (const [k, v] of Object.entries(checks)) say(`${k}=${ok(v)}`);
   say(`totalMs=${totalMs}`);
   if (registryRun) say(`سجل التشغيل: ${registryRun.rel}`);
-  say(`\nالنتيجة: ${passed ? "خضراء — بوابات B1+B2+B3+B4+B5 مقفلة" : "حمراء — لا تُقفل B1+B2+B3+B4+B5"}`);
-  say("== B1 + B2 + B3 + B4 + B5 SELFTEST END ==");
+  say(`\nالنتيجة: ${passed ? "خضراء — بوابات B1+B2+B3+B4+B5+B6 مقفلة" : "حمراء — لا تُقفل B1+B2+B3+B4+B5+B6"}`);
+  say("== B1 + B2 + B3 + B4 + B5 + B6 SELFTEST END ==");
 
   return { ok: passed, checks, time: t, lines: out, totalMs, run: registryRun };
 }
