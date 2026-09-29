@@ -1,0 +1,82 @@
+# سجل الدوركس — حزمة B6 (config/dorks.yaml)
+# عشر دوركس ابتدائية مصنفة. الحقول: النمط (pattern) / المحرك (engine) / الغرض (purpose) /
+# التصنيف (category) / نسبة إصابة فارغة (hit_rate) / آخر اختبار (last_tested).
+# لا رقم ولا زمن مُصنَّعان: القيم null حتى تُسجَّل نتيجة اختبار فعلية عبر:
+#   node engine/cli.js dorks --record <id> --hit-rate <0-100> --evidence "…"
+_meta:
+  format: yaml
+  schema_version: B6.1
+  purpose: سجل أنماط البحث المتقدم (الدوركس) لمختبر البحث المتقدم — التصنيف والمصدر الوحيد للأنماط
+  rule: ممنوع استخدام أي دوركس من هذا السجل قبل تسجيل نتيجة اختباره (hit_rate رقم + last_tested زمن)
+  updated_at: null
+dorks:
+  - id: x-term
+    pattern: 'site:x.com "<مصطلح>"'
+    engine: x
+    category: platform
+    purpose: رصد منشورات منصة X حول مصطلح محدد قبل وصوله إلى الصحافة.
+    hit_rate: null
+    last_tested: null
+  - id: feed-term
+    pattern: 'feed: <مصطلح>'
+    engine: feed
+    category: feed
+    purpose: التقاط تغذية RSS لموضوع محدد عبر مشغّل feed للبحث عن مصادر جديدة.
+    hit_rate: null
+    last_tested: null
+  - id: telegram-term
+    pattern: 'site:t.me <مصطلح>'
+    engine: telegram
+    category: telegram
+    purpose: رصد قنوات تيليجرام الناقلة لمصطلح محدد قبل تواتره إخبارياً.
+    hit_rate: null
+    last_tested: null
+  - id: intitle-keyword
+    pattern: 'intitle:"<كلمة دالة>"'
+    engine: bing
+    category: intitle
+    purpose: العثور على صفحات عنوانها يحمل الكلمة الدالة بالعربية (تغطية مخصصة للموضوع).
+    hit_rate: null
+    last_tested: null
+  - id: competitor-domain
+    pattern: 'site:<نطاق منافس> <موضوع>'
+    engine: bing
+    category: competitor
+    purpose: رصد تغطية نطاق منافس محدد للموضوع لقياس فارق الزمن والتشبع.
+    hit_rate: null
+    last_tested: null
+  - id: official-domain
+    pattern: 'site:<نطاق جهة رسمية> <موضوع>'
+    engine: bing
+    category: official
+    purpose: الوصول إلى المصدر الرسمي الأولي (بيان أو إعلان) قبل الوسائط.
+    hit_rate: null
+    last_tested: null
+  - id: pdf-report
+    pattern: 'filetype:pdf "<مصطلح>"'
+    engine: bing
+    category: filetype
+    purpose: التقاط التقارير والبيانات المنشورة بصيغة PDF حول مصطلح محدد.
+    hit_rate: null
+    last_tested: null
+  - id: exact-phrase
+    pattern: '"<جملة حرفية>"'
+    engine: bing
+    category: phrase
+    purpose: مطابقة حرفية لاقتباس أو جملة متداولة لتعقّب أصلها وانتشارها.
+    hit_rate: null
+    last_tested: null
+  - id: video-trend
+    pattern: 'site:youtube.com "<مصطلح>"'
+    engine: youtube
+    category: video
+    purpose: رصد النشاط المرئي حول مصطلح محدد كمؤشر تريند مبكر.
+    hit_rate: null
+    last_tested: null
+  - id: gnews-aggregated
+    pattern: 'site:news.google.com "<مصطلح>"'
+    engine: gnews
+    category: aggregator
+    purpose: قياس التغطية المجمّعة للمصطلح كمؤشر تشبع سريع.
+    hit_rate: null
+    last_tested: null

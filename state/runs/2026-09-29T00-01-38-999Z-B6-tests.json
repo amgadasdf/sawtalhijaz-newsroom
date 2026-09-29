@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "سجل تشغيل — الزمن الموثق بمصدره إلزامي (بروتوكول B1 الزمني)."
+  },
+  "kind": "B6-tests",
+  "actor": null,
+  "iso": "2026-09-29T00:01:38.999Z",
+  "source": "unverified",
+  "startedAt": "2026-09-29T00:01:39.207Z",
+  "endedAt": "2026-09-29T00:01:39.212Z",
+  "durationMs": 5,
+  "summary": "B6 tests: detection=نُفذ forecast=نُفذ saturation=نُفذ sources=نُفذ | كشف 3/10 · إصابة التنبؤ 33.33% · فجوة التشبع 11 · مصادر سليمة 3/13",
+  "next": "مراجعة الحقل 7 (توصيات الأوزان المعلقة) ورفعها للمجلس.",
+  "pending": [
+    "source-weights-stale: معلق على اعتماد المجلس",
+    "forecast-threshold: معلق على اعتماد المجلس",
+    "forecast-run-records: معلق على اعتماد المجلس",
+    "detection-window: معلق على اعتماد المجلس"
+  ],
+  "report": "reports/tests-2026-09-29T00-01-38-999Z.md",
+  "report_json": "reports/tests-2026-09-29T00-01-38-999Z.json",
+  "tests_latest": "state/tests-latest.json",
+  "sample_source": "fixtures معزولة — غير حية",
+  "mode": "fixtures",
+  "fields_present": 7,
+  "structure_ok": true
+}

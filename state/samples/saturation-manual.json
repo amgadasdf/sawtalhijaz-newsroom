@@ -1,0 +1,10 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "عينة القياس اليدوي للتشبع — تُملأ يدوياً بجلسة بشرية ثم يقارنها اختبار B6 بمخرج المحرك (فجوة القياس). لا تُصنَّع قيم هنا آلياً.",
+    "how_to_fill": "لكل موضوع: topic_id من state/topics-latest.json (أو title للنمط الاحتياطي)، manual_saturation_percent = نسبة المصادر التي غطّت الموضوع مقيسة يدوياً (0-100)، counted_at = زمن العدّ، counted_sources = قائمة المصادر التي تحققتَ منها بنفسك.",
+    "gap_thresholds": { "within_points": 10, "notable_points": 25 },
+    "run": "node engine/cli.js tests --type تشبع"
+  },
+  "samples": []
+}

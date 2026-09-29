@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2+B3+B4+B5)
+// engine/cli.js — واجهة أوامر المغرفة الوحيدة (B1+B2+B3+B4+B5+B6)
 // أوامر: status · time · resume · settime · runs · fetch · fetch-live · radar · dashboard · selftest — صفر تبعيات، ESM.
 //
 //   node engine/cli.js status [--offline]
@@ -20,6 +20,9 @@ import { runRadar } from "./radar.js";
 import { runB3FixtureGate } from "./radar-selftest.js";
 import { runDashboardGate } from "./dashboard-selftest.js";
 import { runB5Selftest } from "./b5-selftest.js";
+import { runB6Selftest } from "./b6-selftest.js";
+import { runTestsCli } from "./tests.js";
+import { runDorksCli } from "./dorks.js";
 import { generateDashboard, generateFixtureDashboard, inspectDashboard, formatHours } from "./dashboard.js";
 
 const USAGE = `الاستخدام:
@@ -36,8 +39,11 @@ const USAGE = `الاستخدام:
   node engine/cli.js dashboard [--from-fixtures] [--out FILE] [--provenance "…"] [--print [N]] [--inspect] [--no-record]
                                                           توليد out/radar-<طابع زمني موثق>.html (B4، صفحة RTL مضمّنة بالكامل)
                                                           --fixtures يشغل بوابة B4 الحتمية المعزولة
-  node engine/cli.js selftest [--offline] [--keep]         بوابات B1+B2+B3+B4+B5 الحتمية الإلزامية
-  node engine/cli.js b5-gate                              بوابة برومتات B5 وتجربة fixtures غير حية`;
+  node engine/cli.js selftest [--offline] [--keep]         بوابات B1+B2+B3+B4+B5+B6 الحتمية الإلزامية
+  node engine/cli.js b5-gate                              بوابة برومتات B5 وتجربة fixtures غير حية
+  node engine/cli.js tests [--from-fixtures] [--type …]   B6: الاختبارات الأربعة (كشف/تنبؤ/تشبع/مصادر) + تقرير 7 حقول
+  node engine/cli.js b6-gate                              بوابة B6 الحتمية (17 فحصاً: تقرير + sources-health + دوركس + نماذج)
+  node engine/cli.js dorks [--validate|--usable|--record …]  سجل الدوركس: لا استخدام بلا نتيجة اختبار مسجلة`;
 
 const args = process.argv.slice(2);
 const noteIdx = args.indexOf("--note");
@@ -210,6 +216,22 @@ switch (cmd) {
     printHeadLines(result.html, args);
     if (result.run) console.log(`سجل التشغيل: ${result.run.rel}`);
     process.exit(result.ok && inspection.selfContained && inspection.sectionsPresent && inspection.everyNumberTraceable ? 0 : 1);
+  }
+
+  case "tests": {
+    process.exit(await runTestsCli({ root: process.cwd(), argv: args.slice(1) }));
+    break;
+  }
+
+  case "b6-gate": {
+    const result = await runB6Selftest();
+    process.exit(result.ok ? 0 : 1);
+    break;
+  }
+
+  case "dorks": {
+    process.exit(runDorksCli({ root: process.cwd(), argv: args.slice(1) }));
+    break;
   }
 
   case "b5-gate": {
