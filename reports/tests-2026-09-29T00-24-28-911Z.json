@@ -1,0 +1,1021 @@
+{
+  "_meta": {
+    "format": "json",
+    "kind": "B6-test-report",
+    "schemaVersion": "B6.1",
+    "mode": "state",
+    "sampleSource": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+    "generatedAt": "2026-09-29T00:24:28.917Z",
+    "notes": "تقرير اختبارات B6 بالبنية الثابتة (7 حقول)؛ الأرقام من مخرجات المحرك نفسها ولا تُصنَّع بيانات.",
+    "thresholds": {
+      "detectionWindowHours": 2,
+      "saturationWithinPoints": 10,
+      "saturationNotablePoints": 25,
+      "sourceFreshnessHours": 24,
+      "responseNormalMs": 1500,
+      "responseSlowMs": 4000
+    }
+  },
+  "time": {
+    "iso": "2026-09-29T00:24:28.911Z",
+    "source": "unverified",
+    "skewSeconds": 0,
+    "line": "الزمن: 2026-09-29T00:24:28.911Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime."
+  },
+  "sampleTimeIso": "2026-09-29T00:24:28.911Z",
+  "runNumber": 4,
+  "totalReports": 4,
+  "mode": "state",
+  "sampleSource": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+  "paths": {
+    "markdown": "reports/tests-2026-09-29T00-24-28-911Z.md",
+    "json": "reports/tests-2026-09-29T00-24-28-911Z.json"
+  },
+  "fields": {
+    "time-and-run": {
+      "line": "الزمن: 2026-09-29T00:24:28.911Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime.",
+      "iso": "2026-09-29T00:24:28.911Z",
+      "source": "unverified",
+      "skewSeconds": 0,
+      "runNumber": 4,
+      "totalReports": 4,
+      "sampleSource": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+      "sampleTimeIso": "2026-09-29T00:24:28.911Z",
+      "mode": "state"
+    },
+    "executed": {
+      "count": 1,
+      "total": 4,
+      "rows": [
+        {
+          "kind": "detection",
+          "label": "كشف",
+          "executed": false,
+          "durationMs": 0,
+          "sample": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+          "note": "لم يُنفذ — لا خط أساس صالح: لا تشغيل رادار محفوظ إطلاقاً (state/topics.json فارغ ولا state/topics-latest.json ولا سجل B3-radar). | لا دليل gnews صالح: العينة المحفوظة (state/samples/gnews-آخر.json) بلا عناصر: status=error — TypeError: fetch failed (ECONNRESET) (الجالب يُسقط العناصر عند الفشل — لا تُصنَّع عناصر بديلة)."
+        },
+        {
+          "kind": "forecast",
+          "label": "تنبؤ",
+          "executed": false,
+          "durationMs": 0,
+          "sample": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+          "note": "لم يُنفذ — لا لقطة مواضيع محفوظة تحمل وسم التنبؤ (state/topics-latest.json أو state/topics.json) — وسم التنبؤ لا يُحفظ في سجلات التشغيل (topicCounts فقط)."
+        },
+        {
+          "kind": "saturation",
+          "label": "تشبع",
+          "executed": false,
+          "durationMs": 0,
+          "sample": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+          "note": "لم يُنفذ — الملف موجود (state/samples/saturation-manual.json) بلا عينات صالحة: عدد العناصر المعلنة 0 — القياس اليدوي لم يُجرَ بعد."
+        },
+        {
+          "kind": "sources",
+          "label": "مصادر",
+          "executed": true,
+          "durationMs": 1.5,
+          "sample": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+          "note": "نُفذ"
+        }
+      ],
+      "totalMs": 4.3
+    },
+    "results": {
+      "detection": {
+        "available": false,
+        "baselineTopics": 0,
+        "evidenceItems": 0,
+        "inWindowItems": 0,
+        "matchedTopics": 0,
+        "unmatchedTopics": 0,
+        "precisionPercent": null,
+        "meanConfirmationMinutes": null,
+        "maxConfirmationMinutes": null,
+        "meanDetectionLatencyMinutes": null,
+        "windowHours": 2
+      },
+      "forecast": {
+        "available": false,
+        "total": 0,
+        "verified": 0,
+        "notVerified": 0,
+        "regressed": 0,
+        "pending": 0,
+        "hitRatePercent": null,
+        "definition": "معدل الإصابة = تحقق ÷ (تحقق + لم يتحقق + تراجع). حالات «بانتظار التحقق» (لا تشغيل لاحق بعد) لا تدخل المقام وتُطبع منفصلة."
+      },
+      "saturation": {
+        "available": false,
+        "samples": 0,
+        "matched": 0,
+        "unmatched": 0,
+        "meanAbsGapPoints": null,
+        "maxAbsGapPoints": null,
+        "biasPoints": null,
+        "verdict": null
+      },
+      "sources": {
+        "available": true,
+        "total": 13,
+        "enabled": 8,
+        "healthy": 0,
+        "failing": 8,
+        "cooling": 0,
+        "stale": 0,
+        "meanResponseMs": 11.8,
+        "slowest": {
+          "sourceId": "wiki-rc",
+          "responseMs": 26.3,
+          "verdict": "طبيعي"
+        }
+      }
+    },
+    "improvement": {
+      "compared": true,
+      "previous": {
+        "rel": "/home/user/sawtalhijaz-newsroom/reports/tests-2026-09-29T00-24-01-298Z.json",
+        "sampleSource": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "runNumber": 3,
+        "iso": "2026-09-29T00:24:01.298Z"
+      },
+      "deltas": [
+        {
+          "metric": "موضوعات مطابقة في اختبار الكشف",
+          "previous": 0,
+          "current": 0,
+          "delta": 0,
+          "unit": "",
+          "verdict": "بلا تغيير",
+          "higherIsBetter": true
+        },
+        {
+          "metric": "دقة الكشف %",
+          "previous": null,
+          "current": null,
+          "delta": null,
+          "unit": "%",
+          "verdict": "غير قابل للمقارنة",
+          "higherIsBetter": true
+        },
+        {
+          "metric": "متوسط زمن التحقق (دقيقة)",
+          "previous": null,
+          "current": null,
+          "delta": null,
+          "unit": "د",
+          "verdict": "غير قابل للمقارنة",
+          "higherIsBetter": false
+        },
+        {
+          "metric": "معدل إصابة التنبؤات %",
+          "previous": null,
+          "current": null,
+          "delta": null,
+          "unit": "%",
+          "verdict": "غير قابل للمقارنة",
+          "higherIsBetter": true
+        },
+        {
+          "metric": "تنبؤات تحققت",
+          "previous": 0,
+          "current": 0,
+          "delta": 0,
+          "unit": "تنبؤ",
+          "verdict": "بلا تغيير",
+          "higherIsBetter": true
+        },
+        {
+          "metric": "متوسط فجوة التشبع (نقطة)",
+          "previous": null,
+          "current": null,
+          "delta": null,
+          "unit": "نقطة",
+          "verdict": "غير قابل للمقارنة",
+          "higherIsBetter": false
+        },
+        {
+          "metric": "مصادر سليمة",
+          "previous": 0,
+          "current": 0,
+          "delta": 0,
+          "unit": "مصدر",
+          "verdict": "بلا تغيير",
+          "higherIsBetter": true
+        },
+        {
+          "metric": "مصادر متأخرة",
+          "previous": 0,
+          "current": 0,
+          "delta": 0,
+          "unit": "مصدر",
+          "verdict": "بلا تغيير",
+          "higherIsBetter": false
+        },
+        {
+          "metric": "متوسط زمن الاستجابة (ms)",
+          "previous": 11.8,
+          "current": 11.8,
+          "delta": 0,
+          "unit": "ms",
+          "verdict": "بلا تغيير",
+          "higherIsBetter": false
+        }
+      ],
+      "improved": 0,
+      "regressed": 0,
+      "unchanged": 5,
+      "incomparable": 4,
+      "reason": null
+    },
+    "errors": [
+      {
+        "what": "اختبار الكشف لم يُنفَّذ",
+        "rootCause": "لا لقطة مواضيع محفوظة بعناوين (خط أساس) و/أو لا دليل gnews محفوظ بعناصر — لأن كل جلسات المشروع السابقة جرت بلا شبكة (الدين الحي مؤجل إلى بطارية B7)",
+        "evidence": "لا خط أساس صالح: لا تشغيل رادار محفوظ إطلاقاً (state/topics.json فارغ ولا state/topics-latest.json ولا سجل B3-radar). | لا دليل gnews صالح: العينة المحفوظة (state/samples/gnews-آخر.json) بلا عناصر: status=error — TypeError: fetch failed (ECONNRESET) (الجالب يُسقط العناصر عند الفشل — لا تُصنَّع عناصر بديلة). | state/topics-latest.json وstate/topics.json بلا موضوعات"
+      },
+      {
+        "what": "اختبار التنبؤ لم يُنفَّذ",
+        "rootCause": "لا لقطة مواضيع محفوظة تحمل وسم «متوقع خلال ساعات»؛ وسجل التشغيل يحفظ topicCounts فقط بلا وسم التنبؤ (قيود B3 المختومة)",
+        "evidence": "لا لقطة مواضيع محفوظة تحمل وسم التنبؤ (state/topics-latest.json أو state/topics.json) — وسم التنبؤ لا يُحفظ في سجلات التشغيل (topicCounts فقط)."
+      },
+      {
+        "what": "اختبار التشبع لم يُنفَّذ",
+        "rootCause": "لا عينة قياس يدوي مُعبَّأة — القياس اليدوي عمل بشري لم يُجرَ بعد، ولم تُصنَّع عينة في الحالة الحقيقية",
+        "evidence": "الملف موجود (state/samples/saturation-manual.json) بلا عينات صالحة: عدد العناصر المعلنة 0 — القياس اليدوي لم يُجرَ بعد."
+      },
+      {
+        "what": "المصدر bing-dorks في حالة فشل",
+        "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json",
+        "evidence": "TypeError: fetch failed (ECONNRESET)"
+      },
+      {
+        "what": "المصدر gdelt-files في حالة فشل",
+        "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json",
+        "evidence": "TypeError: fetch failed (ECONNRESET)"
+      },
+      {
+        "what": "المصدر gnews في حالة فشل",
+        "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json",
+        "evidence": "TypeError: fetch failed (ECONNRESET)"
+      },
+      {
+        "what": "المصدر telegram في حالة فشل",
+        "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json",
+        "evidence": "TypeError: fetch failed (ECONNRESET)"
+      },
+      {
+        "what": "المصدر trends-rss في حالة فشل",
+        "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json",
+        "evidence": "TypeError: fetch failed (ECONNRESET)"
+      },
+      {
+        "what": "المصدر wayback-cdx في حالة فشل",
+        "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json",
+        "evidence": "TypeError: fetch failed (ECONNRESET)"
+      },
+      {
+        "what": "المصدر wiki-rc في حالة فشل",
+        "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json",
+        "evidence": "TypeError: fetch failed (ECONNRESET)"
+      },
+      {
+        "what": "المصدر wiki-top في حالة فشل",
+        "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json",
+        "evidence": "TypeError: fetch failed (ECONNRESET)"
+      }
+    ],
+    "tools": [
+      {
+        "id": "pytrends-hook",
+        "name": "hook pytrends المحلي (tools/pytrends-hook.py)",
+        "cost": 0,
+        "currency": "ريال",
+        "decisionRequired": false,
+        "note": "مجاني. يتطلب python3 ومكتبة pytrends؛ حالياً يعمل كـsafe-stub لأنهما غير متاحين في البيئة — القياس قائم على Z-score من العدّات المحفوظة.",
+        "costLabel": "صفر"
+      },
+      {
+        "id": "arabic-stemmer",
+        "name": "تطبيع/تجذير عربي خفيف داخل المحرك",
+        "cost": 0,
+        "currency": "ريال",
+        "decisionRequired": false,
+        "note": "مجاني (كود محلي): يرفع دقة التجميع ويرفع معدل الكشف؛ لا تبعيات خارجية.",
+        "costLabel": "صفر"
+      },
+      {
+        "id": "fanout-rss",
+        "name": "قائمة RSS موسّعة للمواقع السعودية (بيانات sitemap/RSS المعلنة)",
+        "cost": 0,
+        "currency": "ريال",
+        "decisionRequired": false,
+        "note": "مجاني: كل المصادر المدرجة حالياً بلا مفاتيح؛ التوسّع بإضافة مصادر مجانية في config/sources.json بعد اعتماد المجلس.",
+        "costLabel": "صفر"
+      },
+      {
+        "id": "search-api-key",
+        "name": "مفتاح بحث مدفوع (Bing/Google) لسجل الدوركس",
+        "cost": 1200,
+        "currency": "ريال/شهر",
+        "decisionRequired": true,
+        "note": "عرض لقرار المجلس فقط — لا يُشترى في B6. بدونه تعمل الدوركس عبر HTML العام (config/dorks.yaml) بلا مفاتيح.",
+        "costLabel": "1200 ريال/شهر — عرض لقرار المجلس"
+      },
+      {
+        "id": "social-api",
+        "name": "واجهة منصات اجتماعية رسمية (X/غيرها)",
+        "cost": 4000,
+        "currency": "ريال/شهر",
+        "decisionRequired": true,
+        "note": "عرض لقرار المجلس فقط — غير مدرج ولا مفعّل. البديل الحالي: رصد عام عبر site:x.com في السجل (بلا مفاتيح).",
+        "costLabel": "4000 ريال/شهر — عرض لقرار المجلس"
+      }
+    ],
+    "weights": [
+      {
+        "id": "source-weights-failing",
+        "recommendation": "مراجعة أوزان المصادر المتعثرة (bing-dorks, gdelt-files, gnews) — تخفيض مؤقت لوزن المصدر المتعثرة حتى نجاح جلب حي",
+        "rationale": "معدلات الخطأ المرصودة: bing-dorks=100% · gdelt-files=100% · gnews=100%",
+        "status": "معلق على اعتماد المجلس"
+      },
+      {
+        "id": "forecast-threshold",
+        "recommendation": "تثبيت أو تعديل حد التنبؤ المتحفظ (تسارع موجب في تشغيلين متتاليين + تشبع أقل من 50%) على ضوء معدل الإصابة المقيس",
+        "rationale": "معدل الإصابة الحالي: —% (تحقق 0 من 0 قابلة للتحقق)",
+        "status": "معلق على اعتماد المجلس"
+      },
+      {
+        "id": "forecast-run-records",
+        "recommendation": "إضافة وسم التنبؤ (forecast + forecastAtIso) إلى سجل تشغيل B3-radar ليصبح اختبار التنبؤ تاريخياً كاملاً لا لقطة واحدة",
+        "rationale": "سجل التشغيل يحفظ topicCounts فقط؛ المصفوفة الحالية تُبنى من اللقطة الأخيرة + عدّات التشغيلات اللاحقة",
+        "status": "معلق على اعتماد المجلس"
+      },
+      {
+        "id": "detection-window",
+        "recommendation": "تثبيت نافذة الكشف 2 ساعتين وفجوة القياس المسموحة 10 نقطة للتشبع",
+        "rationale": "قيم الاختبار الحالية: زمن تحقق — د · فجوة تشبع — نقطة (عينات: 0)",
+        "status": "معلق على اعتماد المجلس"
+      }
+    ]
+  },
+  "tests": {
+    "detection": {
+      "kind": "detection",
+      "label": "كشف",
+      "available": false,
+      "ok": false,
+      "windowHours": 2,
+      "baseline": {
+        "source": null,
+        "runIso": null,
+        "timeSource": null,
+        "topics": 0
+      },
+      "evidence": {
+        "source": "state/samples/gnews-آخر.json",
+        "mode": "saved",
+        "status": "error",
+        "fetchedAt": "2026-09-27T02:07:16.383Z",
+        "items": 0
+      },
+      "window": {
+        "startIso": null,
+        "endIso": null,
+        "hours": 2
+      },
+      "matchedTopics": 0,
+      "unmatchedTopics": 0,
+      "matchedItems": 0,
+      "inWindowItems": 0,
+      "outOfWindowItems": 0,
+      "unmatchedEvidenceItems": 0,
+      "precisionPercent": null,
+      "meanConfirmationMinutes": null,
+      "minConfirmationMinutes": null,
+      "maxConfirmationMinutes": null,
+      "meanDetectionLatencyMinutes": null,
+      "rows": [],
+      "reasons": [
+        "لا خط أساس صالح: لا تشغيل رادار محفوظ إطلاقاً (state/topics.json فارغ ولا state/topics-latest.json ولا سجل B3-radar).",
+        "لا دليل gnews صالح: العينة المحفوظة (state/samples/gnews-آخر.json) بلا عناصر: status=error — TypeError: fetch failed (ECONNRESET) (الجالب يُسقط العناصر عند الفشل — لا تُصنَّع عناصر بديلة)."
+      ],
+      "reason": "لا خط أساس صالح: لا تشغيل رادار محفوظ إطلاقاً (state/topics.json فارغ ولا state/topics-latest.json ولا سجل B3-radar). | لا دليل gnews صالح: العينة المحفوظة (state/samples/gnews-آخر.json) بلا عناصر: status=error — TypeError: fetch failed (ECONNRESET) (الجالب يُسقط العناصر عند الفشل — لا تُصنَّع عناصر بديلة)."
+    },
+    "forecast": {
+      "kind": "forecast",
+      "label": "تنبؤ",
+      "available": false,
+      "ok": false,
+      "matrix": [],
+      "aggregates": {
+        "total": 0,
+        "verified": 0,
+        "notVerified": 0,
+        "regressed": 0,
+        "pending": 0,
+        "denominator": 0,
+        "hitRatePercent": null,
+        "definition": "معدل الإصابة = تحقق ÷ (تحقق + لم يتحقق + تراجع). حالات «بانتظار التحقق» (لا تشغيل لاحق بعد) لا تدخل المقام وتُطبع منفصلة."
+      },
+      "runsObserved": 0,
+      "reason": "لا لقطة مواضيع محفوظة تحمل وسم التنبؤ (state/topics-latest.json أو state/topics.json) — وسم التنبؤ لا يُحفظ في سجلات التشغيل (topicCounts فقط)."
+    },
+    "saturation": {
+      "kind": "saturation",
+      "label": "تشبع",
+      "available": false,
+      "ok": false,
+      "limits": {
+        "withinPoints": 10,
+        "notablePoints": 25
+      },
+      "rows": [],
+      "aggregates": {
+        "samples": 0,
+        "matched": 0,
+        "unmatched": 0,
+        "withinMargin": 0,
+        "notable": 0,
+        "meanAbsGapPoints": null,
+        "maxAbsGapPoints": null,
+        "meanSignedGapPoints": null,
+        "verdict": null
+      },
+      "reason": "الملف موجود (state/samples/saturation-manual.json) بلا عينات صالحة: عدد العناصر المعلنة 0 — القياس اليدوي لم يُجرَ بعد.",
+      "referenceIso": "2026-09-29T00:24:28.911Z"
+    },
+    "sources": {
+      "kind": "sources",
+      "label": "مصادر",
+      "available": true,
+      "ok": true,
+      "rows": [
+        {
+          "sourceId": "bing-dorks",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.5,
+          "notes": "دوركس البحث الأولية من config/dorks-init.json؛ سقف عشرة نتائج",
+          "healthStatus": "فشل",
+          "verdict": "فشل",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 1,
+          "errorRatePercent": 100,
+          "lastError": "TypeError: fetch failed (ECONNRESET)",
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/bing-dorks-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 14.1,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 6,
+            "usedInWindow": 0,
+            "remaining": 6
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:36.404Z"
+        },
+        {
+          "sourceId": "bridge",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0.3,
+          "notes": "معطل؛ لا يفعّل إلا باعتماد مجلس موثق",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 1,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/bridge-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 0,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 1,
+            "usedInWindow": 0,
+            "remaining": 1
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:36.405Z"
+        },
+        {
+          "sourceId": "gdelt-doc",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0.6,
+          "notes": "مشروط — يعطي 429 عند الاستخدام المكثف؛ يفعّل بقرار المجلس",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/gdelt-doc-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 0,
+            "usedInWindow": 0,
+            "remaining": 0
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "gdelt-files",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.7,
+          "notes": "lastupdate.txt ثم ملف export.CSV.zip الأحدث وحده، مع فلترة الصفوف العربية",
+          "healthStatus": "فشل",
+          "verdict": "فشل",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 1,
+          "errorRatePercent": 100,
+          "lastError": "TypeError: fetch failed (ECONNRESET)",
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/gdelt-files-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 5.5,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 2,
+            "usedInWindow": 0,
+            "remaining": 2
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:32.392Z"
+        },
+        {
+          "sourceId": "gnews",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.9,
+          "notes": "GNews: when:1h عام + استعلام لكل قسم من desks",
+          "healthStatus": "فشل",
+          "verdict": "فشل",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 1,
+          "errorRatePercent": 100,
+          "lastError": "TypeError: fetch failed (ECONNRESET)",
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/gnews-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 9.5,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 6,
+            "usedInWindow": 0,
+            "remaining": 6
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:16.384Z"
+        },
+        {
+          "sourceId": "reddit",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0,
+          "notes": "مستبعد حالياً — 403",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/reddit-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 0,
+            "usedInWindow": 0,
+            "remaining": 0
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "rsshub",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0,
+          "notes": "مستبعد حالياً — 403 في البيئة",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/rsshub-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 0,
+            "usedInWindow": 0,
+            "remaining": 0
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "searxng",
+          "enabled": false,
+          "dailyEnabled": true,
+          "weight": 0,
+          "notes": "مستبعد حالياً — بلا JSON في الاستجابة",
+          "healthStatus": "معطل",
+          "verdict": "معطل في الإعدادات",
+          "invocations": 0,
+          "requests": 0,
+          "errors": 0,
+          "errorRatePercent": null,
+          "lastError": null,
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/searxng-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": null,
+            "verdict": "بلا قياس",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 0,
+            "usedInWindow": 0,
+            "remaining": 0
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": null
+        },
+        {
+          "sourceId": "telegram",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.6,
+          "notes": "ثلاث قنوات سعودية عامة عبر HTML preview",
+          "healthStatus": "فشل",
+          "verdict": "فشل",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 1,
+          "errorRatePercent": 100,
+          "lastError": "TypeError: fetch failed (ECONNRESET)",
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/telegram-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 7.5,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 4,
+            "usedInWindow": 0,
+            "remaining": 4
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:19.385Z"
+        },
+        {
+          "sourceId": "trends-rss",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 1,
+          "notes": "RSS العام من Google Trends للسعودية",
+          "healthStatus": "فشل",
+          "verdict": "فشل",
+          "invocations": 2,
+          "requests": 2,
+          "errors": 2,
+          "errorRatePercent": 100,
+          "lastError": "TypeError: fetch failed (ECONNRESET)",
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/trends-rss-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 8.3,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 2,
+            "usedInWindow": 0,
+            "remaining": 2
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:11.380Z"
+        },
+        {
+          "sourceId": "wayback-cdx",
+          "enabled": true,
+          "dailyEnabled": false,
+          "weight": 0.5,
+          "notes": "تقارير أسبوعية فقط؛ معطل في الرادار اليومي",
+          "healthStatus": "فشل",
+          "verdict": "فشل",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 1,
+          "errorRatePercent": 100,
+          "lastError": "TypeError: fetch failed (ECONNRESET)",
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/wayback-cdx-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 9.9,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 1,
+            "usedInWindow": 0,
+            "remaining": 1
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:30.396Z"
+        },
+        {
+          "sourceId": "wiki-rc",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.4,
+          "notes": "recentchanges من واجهة ويكيبيديا العربية",
+          "healthStatus": "فشل",
+          "verdict": "فشل",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 1,
+          "errorRatePercent": 100,
+          "lastError": "TypeError: fetch failed (ECONNRESET)",
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/wiki-rc-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 26.3,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 2,
+            "usedInWindow": 0,
+            "remaining": 2
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:27.409Z"
+        },
+        {
+          "sourceId": "wiki-top",
+          "enabled": true,
+          "dailyEnabled": true,
+          "weight": 0.4,
+          "notes": "مشاهدات ويكيبيديا العربية لليوم السابق",
+          "healthStatus": "فشل",
+          "verdict": "فشل",
+          "invocations": 1,
+          "requests": 1,
+          "errors": 1,
+          "errorRatePercent": 100,
+          "lastError": "TypeError: fetch failed (ECONNRESET)",
+          "refresh": {
+            "lastSuccessIso": null,
+            "ageHours": null,
+            "fresh": false,
+            "thresholdHours": 24,
+            "futureToleranceMinutes": 5,
+            "sampleSource": "state/samples/wiki-top-آخر.json"
+          },
+          "response": {
+            "lastResponseMs": 25.1,
+            "verdict": "طبيعي",
+            "normalMs": 1500,
+            "slowMs": 4000
+          },
+          "cooling": {
+            "active": false,
+            "untilIso": null,
+            "minutesLeft": 0,
+            "stage": 0
+          },
+          "budget": {
+            "perHour": 2,
+            "usedInWindow": 0,
+            "remaining": 2
+          },
+          "cacheHits": 0,
+          "lastInvocationIso": "2026-09-27T02:07:23.404Z"
+        }
+      ],
+      "aggregates": {
+        "total": 13,
+        "enabled": 8,
+        "disabled": 5,
+        "healthy": 0,
+        "failing": 8,
+        "cooling": 0,
+        "stale": 0,
+        "neverInvoked": 0,
+        "budgetExhausted": 0,
+        "meanResponseMs": 11.8,
+        "slowest": {
+          "sourceId": "wiki-rc",
+          "responseMs": 26.3,
+          "verdict": "طبيعي"
+        },
+        "coolingList": [],
+        "thresholds": {
+          "freshnessHours": 24,
+          "responseNormalMs": 1500,
+          "responseSlowMs": 4000
+        }
+      },
+      "referenceIso": "2026-09-29T00:24:28.911Z",
+      "reason": null
+    }
+  },
+  "structure": {
+    "fieldsPresent": 7,
+    "fieldsTotal": 7,
+    "ok": true
+  }
+}

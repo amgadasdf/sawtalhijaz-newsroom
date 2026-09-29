@@ -1,0 +1,10 @@
+== الحالة ==
+الزمن: 2026-09-29T00:25:01.212Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime.
+topics: 0
+sources مفعّلة: 0/13 (إجمالي طلبات: 9 | أخطاء: 9)
+sources معطلة: trends-rss، gnews، telegram، wiki-top، wiki-rc، wayback-cdx، gdelt-files، bing-dorks، bridge، gdelt-doc، rsshub، searxng، reddit
+inventory.urls: 0 | sections: 0 | tags: 0 | authors: 0
+skills.md: 95 سطر
+people: 11 | labs: 4
+runs: 19 | آخر تشغيل: 2026-09-29T00-24-28-991Z-B6-selftest.json (2026-09-29T00:24:28.991Z | B6-selftest | source=unverified)
+معلقات مفتوحة: لا شيء

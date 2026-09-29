@@ -1,0 +1,3 @@
+liveHealthFieldsUnchanged=true
+testReportFields=7
+fieldNames=time-and-run,executed,results,improvement,errors,tools,weights

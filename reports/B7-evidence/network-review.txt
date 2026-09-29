@@ -1,0 +1,164 @@
+engine/burst.js:4:import { spawnSync } from "node:child_process";
+engine/cli.js:3:// أوامر: status · time · resume · settime · runs · fetch · fetch-live · radar · dashboard · selftest — صفر تبعيات، ESM.
+engine/cli.js:17:import { createFetchers } from "./fetchers/index.js";
+engine/cli.js:18:import { runLiveGate } from "./fetchers/live-gate.js";
+engine/cli.js:35:  node engine/cli.js fetch <source-id> [--weekly]           تشغيل جالب واحد من config/sources.json
+engine/cli.js:36:  node engine/cli.js fetch-live                            بوابة B2 الحية (مع fallback fixtures عند انقطاع الشبكة)
+engine/cli.js:137:  case "fetch": {
+engine/cli.js:139:    if (!sourceId) die(`fetch يحتاج source-id من config/sources.json.\n\n${USAGE}`);
+engine/cli.js:140:    const fetchers = createFetchers();
+engine/cli.js:141:    const fetcher = fetchers.byId[sourceId];
+engine/cli.js:142:    if (!fetcher) die(`جالب غير معروف: ${sourceId}\nالمصادر: ${Object.keys(fetchers.byId).join(", ")}\n\n${USAGE}`);
+engine/cli.js:149:    const result = await fetcher(options);
+engine/cli.js:155:  case "fetch-live": {
+engine/cluster.js:120:    const fetchedAts = group.map((item) => item.fetchedAt).filter(Boolean);
+engine/cluster.js:136:      firstSeen: previous?.firstSeen ?? earliestIso(fetchedAts, null),
+engine/cluster.js:137:      lastSeen: latestIso([...fetchedAts, previous?.lastSeen], null),
+engine/dashboard.js:774:      <p class="muted small">من <span class="mono">state/inventory.json</span>: حالة الجرد <b>${esc(status)}</b> · عناوين: ${esc(formatNumber(urlCount))} · أقسام: ${esc(formatNumber(Array.isArray(inventory?.sections) ? inventory.sections.length : 0))} · وسوم: ${esc(formatNumber(Array.isArray(inventory?.tags) ? inventory.tags.length : 0))} · كتّاب: ${esc(formatNumber(Array.isArray(inventory?.authors) ? inventory.authors.length : 0))} · آخر جلب: <span class="mono">${esc(inventory?.fetched_at ?? "—")}</span>. الاقتراحات نصّية (لا وسم ربط) وتُراجع تحريرياً قبل أي نشر.</p>
+engine/fetchers/bing-dorks.js:46:export function fetchBingDorks(runtime, { maxItems = 10, forceRefresh = false, queries: overrideQueries = null, section = null } = {}) {
+engine/fetchers/bridge.js:3:export function fetchBridge(runtime, { maxItems = 5, forceRefresh = false, councilApproval = null } = {}) {
+engine/fetchers/connectivity.js:1:// Small sequential connectivity probe used before paying B2's live-fetch debt.
+engine/fetchers/connectivity.js:3:  ["google", "https://www.google.com/generate_204"],
+engine/fetchers/connectivity.js:4:  ["wikipedia", "https://ar.wikipedia.org/w/api.php?action=query&meta=siteinfo&format=json"],
+engine/fetchers/connectivity.js:5:  ["bing", "https://www.bing.com/search?q=%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9"],
+engine/fetchers/connectivity.js:17:  fetchImpl = globalThis.fetch,
+engine/fetchers/connectivity.js:22:  if (typeof fetchImpl !== "function") throw new TypeError("fetch implementation is unavailable");
+engine/fetchers/connectivity.js:34:      const response = await fetchImpl(url, {
+engine/fetchers/gdelt-files.js:11:export function fetchGdeltFiles(runtime, { maxItems = 5, forceRefresh = false } = {}) {
+engine/fetchers/gnews.js:42:export function fetchGnews(runtime, { maxItems = 5, forceRefresh = false, section = null, includeGeneral = true } = {}) {
+engine/fetchers/index.js:1:// Public B2 fetcher API: one named fetcher per approved/configured source.
+engine/fetchers/index.js:3:import { fetchTrendsRss } from "./trends-rss.js";
+engine/fetchers/index.js:4:import { fetchGnews } from "./gnews.js";
+engine/fetchers/index.js:5:import { fetchTelegram } from "./telegram.js";
+engine/fetchers/index.js:6:import { fetchWikiTop } from "./wiki-top.js";
+engine/fetchers/index.js:7:import { fetchWikiRecentChanges } from "./wiki-rc.js";
+engine/fetchers/index.js:8:import { fetchWaybackCdx } from "./wayback-cdx.js";
+engine/fetchers/index.js:9:import { fetchGdeltFiles } from "./gdelt-files.js";
+engine/fetchers/index.js:10:import { fetchBingDorks } from "./bing-dorks.js";
+engine/fetchers/index.js:11:import { fetchBridge } from "./bridge.js";
+engine/fetchers/index.js:19:  const fetchers = {
+engine/fetchers/index.js:20:    trendsRss: (fetchOptions = {}) => fetchTrendsRss(runtime, fetchOptions),
+engine/fetchers/index.js:21:    gnews: (fetchOptions = {}) => fetchGnews(runtime, fetchOptions),
+engine/fetchers/index.js:22:    telegram: (fetchOptions = {}) => fetchTelegram(runtime, fetchOptions),
+engine/fetchers/index.js:23:    wikiTop: (fetchOptions = {}) => fetchWikiTop(runtime, fetchOptions),
+engine/fetchers/index.js:24:    wikiRc: (fetchOptions = {}) => fetchWikiRecentChanges(runtime, fetchOptions),
+engine/fetchers/index.js:25:    waybackCdx: (fetchOptions = {}) => fetchWaybackCdx(runtime, fetchOptions),
+engine/fetchers/index.js:26:    gdeltFiles: (fetchOptions = {}) => fetchGdeltFiles(runtime, fetchOptions),
+engine/fetchers/index.js:27:    bingDorks: (fetchOptions = {}) => fetchBingDorks(runtime, fetchOptions),
+engine/fetchers/index.js:28:    bridge: (fetchOptions = {}) => fetchBridge(runtime, fetchOptions),
+engine/fetchers/index.js:31:    "trends-rss": fetchers.trendsRss,
+engine/fetchers/index.js:32:    gnews: fetchers.gnews,
+engine/fetchers/index.js:33:    telegram: fetchers.telegram,
+engine/fetchers/index.js:34:    "wiki-top": fetchers.wikiTop,
+engine/fetchers/index.js:35:    "wiki-rc": fetchers.wikiRc,
+engine/fetchers/index.js:36:    "wayback-cdx": fetchers.waybackCdx,
+engine/fetchers/index.js:37:    "gdelt-files": fetchers.gdeltFiles,
+engine/fetchers/index.js:38:    "bing-dorks": fetchers.bingDorks,
+engine/fetchers/index.js:39:    bridge: fetchers.bridge,
+engine/fetchers/index.js:41:  return { ...fetchers, byId, runtime };
+engine/fetchers/live-gate.js:1:// B2 debt-repayment gate: probe three hosts, then attempt every B2 fetcher
+engine/fetchers/live-gate.js:11:  ["trends-rss", (fetchers) => fetchers.trendsRss({ maxItems: 5 }), "trendsRssParsed"],
+engine/fetchers/live-gate.js:12:  ["gnews", (fetchers) => fetchers.gnews({ maxItems: 5 }), "gnewsParsed"],
+engine/fetchers/live-gate.js:13:  ["telegram", (fetchers) => fetchers.telegram({ maxItems: 5 }), "telegramHtmlParsed"],
+engine/fetchers/live-gate.js:14:  ["wiki-top", (fetchers) => fetchers.wikiTop({ maxItems: 5 }), "wikiTopJsonParsed"],
+engine/fetchers/live-gate.js:15:  ["wiki-rc", (fetchers) => fetchers.wikiRc({ maxItems: 5 }), "wikiRcJsonParsed"],
+engine/fetchers/live-gate.js:16:  ["wayback-cdx (weekly)", (fetchers) => fetchers.waybackCdx({ maxItems: 5, mode: "weekly" }), "waybackCdxParsed"],
+engine/fetchers/live-gate.js:17:  ["gdelt-files", (fetchers) => fetchers.gdeltFiles({ maxItems: 5 }), "gdeltZipAndArabicRowsParsed"],
+engine/fetchers/live-gate.js:18:  ["bing-dorks", (fetchers) => fetchers.bingDorks({ maxItems: 5 }), "bingHtmlAndRedirectParsed"],
+engine/fetchers/live-gate.js:19:  ["bridge (council-gated)", (fetchers) => fetchers.bridge({ maxItems: 5 }), "bridgeHtmlParsed"],
+engine/fetchers/live-gate.js:38:export async function runLiveGate({ root = process.cwd(), log = console.log, fetchImpl = globalThis.fetch } = {}) {
+engine/fetchers/live-gate.js:43:  const probes = await probeConnectivity({ fetchImpl });
+engine/fetchers/live-gate.js:51:  const fetchers = createFetchers({ root, fetchImpl });
+engine/fetchers/live-gate.js:55:      result = await invoke(fetchers);
+engine/fetchers/parsers.js:127:      link: messageUrl || (postId ? `https://t.me/${postId}` : null),
+engine/fetchers/parsers.js:139:  return `https://ar.wikipedia.org/wiki/${encodeURI(normalized)}`;
+engine/fetchers/parsers.js:335:    const parsed = new URL(raw, "https://www.bing.com");
+engine/fetchers/parsers.js:376:export function parseBridgeHtml(html, { limit = 5, baseUrl = "https://rss-bridge.org/bridge01/" } = {}) {
+engine/fetchers/runtime.js:1:// Shared B2 fetch policy: source budgets, cache-first, request spacing, 429 cooldown,
+engine/fetchers/runtime.js:71:  return error?.name === "TypeError" && /fetch failed|network|connection/i.test(String(error?.message ?? ""));
+engine/fetchers/runtime.js:117:  const fetchedMs = parseIsoMs(sample.fetched_at);
+engine/fetchers/runtime.js:118:  if (fetchedMs === null) return false;
+engine/fetchers/runtime.js:119:  const ageMs = nowMs - fetchedMs;
+engine/fetchers/runtime.js:126:    fetchImpl = globalThis.fetch,
+engine/fetchers/runtime.js:132:    if (typeof fetchImpl !== "function") throw new TypeError("FetcherRuntime needs a fetch implementation");
+engine/fetchers/runtime.js:135:    this.fetchImpl = fetchImpl;
+engine/fetchers/runtime.js:222:      if (["ok", "partial", "cache"].includes(finalStatus)) current.last_ok = finalStatus === "cache" ? (previous.last_ok ?? sample?.fetched_at ?? endedIso) : endedIso;
+engine/fetchers/runtime.js:252:          fetched_at: startedIso,
+engine/fetchers/runtime.js:366:        const { responseType: _responseType, timeoutMs: _timeoutMs, headers: callerHeaders, ...fetchOptions } = init;
+engine/fetchers/runtime.js:374:          const response = await this.fetchImpl(String(url), {
+engine/fetchers/runtime.js:377:            ...fetchOptions,
+engine/fetchers/runtime.js:456:        fetched_at: endedIso,
+engine/fetchers/telegram.js:19:export function fetchTelegram(runtime, { maxItems = 5, forceRefresh = false } = {}) {
+engine/fetchers/trends-rss.js:3:export function fetchTrendsRss(runtime, { maxItems = 5, forceRefresh = false } = {}) {
+engine/fetchers/wayback-cdx.js:3:export function fetchWaybackCdx(runtime, { maxItems = 5, forceRefresh = false, mode = "daily", domain = null } = {}) {
+engine/fetchers/wiki-rc.js:9:export function fetchWikiRecentChanges(runtime, { maxItems = 5, forceRefresh = false } = {}) {
+engine/fetchers/wiki-top.js:10:export function fetchWikiTop(runtime, { maxItems = 5, forceRefresh = false, date = null } = {}) {
+engine/inventory.js:1:// B3 site inventory: budgeted, cache-first WordPress sitemap fetch; no article-page crawl.
+engine/inventory.js:3:import { decodeEntities } from "./fetchers/parsers.js";
+engine/inventory.js:5:const SITEMAP_INDEX_URL = "https://sawtalhijaz.com/sitemap.xml";
+engine/inventory.js:6:const SITEMAP_ZERO_URL = "https://sawtalhijaz.com/sitemap-0.xml";
+engine/inventory.js:94:function aggregateInventory(urlEntries, sitemapFiles, fetchedAt, settings, requestTimes) {
+engine/inventory.js:127:      generatedAt: fetchedAt,
+engine/inventory.js:136:    fetched_at: fetchedAt,
+engine/inventory.js:217:async function fetchXml(url, { fetchImpl, timeoutMs }) {
+engine/inventory.js:221:    const response = await fetchImpl(url, {
+engine/inventory.js:239:  fetchImpl = globalThis.fetch,
+engine/inventory.js:271:    const fetchedMs = new Date(previous.fetched_at ?? previous?._meta?.generatedAt ?? "").getTime();
+engine/inventory.js:272:    const ageMs = new Date(nowIso(clock)).getTime() - fetchedMs;
+engine/inventory.js:273:    if (Number.isFinite(fetchedMs) && ageMs >= 0 && ageMs <= settings.cache_ttl_seconds * 1000) {
+engine/inventory.js:277:  if (typeof fetchImpl !== "function") {
+engine/inventory.js:278:    const result = writeFailure(store, previous, requestTimes, nowIso(clock), new Error("fetch implementation unavailable"), settings);
+engine/inventory.js:301:      const response = await fetchXml(url, { fetchImpl, timeoutMs: settings.timeout_ms });
+engine/inventory.js:316:    const fetchedAt = nowIso(clock);
+engine/inventory.js:317:    const inventory = aggregateInventory(content.entries, index.entries, fetchedAt, settings, requestTimes);
+engine/normalizer.js:1:// B3 item normalization: all fetcher output enters the radar through one stable JSON shape.
+engine/normalizer.js:11:  "fetchedAt",
+engine/normalizer.js:71:  fetchedAt = new Date().toISOString(),
+engine/normalizer.js:80:  const canonicalFetchedAt = parseIso(fetchedAt) ?? new Date().toISOString();
+engine/normalizer.js:92:    fetchedAt: canonicalFetchedAt,
+engine/normalizer.js:111:  fetchedAt = new Date().toISOString(),
+engine/normalizer.js:123:      fetchedAt,
+engine/normalizer.js:140:    typeof item.fetchedAt === "string" && parseIso(item.fetchedAt) !== null &&
+engine/radar.js:1:// B3 coordinator: attested time -> configured fetchers -> normalized items -> topics -> metrics/burst -> atomic state.
+engine/radar.js:7:import { createFetchers } from "./fetchers/index.js";
+engine/radar.js:93:  fetchImpl = globalThis.fetch,
+engine/radar.js:106:  const time = timeDoc ?? await nowDoc({ net, root, fetchImpl });
+engine/radar.js:115:  const fetchers = createFetchers({ root, fetchImpl, ...(sleep ? { sleep } : {}), ...(random ? { random } : {}), clock });
+engine/radar.js:117:  const fetched = [];
+engine/radar.js:121:    const fetcher = fetchers.byId[sourceId];
+engine/radar.js:122:    if (typeof fetcher !== "function") {
+engine/radar.js:125:      fetched.push({ sourceId, result: { status: "error", items: [] }, error: new Error(summary.error) });
+engine/radar.js:129:      const result = await fetcher(resolveFetcherOptions(sourceId, { maxItems, section, depth: depthMode }));
+engine/radar.js:131:      fetched.push({ sourceId, result, error: null });
+engine/radar.js:134:      fetched.push({ sourceId, result: { status: "error", items: [] }, error });
+engine/radar.js:140:  for (const entry of fetched) {
+engine/radar.js:146:      fetchedAt: time.iso,
+engine/radar.js:182:      fetchImpl,
+engine/radar.js:193:    rawItems: fetched.reduce((sum, entry) => sum + (Array.isArray(entry.result?.items) ? entry.result.items.length : 0), 0),
+engine/tests.js:26:import { createFetchers } from "./fetchers/index.js";
+engine/tests.js:27:import { FETCHER_SAMPLE_PATH } from "./fetchers/runtime.js";
+engine/tests.js:206:export function collectGnewsEvidence({ root = process.cwd(), mode = "saved", fetchImpl = null } = {}) {
+engine/tests.js:209:    const fetchers = createFetchers({ root, ...(fetchImpl ? { fetchImpl } : {}) });
+engine/tests.js:210:    return fetchers
+engine/tests.js:218:          fetchedAt: result.fetched_at ?? new Date().toISOString(),
+engine/tests.js:228:        fetchedAt: null,
+engine/tests.js:237:    return { available: false, mode: "saved", source: rel, fetchedAt: null, status: null, items: [], reason: `لا عينة gnews محفوظة (${rel}).` };
+engine/tests.js:244:    fetchedAt: sample.fetched_at ?? null,
+engine/tests.js:272:      fetchedAt: evidence?.fetchedAt ?? null,
+engine/tests.js:636:    const lastOkIso = entry.last_ok ?? (sample?.success ? sample?.fetched_at : null) ?? null;
+engine/tests.js:689:      lastInvocationIso: entry.last_invocation ?? sample?.fetched_at ?? null,
+engine/tests.js:1323:  fetchImpl = null,
+engine/tests.js:1349:    const evidence = await collectGnewsEvidence({ root, mode: liveGnews ? "live" : "saved", fetchImpl });
+engine/tests.js:1411:    link: `https://news.google.com/rss/articles/fixture-later-${index + 1}`,
+engine/tests.js:1417:    link: "https://news.google.com/rss/articles/fixture-later-unmatched",
+engine/tests.js:1423:    link: "https://news.google.com/rss/articles/fixture-later-outside",
+engine/tests.js:1433:    fetched_at: new Date(runMs + 2 * HOUR_MS).toISOString(),
+engine/tests.js:1515:      fetched_at: new Date(runMs - 30 * 60000).toISOString(),
+engine/tests.js:1539:    evidence: { available: true, mode: "saved", source: `sandbox ${gnewsRel} (عينة اختبار مصنّعة)`, fetchedAt: new Date(runMs + 2 * HOUR_MS).toISOString(), status: "ok", items: evidenceItems, reason: null },
+engine/time.js:7:export const TIME_REFERENCE_URL = "https://sawtalhijaz.com/";
+engine/time.js:17:export async function fetchHeaderTime({ url = TIME_REFERENCE_URL, timeoutMs = HEADER_TIMEOUT_MS, fetchImpl } = {}) {
+engine/time.js:18:  const doFetch = fetchImpl ?? globalThis.fetch;
+engine/time.js:24:    return { iso: null, raw: null, method: null, status: null, tried, ms: 0, error: "fetch غير متاح في هذه البيئة" };
+engine/time.js:34:        headers: { "user-agent": "sawtalhijaz-newsroom/1.0 (time-attestation; +https://sawtalhijaz.com/)" },
+engine/time.js:106:export async function nowDoc({ net = process.env[OFFLINE_ENV] !== "1", root = process.cwd(), fetchImpl, url } = {}) {
+engine/time.js:111:  if (net) header = await fetchHeaderTime({ url, fetchImpl });

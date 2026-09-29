@@ -1,0 +1,11 @@
+workspace_files_scanned=154 | secret_pattern_hits=0
+tracked_sensitive_filenames=0
+.gitignore:2:.env*	.env
+.gitignore:2:.env*	.env.production
+.gitignore:1:node_modules/	node_modules/b7-probe
+.gitignore:3:*.patch	B7.patch
+.gitignore:4:state/runs/_selftest/	state/runs/_selftest/b7-probe
+dependencies={}
+devDependencies={}
+existing_local_dashboard_active_references=0
+security_static_gate=PASS (heuristic scan, not a mathematical absence proof)

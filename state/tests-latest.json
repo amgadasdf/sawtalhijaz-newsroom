@@ -4,23 +4,23 @@
     "kind": "B6-tests-latest",
     "schemaVersion": "B6.1",
     "schema_version": "B6.1",
-    "updated_at": "2026-09-29T00:01:39.207Z",
+    "updated_at": "2026-09-29T00:24:28.917Z",
     "notes": "ملخص آخر تقرير اختبار للوحة (المصدر الكامل: reports/tests-*.json). لا أرقام مصنّعة."
   },
   "time": {
-    "iso": "2026-09-29T00:01:38.999Z",
+    "iso": "2026-09-29T00:24:28.911Z",
     "source": "unverified",
-    "line": "الزمن: 2026-09-29T00:01:38.999Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime."
+    "line": "الزمن: 2026-09-29T00:24:28.911Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime."
   },
   "run": {
-    "number": 2,
-    "total": 2,
+    "number": 4,
+    "total": 4,
     "kind": "B6-tests",
-    "report": "reports/tests-2026-09-29T00-01-38-999Z.md",
-    "report_json": "reports/tests-2026-09-29T00-01-38-999Z.json"
+    "report": "reports/tests-2026-09-29T00-24-28-911Z.md",
+    "report_json": "reports/tests-2026-09-29T00-24-28-911Z.json"
   },
-  "sampleSource": "fixtures معزولة — غير حية",
-  "mode": "fixtures",
+  "sampleSource": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+  "mode": "state",
   "structure": {
     "fieldsPresent": 7,
     "fieldsTotal": 7,
@@ -28,19 +28,19 @@
   },
   "verdicts": {
     "detection": {
-      "available": true,
-      "passed": true,
-      "label": "نُفذ"
+      "available": false,
+      "passed": false,
+      "label": "لم يُنفذ"
     },
     "forecast": {
-      "available": true,
-      "passed": true,
-      "label": "نُفذ"
+      "available": false,
+      "passed": false,
+      "label": "لم يُنفذ"
     },
     "saturation": {
-      "available": true,
-      "passed": true,
-      "label": "نُفذ"
+      "available": false,
+      "passed": false,
+      "label": "لم يُنفذ"
     },
     "sources": {
       "available": true,
@@ -50,55 +50,100 @@
   },
   "numbers": {
     "detection": {
-      "available": true,
-      "baselineTopics": 10,
-      "evidenceItems": 5,
-      "inWindowItems": 4,
-      "matchedTopics": 3,
-      "unmatchedTopics": 7,
-      "precisionPercent": 30,
-      "meanConfirmationMinutes": 60,
-      "maxConfirmationMinutes": 90,
-      "meanDetectionLatencyMinutes": 0,
+      "available": false,
+      "baselineTopics": 0,
+      "evidenceItems": 0,
+      "inWindowItems": 0,
+      "matchedTopics": 0,
+      "unmatchedTopics": 0,
+      "precisionPercent": null,
+      "meanConfirmationMinutes": null,
+      "maxConfirmationMinutes": null,
+      "meanDetectionLatencyMinutes": null,
       "windowHours": 2
     },
     "forecast": {
-      "available": true,
-      "total": 4,
-      "verified": 1,
-      "notVerified": 1,
-      "regressed": 1,
-      "pending": 1,
-      "hitRatePercent": 33.33,
+      "available": false,
+      "total": 0,
+      "verified": 0,
+      "notVerified": 0,
+      "regressed": 0,
+      "pending": 0,
+      "hitRatePercent": null,
       "definition": "معدل الإصابة = تحقق ÷ (تحقق + لم يتحقق + تراجع). حالات «بانتظار التحقق» (لا تشغيل لاحق بعد) لا تدخل المقام وتُطبع منفصلة."
     },
     "saturation": {
-      "available": true,
-      "samples": 3,
-      "matched": 2,
-      "unmatched": 1,
-      "meanAbsGapPoints": 11,
-      "maxAbsGapPoints": 18,
-      "biasPoints": 11,
-      "verdict": "فجوة ملحوظة"
+      "available": false,
+      "samples": 0,
+      "matched": 0,
+      "unmatched": 0,
+      "meanAbsGapPoints": null,
+      "maxAbsGapPoints": null,
+      "biasPoints": null,
+      "verdict": null
     },
     "sources": {
       "available": true,
       "total": 13,
       "enabled": 8,
-      "healthy": 3,
-      "failing": 0,
-      "cooling": 1,
-      "stale": 1,
-      "meanResponseMs": 1188.4,
+      "healthy": 0,
+      "failing": 8,
+      "cooling": 0,
+      "stale": 0,
+      "meanResponseMs": 11.8,
       "slowest": {
-        "sourceId": "trends-rss",
-        "responseMs": 5200,
-        "verdict": "بطيء جداً"
+        "sourceId": "wiki-rc",
+        "responseMs": 26.3,
+        "verdict": "طبيعي"
       }
     }
   },
-  "errors": [],
+  "errors": [
+    {
+      "what": "اختبار الكشف لم يُنفَّذ",
+      "rootCause": "لا لقطة مواضيع محفوظة بعناوين (خط أساس) و/أو لا دليل gnews محفوظ بعناصر — لأن كل جلسات المشروع السابقة جرت بلا شبكة (الدين الحي مؤجل إلى بطارية B7)"
+    },
+    {
+      "what": "اختبار التنبؤ لم يُنفَّذ",
+      "rootCause": "لا لقطة مواضيع محفوظة تحمل وسم «متوقع خلال ساعات»؛ وسجل التشغيل يحفظ topicCounts فقط بلا وسم التنبؤ (قيود B3 المختومة)"
+    },
+    {
+      "what": "اختبار التشبع لم يُنفَّذ",
+      "rootCause": "لا عينة قياس يدوي مُعبَّأة — القياس اليدوي عمل بشري لم يُجرَ بعد، ولم تُصنَّع عينة في الحالة الحقيقية"
+    },
+    {
+      "what": "المصدر bing-dorks في حالة فشل",
+      "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json"
+    },
+    {
+      "what": "المصدر gdelt-files في حالة فشل",
+      "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json"
+    },
+    {
+      "what": "المصدر gnews في حالة فشل",
+      "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json"
+    },
+    {
+      "what": "المصدر telegram في حالة فشل",
+      "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json"
+    },
+    {
+      "what": "المصدر trends-rss في حالة فشل",
+      "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json"
+    },
+    {
+      "what": "المصدر wayback-cdx في حالة فشل",
+      "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json"
+    },
+    {
+      "what": "المصدر wiki-rc في حالة فشل",
+      "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json"
+    },
+    {
+      "what": "المصدر wiki-top في حالة فشل",
+      "rootCause": "فشل جلب سابق مسجّل في state/sources-health.json"
+    }
+  ],
   "tools": [
     {
       "id": "pytrends-hook",
@@ -138,8 +183,8 @@
   ],
   "weights": [
     {
-      "id": "source-weights-stale",
-      "recommendation": "تثبيت عتبة «تجدد فعلي» أو تخفيض وزن المصادر غير المتجددة (wiki-rc)",
+      "id": "source-weights-failing",
+      "recommendation": "مراجعة أوزان المصادر المتعثرة (bing-dorks, gdelt-files, gnews) — تخفيض مؤقت لوزن المصدر المتعثرة حتى نجاح جلب حي",
       "status": "معلق على اعتماد المجلس"
     },
     {
@@ -159,7 +204,7 @@
     }
   ],
   "improvement": {
-    "compared": false,
-    "reason": "لا تقرير سابق بنفس العينة (fixtures معزولة — غير حية): أحدث تقرير هو /home/user/sawtalhijaz-newsroom/reports/tests-2026-09-29T00-01-38-418Z.json بعينة «حالة المشروع الحقيقية (state/) — بلا شبكة» — المقارنة غير ذات دلالة."
+    "compared": true,
+    "reason": null
   }
 }

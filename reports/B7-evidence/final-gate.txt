@@ -1,0 +1,250 @@
+== B1 + B2 + B3 + B4 + B5 + B6 SELFTEST ==
+الزمن: 2026-09-29T00:26:19.224Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime.
+— بنية الزمن —
+iso=2026-09-29T00:26:19.224Z
+source=unverified
+skewSeconds=0
+envIso=2026-09-29T00:26:19.224Z
+headerIso=null
+note=زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (الشبكة معطّلة بطلب صريح (SAWTALHIJAZ_OFFLINE=1 أو --offline)). يلزم حقلة يدوية عبر settime.
+
+البيئة المعزولة: state/runs/_selftest/2026-09-29T00-26-19-224Z
+person.path: state/people/exec-editor.json
+
+— حالات البروتوكول (محقونة) —
+env         iso=2026-09-29T00:26:19.226Z skew=0ث headerIso=2026-09-29T00:26:19.000Z
+header      iso=2026-09-29T00:27:49.000Z skew=90ث headerIso=2026-09-29T00:27:49.000Z
+manual      iso=2026-09-29T02:38:07.227Z skew=7908ث headerIso=—
+unverified  iso=2026-09-29T00:26:19.227Z skew=0ث headerIso=—
+recorded-run: state/runs/2026-09-29T00-26-19-224Z-B1-selftest.json
+
+— سطر الاستئناف —
+الاستئناف (exec-editor) — الدور: exec-editor — رئيس التحرير التنفيذي | آخر تشغيل: 2026-09-29T00:26:19.224Z | آخر ملخص: [selftest] B1 patch نجح | التالي المخطط: [selftest] تحقق القراءة | المعلقات (1): B1-selftest | العدّاد: 1 | غياب منذ آخر تشغيل: 0 س
+
+— بوابة جالبات B2 (fixtures + fetch injection) —
+== B2 FETCHER SELFTEST ==
+fixturesPresent=✓ | 11 miniature fixtures
+trendsRssParsed=✓
+gnewsParsed=✓
+telegramHtmlParsed=✓
+wikiTopJsonParsed=✓
+wikiRcJsonParsed=✓
+waybackCdxParsed=✓
+gdeltZipAndArabicRowsParsed=✓ | arabic_rows=2
+bingHtmlAndRedirectParsed=✓
+bridgeHtmlParsed=✓
+allNineFetcherPoliciesExercised=✓ | http_requests=20
+wikiTopRequestsPreviousUtcDay=✓
+cacheFirstNoRequest=✓
+weeklyAndCouncilSwitches=✓
+gdeltOneZipPerRun=✓
+jitterTwoToSixSeconds=✓ | delays=19
+healthUpdatedAfterEveryInvocation=✓ | sources=13
+rawSamplesSaved=✓ | state/samples/<source>-آخر.json
+429BackoffTwoFifteenSixHours=✓ | calls=3; delays_ms=120000/900000/21600000
+rollingBudgetEnforced=✓
+rawResponsePresentInSamples=✓
+— B2 fetcher checks —
+fixturesPresent=✓
+trendsRssParsed=✓
+gnewsParsed=✓
+telegramHtmlParsed=✓
+wikiTopJsonParsed=✓
+wikiRcJsonParsed=✓
+waybackCdxParsed=✓
+gdeltZipAndArabicRowsParsed=✓
+bingHtmlAndRedirectParsed=✓
+bridgeHtmlParsed=✓
+allNineFetcherPoliciesExercised=✓
+wikiTopRequestsPreviousUtcDay=✓
+cacheFirstNoRequest=✓
+weeklyAndCouncilSwitches=✓
+gdeltOneZipPerRun=✓
+jitterTwoToSixSeconds=✓
+healthUpdatedAfterEveryInvocation=✓
+rawSamplesSaved=✓
+429BackoffTwoFifteenSixHours=✓
+rollingBudgetEnforced=✓
+rawResponsePresentInSamples=✓
+النتيجة: خضراء — بوابة B2 حتمية بلا شبكة
+== B2 FETCHER SELFTEST END ==
+
+— بوابة الرادار B3 (fixtures معزولة + fetch injection) —
+== B3 RADAR SELFTEST (isolated fixtures; no live network) ==
+b3FixturesPresent=✓ | 7 required fixtures
+arabicNormalization=✓
+arabicKeywordClustering=✓
+normalizedShapeComplete=✓
+classificationUsesAccelerationAndSaturationNotScore=✓ | fixture: acceleration=0.5; saturation=10%; classification=نافذة ذهبية; score remains ranking only
+knownSpeedAndAcceleration=✓
+zScoreAndConservativeForecast=✓
+sitemapParsers=✓
+depthAndScopeSelection=✓
+radarGeneratedTopics=✓ | items=10; topics=10
+sectionScopedQueries=✓
+firstTwoRunBaselineLine=✓
+everyTopicHasFiniteMetrics=✓
+noNaNNoMissingJsonValues=✓
+sitemapInventoryUpdated=✓
+sitemapTwoExactRequests=✓ | requests=2
+inventoryCacheFirst=✓
+inventoryRollingBudgetEnforced=✓
+globalRequestSpacingTwoToSixSeconds=✓ | requests=11; delays=10
+safePytrendsStub=✓
+atomicRadarStateAndRun=✓
+uniqueRunFilenameOnRepeatedManualTime=✓
+B2HealthMaintained=✓
+failedLiveRunPreservesLastGoodTopics=✓
+fixture_time=2026-09-27T12:00:00.000Z | source=manual
+baseline=التشغيلان الأولان يبنيان خط الأساس — التوقعات متحفظة
+radar_summary={"rawItems":16,"normalizedItems":10,"topics":10,"dataFresh":true,"sourceCount":5,"failedSources":0,"inventoryStatus":"ok"}
+topics_file=/tmp/sawtalhijaz-b3-radar-Uai0xT/state/topics-latest.json
+sample_topic={"id":"topic-60e120482202c8","title":"روشن تعلن موعد الجولة المقبلة","speed":0,"acceleration":0,"saturation":20,"score":72.5,"classification":"نافذة"}
+inventory_summary={"urls":5,"sections":3,"tags":1,"authors":1}
+— B3 radar checks —
+b3FixturesPresent=✓
+arabicNormalization=✓
+arabicKeywordClustering=✓
+normalizedShapeComplete=✓
+classificationUsesAccelerationAndSaturationNotScore=✓
+knownSpeedAndAcceleration=✓
+zScoreAndConservativeForecast=✓
+sitemapParsers=✓
+depthAndScopeSelection=✓
+radarGeneratedTopics=✓
+sectionScopedQueries=✓
+firstTwoRunBaselineLine=✓
+everyTopicHasFiniteMetrics=✓
+noNaNNoMissingJsonValues=✓
+sitemapInventoryUpdated=✓
+sitemapTwoExactRequests=✓
+inventoryCacheFirst=✓
+inventoryRollingBudgetEnforced=✓
+globalRequestSpacingTwoToSixSeconds=✓
+safePytrendsStub=✓
+atomicRadarStateAndRun=✓
+uniqueRunFilenameOnRepeatedManualTime=✓
+B2HealthMaintained=✓
+failedLiveRunPreservesLastGoodTopics=✓
+النتيجة: خضراء — رادار B3 كامل عبر fixtures معزولة
+== B3 RADAR SELFTEST END ==
+
+— بوابة اللوحة B4 (fixtures معزولة + وثائق مصنّعة) —
+== B4 DASHBOARD SELFTEST (isolated fixtures; no live network) ==
+b4InputFromB3FixtureRadar=✓ | topics=10
+classificationDerivedOnlyFromAccelerationAndSaturation=✓ | stale key/low OpportunityScore do not override acceleration+saturation
+dashboardWrittenAtomicallyToOut=✓ | file=out/radar-2026-09-27T12-00-00-000Z.html; bytes=58240; ms=0.222
+singleRtlPageWithInlineCss=✓ | bytes=58240; lines=655
+noExternalLinksOrResources=✓ | violations=0; urlsAsInertText=12
+sixSectionsPresent=✓ | 1:topbar=✓ 2:golden-windows=✓ 3:todays-opportunities=✓ 4:forecasts=✓ 5:sources-health=✓ 6:internal-links=✓
+numbersMatchTopicsLatest=✓ | cards=10/10; broken=0
+orderedByOpportunityScore=✓ | scores=72.5,72.5,69.1667,69.1667,65.8333…
+topbarTimeRunNumberAndAbsence=✓ | run=#1/1; absence=21h; source=manual
+goldenWindowsHighlightedOnTop=✓ | fixtureGolden=0; craftedGolden=1
+forecastExpectedTimeAndPreviousStatus=✓ | expectedA=2026-09-27T13:00:00.000Z (+1h, تحقق سابقاً); expectedB=2026-09-27T13:00:00.000Z (لم يتحقق سابقاً)
+sourcesHealthBudgetAndCooldown=✓ | sources=13; gnews remaining=4/6; coolingUntil=2026-09-28T09:15:00.000Z
+inventoryInternalLinksAndEmptyState=✓ | fixtureLinks=2; emptyLinks=0
+unverifiedTimeBadgeOnlyOnManualLayer=✓ | env=موثق بلا بادج · manual/unverified=بادج «زمن غير موثق»
+deterministicByteIdenticalOutput=✓
+zeroNetworkCallsDuringGeneration=✓ | fetchCalls=0
+failsLoudlyWithoutRadarData=✓ | error=لا توجد state/topics-latest.json — شغّل رادار B3 أولاً (node engine/cli.js radar …) أو ولّ…
+— B4 dashboard checks —
+b4InputFromB3FixtureRadar=✓
+classificationDerivedOnlyFromAccelerationAndSaturation=✓
+dashboardWrittenAtomicallyToOut=✓
+singleRtlPageWithInlineCss=✓
+noExternalLinksOrResources=✓
+sixSectionsPresent=✓
+numbersMatchTopicsLatest=✓
+orderedByOpportunityScore=✓
+topbarTimeRunNumberAndAbsence=✓
+goldenWindowsHighlightedOnTop=✓
+forecastExpectedTimeAndPreviousStatus=✓
+sourcesHealthBudgetAndCooldown=✓
+inventoryInternalLinksAndEmptyState=✓
+unverifiedTimeBadgeOnlyOnManualLayer=✓
+deterministicByteIdenticalOutput=✓
+zeroNetworkCallsDuringGeneration=✓
+failsLoudlyWithoutRadarData=✓
+النتيجة: خضراء — مولد الداشبورد B4 كامل عبر fixtures معزولة
+== B4 DASHBOARD SELFTEST END ==
+
+— بوابة الأدوار والمختبرات B5 (fixtures معزولة؛ غير حية) —
+== B5 PROMPTS SELFTEST (isolated B3 fixtures; no live network) ==
+allFourteenPromptFilesPresent=✓ | 14/14 files
+peopleAndLabsHaveMandatoryStructure=✓ | 12/12 role/lab prompts include identity, exclusive sources, template, acceptance, prohibitions
+roleAndLabRequirementsPresent=✓ | 12 role/lab requirement sets
+resumeAndJulesTemplatesComplete=✓ | resume + Jules target/files/budget/acceptance/PR-only
+promptsDoNotContradictJsDecision=✓ | no engine .mjs references in the 14 prompt files
+allEngineFilesUseJsExtension=✓ | 35 files; extensions=.js
+b3FixtureRadarGeneratedTopics=✓ | topics=10; normalized=10; isolated=true
+fixtureRequestsInjectedAndIsolated=✓ | requests=11; project topics-latest unchanged
+radarAnalystPromptAppliedWithRequiredLabel=✓ | all=10 topics; golden=0
+discoveryPromptAppliedAsNonLiveSixStepPlan=✓ | campaign plan only; no invented live hits or rates
+== تطبيق radar-analyst: المخرج الكامل ==
+حالة البيانات: تجربة على بيانات معزولة — غير حية
+زمن التشغيل ومصدره: 2026-09-27T12:00:00.000Z | manual
+المواضيع (كل ما في الملف، بالترتيب الأصلي):
+1) topic-60e120482202c8 | روشن تعلن موعد الجولة المقبلة | OpportunityScore=72.5 (ترتيب فقط) | التسارع=0 | التشبع=20% | التصنيف=نافذة
+2) topic-3a02952ec6ebe3 | مجلس الوزراء يؤكد متابعة البرامج الوطنية | OpportunityScore=72.5 (ترتيب فقط) | التسارع=0 | التشبع=20% | التصنيف=نافذة
+3) topic-f91b847132a6d8 | تحديث رسمي حول خبر اليوم | OpportunityScore=69.1667 (ترتيب فقط) | التسارع=0 | التشبع=11.1111% | التصنيف=نافذة
+4) topic-ed603affe02326 | وكالة الأنباء السعودية: تفاصيل إضافية | OpportunityScore=69.1667 (ترتيب فقط) | التسارع=0 | التشبع=11.1111% | التصنيف=نافذة
+5) topic-3084baf640b9d7 | طقس الرياض | OpportunityScore=65.8333 (ترتيب فقط) | التسارع=0 | التشبع=22.2222% | التصنيف=نافذة
+6) topic-b8dfe45495a803 | تقرير: قراءة التفاصيل وتستمر المتابعة. | OpportunityScore=62.5 (ترتيب فقط) | التسارع=0 | التشبع=13.3333% | التصنيف=نافذة
+7) topic-0902db2a01c1a4 | عاجل : إعلان تحديث جديد للخدمات في المملكة | OpportunityScore=62.5 (ترتيب فقط) | التسارع=0 | التشبع=13.3333% | التصنيف=نافذة
+8) topic-526d4c147b6bfc | مباراة الهلال اليوم | OpportunityScore=62.0833 (ترتيب فقط) | التسارع=0 | التشبع=22.2222% | التصنيف=نافذة
+9) topic-bd607e19c2050d | الرياض | OpportunityScore=60.8333 (ترتيب فقط) | التسارع=0 | التشبع=8.8889% | التصنيف=نافذة
+10) topic-3a70c423209014 | موسم الرياض 2026 | OpportunityScore=60.8333 (ترتيب فقط) | التسارع=0 | التشبع=8.8889% | التصنيف=نافذة
+النوافذ الذهبية والمتابعة:
+- لا توجد نافذة ذهبية مطابقة (لا يوجد موضوع يجمع تسارعاً موجباً وتشبعاً أقل من 25%).
+بيانات غير متاحة/قيود: البيانات ناتجة عن fixtures B3 بحقن fetch داخل مساحة مؤقتة؛ لا تمثل تحققاً حياً، ولا توجد topics-latest حية في مساحة المشروع.
+== تطبيق discovery على خطة الحملة: المخرج الكامل ==
+الحملة/المالك/الزمن ومصدره: أدلة الخلاصات العربية / غرفة الأخبار / 2026-09-29 (وقت الجلسة؛ المصدر=ساعة البيئة)
+1. التسجيل أولاً: مسودة قيد مقترح بعنوان «أدلة الخلاصات العربية»؛ لم يُكتب قيد جديد في تجربة البرومت؛ يلزم تسجيل/اعتماد القيد قبل أي بحث حي.
+2. منع التكرار المطلق: موجود: state/labs/discovery/registry.json؛ عدد القيود=0؛ تطابق اسم حرفي=0 (لا يثبت غياب قيود غير مسجلة)؛ حالة منع التكرار: لا تطابق اسم حرفي في السجل الحالي؛ يلزم مقارنة الزاوية والمصادر قبل التنفيذ، ولا يمكن إثبات غياب حملات غير مسجلة.
+3. الزاوية: هل تنتج مصادر RSS المجانية المدرجة إعدادياً عناصر عربية قابلة للاستخراج تحمل عنواناً وناشراً وطابعاً زمنياً؟ معيار الحملة هو توثيق الدليل لا افتراض توفره.
+4. الاستكشاف الحي: مخطط فقط — لم ينفذ في تجربة B5؛ الطلبات الحية الفعلية=0. مصادر RSS المرشحة من config/sources.json فقط: trends-rss, gnews. لا تُعد fixtures دليلاً على نجاح حي.
+5. بوابات التقييم الخمس:
+   أ) الصلة بالسؤال: غير مختبر — يلزم تطابق عنوان/ناشر/تاريخ مع سؤال الخلاصة.
+   ب) موثوقية المصدر: غير مختبر — يلزم توثيق النطاق والمصدر من إعداداته وردّه الفعلي.
+   ج) حداثة الدليل: غير مختبر — يلزم فحص الطابع الزمني في استجابة حيّة.
+   د) الأصالة وعدم التكرار: غير مختبر — يلزم مقارنة URL والعنوان المطبّع بعد اجتياز فحص السجل.
+   هـ) السلامة والجدوى المجانية: إعدادياً مرشح فقط — المصادر مضبوطة في JSON؛ لا طلب حي أو كلفة اختُبرت هنا.
+6. التقرير النهائي (حتى لو سلبي): نتيجة هذه التجربة سلبية من ناحية الأدلة الحية: لا تشغيل حملة ولا نتائج إصابة، لذلك لا أستنتج أن المصادر فشلت أو نجحت. الخطوة التالية المقترحة: اعتماد قيد الحملة والتحقق من عدم التكرار، ثم تشغيل استكشاف محدود مصرح به وتسجيل الطلبات ونسب الإصابة الخام.
+— B5 prompt checks —
+allFourteenPromptFilesPresent=✓
+peopleAndLabsHaveMandatoryStructure=✓
+roleAndLabRequirementsPresent=✓
+resumeAndJulesTemplatesComplete=✓
+promptsDoNotContradictJsDecision=✓
+allEngineFilesUseJsExtension=✓
+b3FixtureRadarGeneratedTopics=✓
+fixtureRequestsInjectedAndIsolated=✓
+radarAnalystPromptAppliedWithRequiredLabel=✓
+discoveryPromptAppliedAsNonLiveSixStepPlan=✓
+النتيجة: خضراء — حزمة B5 والبوابة التجريبية مكتملتان
+== B5 PROMPTS SELFTEST END ==
+
+— بوابة B6 (الاختبارات والتقارير وسجل الدوركس؛ جذر معزول) —
+testsB6=✓ | فحوص البوابة 17/17 | الجذر المعزول: ../../../tmp/sawtalhijaz-b6-gate-q1x2eZ
+
+— تحقق البنية —
+timeStructureOK=✓
+protocolEnv=✓
+protocolHeader=✓
+protocolManual=✓
+protocolUnverified=✓
+atomicOK=✓
+patchOK=✓
+runOK=✓
+resumeOK=✓
+allOK=✓
+fetchersB2=✓
+radarB3=✓
+dashboardB4=✓
+promptsB5=✓
+testsB6=✓
+totalMs=1236
+
+النتيجة: خضراء — بوابات B1+B2+B3+B4+B5+B6 مقفلة
+== B1 + B2 + B3 + B4 + B5 + B6 SELFTEST END ==
