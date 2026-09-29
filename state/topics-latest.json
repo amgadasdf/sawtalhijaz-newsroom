@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "format": "json",
+    "schemaVersion": "B3.1",
+    "kind": "B3-radar-latest",
+    "generatedAt": "2026-09-29T01:00:14.762Z",
+    "timeSource": "unverified",
+    "runPath": "state/runs/2026-09-29T01-00-14-762Z-B3-radar.json",
+    "baselineLine": "التشغيلان الأولان يبنيان خط الأساس — التوقعات متحفظة",
+    "dataFresh": false,
+    "success": false,
+    "notes": "نتيجة رادار الأخبار؛ المصنفات تبقى اقتراحات تحليلية ولا تنشر تلقائياً."
+  },
+  "time": {
+    "iso": "2026-09-29T01:00:14.762Z",
+    "source": "unverified",
+    "skewSeconds": 0,
+    "note": "زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (TypeError: fetch failed (ECONNRESET)). يلزم حقلة يدوية عبر settime.",
+    "line": "الزمن: 2026-09-29T01:00:14.762Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (TypeError: fetch failed (ECONNRESET)). يلزم حقلة يدوية عبر settime."
+  },
+  "section": "تريند-الشارع",
+  "scope": "السعودية",
+  "depth": "quick",
+  "summary": {
+    "rawItems": 0,
+    "normalizedItems": 0,
+    "topics": 0,
+    "dataFresh": false,
+    "sourceCount": 5,
+    "failedSources": 5,
+    "inventoryStatus": "unavailable"
+  },
+  "sourceStatuses": [
+    {
+      "sourceId": "trends-rss",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 6.7,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    },
+    {
+      "sourceId": "gnews",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 6,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    },
+    {
+      "sourceId": "telegram",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 6.6,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    },
+    {
+      "sourceId": "wiki-rc",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 45.2,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    },
+    {
+      "sourceId": "bing-dorks",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 24.7,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    }
+  ],
+  "inventory": {
+    "ok": false,
+    "urlCount": 0,
+    "sectionCount": 0,
+    "error": "TypeError: fetch failed"
+  },
+  "topics": []
+}

@@ -3,8 +3,8 @@
     "format": "json",
     "notes": "صحة المصادر — تحديث ذري بعد كل استدعاء جالب، مع عدد الطلبات وزمن الاستجابة والتهدئة.",
     "source_count": 13,
-    "updated_at": "2026-09-27T02:07:36.405Z",
-    "last_request_at": "2026-09-27T02:07:36.389Z",
+    "updated_at": "2026-09-29T01:00:34.936Z",
+    "last_request_at": "2026-09-29T01:00:34.936Z",
     "tests": {
       "last_run_iso": "2026-09-29T00:24:28.911Z",
       "time_source": "unverified",
@@ -22,19 +22,19 @@
   "sources": {
     "trends-rss": {
       "status": "فشل",
-      "requests": 2,
-      "errors": 2,
-      "invocations": 2,
+      "requests": 3,
+      "errors": 3,
+      "invocations": 3,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
       "last_err": "TypeError: fetch failed (ECONNRESET)",
-      "last_invocation": "2026-09-27T02:07:11.380Z",
-      "last_response_ms": 8.3,
+      "last_invocation": "2026-09-29T01:00:14.929Z",
+      "last_response_ms": 6.7,
       "backoff_stage": 0,
       "blocked_until": null,
       "request_times": [
-        "2026-09-27T02:07:11.371Z"
+        "2026-09-29T01:00:14.921Z"
       ],
       "tests": {
         "last_tested_at": "2026-09-29T00:24:28.911Z",
@@ -54,19 +54,19 @@
     },
     "gnews": {
       "status": "فشل",
-      "requests": 1,
-      "errors": 1,
-      "invocations": 1,
+      "requests": 2,
+      "errors": 2,
+      "invocations": 2,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
       "last_err": "TypeError: fetch failed (ECONNRESET)",
-      "last_invocation": "2026-09-27T02:07:16.384Z",
-      "last_response_ms": 9.5,
+      "last_invocation": "2026-09-29T01:00:16.930Z",
+      "last_response_ms": 6,
       "backoff_stage": 0,
       "blocked_until": null,
       "request_times": [
-        "2026-09-27T02:07:16.374Z"
+        "2026-09-29T01:00:16.923Z"
       ],
       "tests": {
         "last_tested_at": "2026-09-29T00:24:28.911Z",
@@ -86,19 +86,19 @@
     },
     "telegram": {
       "status": "فشل",
-      "requests": 1,
-      "errors": 1,
-      "invocations": 1,
+      "requests": 2,
+      "errors": 2,
+      "invocations": 2,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
       "last_err": "TypeError: fetch failed (ECONNRESET)",
-      "last_invocation": "2026-09-27T02:07:19.385Z",
-      "last_response_ms": 7.5,
+      "last_invocation": "2026-09-29T01:00:21.932Z",
+      "last_response_ms": 6.6,
       "backoff_stage": 0,
       "blocked_until": null,
       "request_times": [
-        "2026-09-27T02:07:19.377Z"
+        "2026-09-29T01:00:21.924Z"
       ],
       "tests": {
         "last_tested_at": "2026-09-29T00:24:28.911Z",
@@ -150,19 +150,19 @@
     },
     "wiki-rc": {
       "status": "فشل",
-      "requests": 1,
-      "errors": 1,
-      "invocations": 1,
+      "requests": 2,
+      "errors": 2,
+      "invocations": 2,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
       "last_err": "TypeError: fetch failed (ECONNRESET)",
-      "last_invocation": "2026-09-27T02:07:27.409Z",
-      "last_response_ms": 26.3,
+      "last_invocation": "2026-09-29T01:00:27.975Z",
+      "last_response_ms": 45.2,
       "backoff_stage": 0,
       "blocked_until": null,
       "request_times": [
-        "2026-09-27T02:07:27.382Z"
+        "2026-09-29T01:00:27.929Z"
       ],
       "tests": {
         "last_tested_at": "2026-09-29T00:24:28.911Z",
@@ -246,19 +246,19 @@
     },
     "bing-dorks": {
       "status": "فشل",
-      "requests": 1,
-      "errors": 1,
-      "invocations": 1,
+      "requests": 2,
+      "errors": 2,
+      "invocations": 2,
       "cache_hits": 0,
       "last_status": null,
       "last_ok": null,
       "last_err": "TypeError: fetch failed (ECONNRESET)",
-      "last_invocation": "2026-09-27T02:07:36.404Z",
-      "last_response_ms": 14.1,
+      "last_invocation": "2026-09-29T01:00:30.957Z",
+      "last_response_ms": 24.7,
       "backoff_stage": 0,
       "blocked_until": null,
       "request_times": [
-        "2026-09-27T02:07:36.389Z"
+        "2026-09-29T01:00:30.932Z"
       ],
       "tests": {
         "last_tested_at": "2026-09-29T00:24:28.911Z",

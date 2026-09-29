@@ -4,12 +4,12 @@
     "notes": "عينة استجابة خام (مقتطف عند كبر الجسم) مع إسقاط العناصر المحللة لإعادة الاستخدام عبر cache-first."
   },
   "source": "gnews",
-  "fetched_at": "2026-09-27T02:07:16.383Z",
-  "cache_key": "{\"source\":\"gnews\",\"urls\":[{\"key\":\"general\",\"url\":\"https://news.google.com/rss/search?q=when%3A1h&hl=ar&gl=SA&ceid=SA%3Aar\"},{\"key\":\"desk:قرارات-أحداث\",\"url\":\"https://news.google.com/rss/search?q=%D9%82%D8%B1%D8%A7%D8%B1+%D9%85%D8%AC%D9%84%D8%B3+%D8%A7%D9%84%D9%88%D8%B2%D8%B1%D8%A7%D8%A1&hl=ar&gl=SA&ceid=SA%3Aar\"},{\"key\":\"desk:تريند-الشارع\",\"url\":\"https://news.google.com/rss/search?q=%D8%AA%D8%B1%D9%8A%D9%86%D8%AF&hl=ar&gl=SA&ceid=SA%3Aar\"},{\"key\":\"desk:روشن-الرياضية\",\"url\":\"https://news.google.com/rss/search?q=%D8%B1%D9%88%D8%B4%D9%86+%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A9&hl=ar&gl=SA&ceid=SA%3Aar\"}]}",
+  "fetched_at": "2026-09-29T01:00:16.929Z",
+  "cache_key": "{\"source\":\"gnews\",\"urls\":[{\"key\":\"general\",\"url\":\"https://news.google.com/rss/search?q=when%3A1h&hl=ar&gl=SA&ceid=SA%3Aar\"},{\"key\":\"desk:تريند-الشارع\",\"url\":\"https://news.google.com/rss/search?q=%D8%AA%D8%B1%D9%8A%D9%86%D8%AF&hl=ar&gl=SA&ceid=SA%3Aar\"}]}",
   "success": false,
   "status": "error",
   "http_status": null,
-  "response_ms": 9.5,
+  "response_ms": 6,
   "request_count": 1,
   "raw": null,
   "requests": [
@@ -17,7 +17,7 @@
       "url": "https://news.google.com/rss/search?q=when%3A1h&hl=ar&gl=SA&ceid=SA%3Aar",
       "status": null,
       "content_type": null,
-      "response_ms": 9.5,
+      "response_ms": 6,
       "ok": false,
       "error": "TypeError: fetch failed (ECONNRESET)",
       "raw": null

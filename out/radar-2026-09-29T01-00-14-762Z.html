@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="sawtalhijaz-newsroom engine/dashboard.js (B4)">
+<meta name="document-time" content="2026-09-29T01:00:14.762Z">
+<meta name="time-source" content="unverified">
+<meta name="run-number" content="1">
+<meta name="data-provenance" content="state/topics-latest.json">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'none'; img-src 'none'; font-src 'none'; connect-src 'none'; frame-src 'none'">
+<title>رادار صوت الحجاز — 2026-09-29T01:00:14.762Z</title>
+<style>
+:root{
+  --bg:#101318; --panel:#171b22; --panel-2:#1e232c; --ink:#eceff4; --muted:#98a2b3;
+  --line:#2b323d; --gold:#f2c14e; --window:#4ea1ff; --crowded:#ff9f43; --missed:#8b93a3;
+  --ok:#3ddc97; --bad:#ff6b6b; --warn:#ffd166;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px;
+  font-family:"Segoe UI","Noto Naskh Arabic",Tahoma,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:20px 18px 40px}
+h1{font-size:24px;margin:0 0 6px}
+h2{font-size:19px;margin:0 0 4px}
+h3{font-size:16px;margin:0 0 8px;line-height:1.5}
+h4{font-size:13.5px;margin:12px 0 4px;color:var(--muted)}
+p{margin:6px 0}
+.muted{color:var(--muted)}
+.small{font-size:12.5px}
+.mono{font-family:Consolas,"Liberation Mono","DejaVu Sans Mono",monospace;font-size:12.5px;direction:ltr;unicode-bidi:isolate;text-align:left}
+section{margin-top:24px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;padding:0;list-style:none}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;border:1px solid var(--line);
+  background:var(--panel-2);font-size:12.5px;white-space:nowrap}
+.badge-strong{border-color:var(--bad);color:#ffd9d9;background:#2a1a1c}
+.badge-manual{border-color:var(--warn);color:#ffe9b8;background:#2a2415}
+.badge-ok{border-color:var(--ok);color:#c9ffe6;background:#12291f}
+.badge-info{border-color:var(--window);color:#d6e8ff;background:#12202f}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.kpi{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.kpi b{display:block;font-size:20px;line-height:1.4}
+.kpi span{color:var(--muted);font-size:12.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;margin-top:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;border-inline-start:6px solid var(--line)}
+.card.cls-golden{border-inline-start-color:var(--gold);background:linear-gradient(180deg,#232010,var(--panel))}
+.card.cls-window{border-inline-start-color:var(--window)}
+.card.cls-crowded{border-inline-start-color:var(--crowded)}
+.card.cls-missed{border-inline-start-color:var(--missed)}
+.card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.score{font-size:26px;font-weight:700;line-height:1.1;text-align:center}
+.score small{display:block;font-size:11.5px;color:var(--muted);font-weight:400}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;vertical-align:top}
+th{color:var(--muted);font-weight:600;background:var(--panel-2)}
+td.num,th.num{text-align:center;white-space:nowrap}
+.bar{position:relative;display:block;height:8px;border-radius:6px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden;margin-top:6px}
+.bar>i{position:absolute;inset-block:0;inset-inline-start:0;display:block}
+.bar>i.golden{background:var(--gold)}
+.bar>i.window{background:var(--window)}
+.bar>i.crowded{background:var(--crowded)}
+.bar>i.missed{background:var(--missed)}
+.tag{display:inline-block;border:1px solid var(--line);border-radius:8px;background:var(--panel-2);padding:1px 7px;margin:2px 0 2px 4px;font-size:12px}
+.note{border:1px dashed var(--line);border-radius:12px;padding:10px 12px;background:var(--panel-2);margin-top:10px}
+.empty{border:1px dashed var(--line);border-radius:12px;padding:14px;background:var(--panel-2);color:var(--muted);margin-top:12px}
+.status-ok{color:var(--ok)}
+.status-bad{color:var(--bad)}
+.status-warn{color:var(--warn)}
+.status-off{color:var(--missed)}
+footer{margin-top:28px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:12.5px}
+ul.tight{margin:6px 0;padding-inline-start:20px}
+ul.tight li{margin:4px 0}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.score{font-size:22px}}
+@media print{body{background:#fff;color:#000}.panel,.card,.kpi,.empty,.note{border-color:#bbb;background:#fff}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header id="topbar" class="panel" data-run-number="1" data-run-total="1" data-time-source="unverified" data-attested="false" data-absence-hours="0.01" data-topics-count="0" data-normalized-items="0" data-golden-count="0" data-forecast-count="0" data-source-count="13" data-inventory-urls="0">
+    <h1>رادار صوت الحجاز — لوحة التشغيل (B4)</h1>
+    <p class="muted small">صفحة واحدة مضمّنة بالكامل: CSS داخلي، صفر JavaScript، صفر موارد خارجية، وصفر وسوم ربط — كل العناوين نصّ معزول. تُفتح في عارض معزول بلا شبكة.</p>
+    <p class="mono">الزمن: 2026-09-29T01:00:14.762Z | مصدر=unverified | skew=0ث | زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (TypeError: fetch failed (ECONNRESET)). يلزم حقلة يدوية عبر settime.</p>
+    <ul class="badges"><li><span class="badge badge-strong">زمن غير موثق</span></li><li><span class="badge badge-manual">الطبقة: unverified</span></li><li><span class="badge">skew=0ث</span></li><li><span class="badge badge-info">رقم التشغيل #1 من 1</span></li><li><span class="badge">مدة الغياب عن آخر تشغيل: 1 د</span></li><li><span class="badge">لا تشغيل سابق مسجّل</span></li><li><span class="badge badge-manual">البيانات غير طازجة</span></li></ul>
+    <div class="kpis"><div class="kpi"><b>0</b><span>موضوعات — في topics-latest</span></div><div class="kpi"><b>0</b><span>عناصر مطبّعة — من 0 خام</span></div><div class="kpi"><b>5</b><span>مصادر مستدعاة — متعثرة: 5</span></div><div class="kpi"><b>0</b><span>نوافذ ذهبية — تسارع موجب + تشبع أقل من 25%</span></div><div class="kpi"><b>0</b><span>تنبؤات — متوقع خلال ساعات</span></div><div class="kpi"><b>0</b><span>جرد الموقع — الحالة: unavailable</span></div></div>
+    <h4>تفاصيل التشغيل الموثق</h4>
+    <table>
+      <tbody>
+        <tr><th>زمن التشغيل الموثق</th><td class="mono">2026-09-29T01:00:14.762Z</td><th>مصدر الزمن</th><td>unverified</td></tr>
+        <tr><th>سجل التشغيل</th><td class="mono">state/runs/2026-09-29T01-00-14-762Z-B3-radar.json</td><th>عدّاد الرادار</th><td class="num">0</td></tr>
+        <tr><th>التشغيل السابق</th><td class="mono">—</td><th>الفارق عنه</th><td class="num">أول تشغيل مسجّل</td></tr>
+        <tr><th>زمن توليد اللوحة</th><td class="mono">2026-09-29T01:00:50.391Z</td><th>مدة الغياب عن آخر تشغيل</th><td class="num">1 د</td></tr>
+        <tr><th>القسم · النطاق · العمق</th><td>تريند-الشارع · السعودية · quick</td><th>حداثة البيانات</th><td><span class="status-warn">غير طازجة — لم تُضف عناصر جديدة</span></td></tr>
+        <tr><th>خط الأساس</th><td colspan="3">التشغيلان الأولان يبنيان خط الأساس — التوقعات متحفظة</td></tr>
+        <tr><th>تنويه المحرك</th><td colspan="3">نتيجة رادار الأخبار؛ المصنفات تبقى اقتراحات تحليلية ولا تنشر تلقائياً.</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="note" data-test-report="present" data-test-run="4" data-test-sample="حالة المشروع الحقيقية (state/) — بلا شبكة" data-test-fields="7" data-test-detection-matched="0" data-test-forecast-hit-rate="" data-test-saturation-gap="" data-test-sources-healthy="0">
+      <b>آخر تقرير اختبار (B6):</b> تشغيل #4 من 4 — زمن التقرير <span class="mono">2026-09-29T00:24:28.911Z</span> (مصدر الزمن: <span class="mono">unverified</span>) · عينة القياس: حالة المشروع الحقيقية (state/) — بلا شبكة · البنية 7/7 <span class="status-ok">سليمة</span>
+      <ul class="badges" style="margin-top:6px"><li><span class="badge badge-manual">كشف: لم يُنفذ</span></li><li><span class="badge badge-manual">تنبؤ: لم يُنفذ</span></li><li><span class="badge badge-manual">تشبع: لم يُنفذ</span></li><li><span class="badge badge-ok">مصادر: نُفذ</span></li></ul>
+      <span class="small">كشف: مطابق 0/0 (—) · إصابة التنبؤات: —% (0/0) · فجوة التشبع: — (عينات: 0) · مصادر سليمة: 0/13 · تبريد 0 · متأخر 0</span>
+      <br><span class="muted small mono">reports/tests-2026-09-29T00-24-28-911Z.md</span> <span class="muted small">(التقرير الكامل بسبعة حقول؛ هذا الملخص من state/tests-latest.json)</span>
+    </div>
+    <div class="note"><b>تنويه الزمن:</b> زمن غير موثق — فشل جلب هيدر Date من sawtalhijaz.com (TypeError: fetch failed (ECONNRESET)). يلزم حقلة يدوية عبر settime.</div>
+  </header>
+
+  <section id="golden-windows" data-count="0">
+    <div class="panel">
+      <h2>2) نوافذ ذهبية مميزة</h2>
+      <p class="muted small">تُعرض أعلى الصفحة بحسب مواصفة B4. العدد: <b data-golden-count="0">0</b> من 0 موضوعاً (المفتاح: <span class="mono">golden</span> · تسمية المجلس: «نافذة ذهبية»).</p>
+      <div class="empty">لا توجد نافذة ذهبية في هذا التشغيل: يلزم تسارع موجب وتشبع أقل من 25%. عدد الموضوعات المفحوصة: 0. التصنيف مستقل عن OpportunityScore الذي يُستخدم للترتيب فقط؛ لا تُصنَّع بطاقات غير موجودة في البيانات.</div>
+    </div>
+  </section>
+
+  <section id="todays-opportunities" data-count="0">
+    <div class="panel">
+      <h2>3) فرص اليوم</h2>
+      <p class="muted small">بطاقات مرتبة بدرجة الفرصة بالترتيب المحفوظ في <span class="mono">state/topics-latest.json</span> (ترتيب محرك B3: الدرجة تنازلياً، ثم عدد التغطيات، ثم العنوان). العدد: <b data-topics-count="0">0</b>. كل بطاقة: الاسم، القسم، الدرجة بمكوناتها، التشبع %، التصنيف بلونه، عدد التغطيات، أول/آخر ظهور.</p>
+      <div class="empty">لا موضوعات في آخر تشغيل B3 — لا تُعرض بطاقات (لا بيانات مصنّعة).</div>
+    </div>
+  </section>
+
+  <section id="forecasts" data-count="0">
+    <div class="panel">
+      <h2>4) تنبؤات «متوقع خلال ساعات»</h2>
+      <p class="muted small">لا يصدر التنبؤ إلا بتسارع موجب في تشغيلين متتاليين وتشبع أقل من 50% (قاعدة B3 المتحفظة). موعد التحقق المتوقع = زمن التشغيل الموثق + ساعات التحقق، حيث ساعات التحقق = (50 − التشبع%) ÷ معدل ارتفاع التشبع/ساعة، ومعدل ارتفاع التشبع = السرعة × متوسط وزن المصادر غير المغطاة ÷ مجموع أوزان المصادر اليومية × 100 (حد أدنى 0.5 نقطة/ساعة)، والنتيجة مقصوصة إلى [1، 6] ساعة.</p>
+      <div class="empty">لا تنبؤات «متوقع خلال ساعات» في هذا التشغيل: 0 موضوعاً بحالة «غير متوقع» — منها 0 بلا تسارع موجب في تشغيلين متتاليين، و0 بتشبع ≥ 50%. لا تُصنَّع تنبؤات غير موجودة في البيانات.</div>
+    </div>
+  </section>
+
+  <section id="sources-health" data-count="13" data-healthy="0" data-cooling="0">
+    <div class="panel">
+      <h2>5) حالة المصادر</h2>
+      <p class="muted small">من <span class="mono">state/sources-health.json</span> (آخر تحديث: <span class="mono">2026-09-29T01:00:34.936Z</span>) وميزانيات <span class="mono">config/sources.json</span>. المتبقي = ميزانية الساعة − الطلبات داخل الساعة المنتهية في زمن توليد اللوحة (<span class="mono">2026-09-29T01:00:50.391Z</span>). المصادر: <b data-source-count="13">13</b> · سليمة: 0 · تحت التبريد: 0.</p>
+      <table>
+        <thead><tr><th>المصدر</th><th>الصحة</th><th class="num">الطلبات المتبقية من الميزانية</th><th>التبريد/التراجع</th><th class="num">في آخر تشغيل B3</th><th class="num">الإجماليات</th></tr></thead>
+        <tbody>
+      <tr data-source-id="bing-dorks" data-health="فشل" data-budget="6" data-used="1" data-remaining="5" data-cooling="false" data-enabled="true" data-backoff-stage="0">
+        <td><b>bing-dorks</b><br><span class="muted small">دوركس البحث الأولية من config/dorks-init.json؛ سقف عشرة نتائج</span></td>
+        <td class="status-bad">فشل</td>
+        <td class="num"><b>5</b> / 6<br><span class="muted small">مستعملة في الساعة: 1</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">فشل<br><span class="muted small">0 عنصر · 1 طلب</span><br><span class="muted small">TypeError: fetch failed (ECONNRESET)</span></td>
+        <td class="num small">2 طلب · 2 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-29T01:00:30.957Z · 24.7ms</span><br><span class="status-bad small">TypeError: fetch failed (ECONNRESET)</span></td>
+      </tr>
+      <tr data-source-id="bridge" data-health="معطل" data-budget="1" data-used="0" data-remaining="1" data-cooling="false" data-enabled="false" data-backoff-stage="0">
+        <td><b>bridge</b><br><span class="muted small">معطل؛ لا يفعّل إلا باعتماد مجلس موثق</span></td>
+        <td class="status-off">معطل<br><span class="muted small">معطل في الإعدادات</span></td>
+        <td class="num"><b>1</b> / 1<br><span class="muted small">مستعملة في الساعة: 0</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">—</td>
+        <td class="num small">0 طلب · 0 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-27T02:07:36.405Z · 0ms</span></td>
+      </tr>
+      <tr data-source-id="gdelt-doc" data-health="معطل" data-budget="0" data-used="0" data-remaining="0" data-cooling="false" data-enabled="false" data-backoff-stage="0">
+        <td><b>gdelt-doc</b><br><span class="muted small">مشروط — يعطي 429 عند الاستخدام المكثف؛ يفعّل بقرار المجلس</span></td>
+        <td class="status-off">معطل<br><span class="muted small">معطل في الإعدادات</span></td>
+        <td class="num"><b>0</b> / 0<br><span class="muted small">مستعملة في الساعة: 0</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">—</td>
+        <td class="num small">0 طلب · 0 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: —</span></td>
+      </tr>
+      <tr data-source-id="gdelt-files" data-health="فشل" data-budget="2" data-used="0" data-remaining="2" data-cooling="false" data-enabled="true" data-backoff-stage="0">
+        <td><b>gdelt-files</b><br><span class="muted small">lastupdate.txt ثم ملف export.CSV.zip الأحدث وحده، مع فلترة الصفوف العربية</span></td>
+        <td class="status-bad">فشل</td>
+        <td class="num"><b>2</b> / 2<br><span class="muted small">مستعملة في الساعة: 0</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">—</td>
+        <td class="num small">1 طلب · 1 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-27T02:07:32.392Z · 5.5ms</span><br><span class="status-bad small">TypeError: fetch failed (ECONNRESET)</span></td>
+      </tr>
+      <tr data-source-id="gnews" data-health="فشل" data-budget="6" data-used="1" data-remaining="5" data-cooling="false" data-enabled="true" data-backoff-stage="0">
+        <td><b>gnews</b><br><span class="muted small">GNews: when:1h عام + استعلام لكل قسم من desks</span></td>
+        <td class="status-bad">فشل</td>
+        <td class="num"><b>5</b> / 6<br><span class="muted small">مستعملة في الساعة: 1</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">فشل<br><span class="muted small">0 عنصر · 1 طلب</span><br><span class="muted small">TypeError: fetch failed (ECONNRESET)</span></td>
+        <td class="num small">2 طلب · 2 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-29T01:00:16.930Z · 6ms</span><br><span class="status-bad small">TypeError: fetch failed (ECONNRESET)</span></td>
+      </tr>
+      <tr data-source-id="reddit" data-health="معطل" data-budget="0" data-used="0" data-remaining="0" data-cooling="false" data-enabled="false" data-backoff-stage="0">
+        <td><b>reddit</b><br><span class="muted small">مستبعد حالياً — 403</span></td>
+        <td class="status-off">معطل<br><span class="muted small">معطل في الإعدادات</span></td>
+        <td class="num"><b>0</b> / 0<br><span class="muted small">مستعملة في الساعة: 0</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">—</td>
+        <td class="num small">0 طلب · 0 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: —</span></td>
+      </tr>
+      <tr data-source-id="rsshub" data-health="معطل" data-budget="0" data-used="0" data-remaining="0" data-cooling="false" data-enabled="false" data-backoff-stage="0">
+        <td><b>rsshub</b><br><span class="muted small">مستبعد حالياً — 403 في البيئة</span></td>
+        <td class="status-off">معطل<br><span class="muted small">معطل في الإعدادات</span></td>
+        <td class="num"><b>0</b> / 0<br><span class="muted small">مستعملة في الساعة: 0</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">—</td>
+        <td class="num small">0 طلب · 0 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: —</span></td>
+      </tr>
+      <tr data-source-id="searxng" data-health="معطل" data-budget="0" data-used="0" data-remaining="0" data-cooling="false" data-enabled="false" data-backoff-stage="0">
+        <td><b>searxng</b><br><span class="muted small">مستبعد حالياً — بلا JSON في الاستجابة</span></td>
+        <td class="status-off">معطل<br><span class="muted small">معطل في الإعدادات</span></td>
+        <td class="num"><b>0</b> / 0<br><span class="muted small">مستعملة في الساعة: 0</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">—</td>
+        <td class="num small">0 طلب · 0 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: —</span></td>
+      </tr>
+      <tr data-source-id="telegram" data-health="فشل" data-budget="4" data-used="1" data-remaining="3" data-cooling="false" data-enabled="true" data-backoff-stage="0">
+        <td><b>telegram</b><br><span class="muted small">ثلاث قنوات سعودية عامة عبر HTML preview</span></td>
+        <td class="status-bad">فشل</td>
+        <td class="num"><b>3</b> / 4<br><span class="muted small">مستعملة في الساعة: 1</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">فشل<br><span class="muted small">0 عنصر · 1 طلب</span><br><span class="muted small">TypeError: fetch failed (ECONNRESET)</span></td>
+        <td class="num small">2 طلب · 2 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-29T01:00:21.932Z · 6.6ms</span><br><span class="status-bad small">TypeError: fetch failed (ECONNRESET)</span></td>
+      </tr>
+      <tr data-source-id="trends-rss" data-health="فشل" data-budget="2" data-used="1" data-remaining="1" data-cooling="false" data-enabled="true" data-backoff-stage="0">
+        <td><b>trends-rss</b><br><span class="muted small">RSS العام من Google Trends للسعودية</span></td>
+        <td class="status-bad">فشل</td>
+        <td class="num"><b>1</b> / 2<br><span class="muted small">مستعملة في الساعة: 1</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">فشل<br><span class="muted small">0 عنصر · 1 طلب</span><br><span class="muted small">TypeError: fetch failed (ECONNRESET)</span></td>
+        <td class="num small">3 طلب · 3 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-29T01:00:14.929Z · 6.7ms</span><br><span class="status-bad small">TypeError: fetch failed (ECONNRESET)</span></td>
+      </tr>
+      <tr data-source-id="wayback-cdx" data-health="فشل" data-budget="1" data-used="0" data-remaining="1" data-cooling="false" data-enabled="true" data-backoff-stage="0">
+        <td><b>wayback-cdx</b><br><span class="muted small">تقارير أسبوعية فقط؛ معطل في الرادار اليومي</span></td>
+        <td class="status-bad">فشل</td>
+        <td class="num"><b>1</b> / 1<br><span class="muted small">مستعملة في الساعة: 0</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">—</td>
+        <td class="num small">1 طلب · 1 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-27T02:07:30.396Z · 9.9ms</span><br><span class="status-bad small">TypeError: fetch failed (ECONNRESET)</span></td>
+      </tr>
+      <tr data-source-id="wiki-rc" data-health="فشل" data-budget="2" data-used="1" data-remaining="1" data-cooling="false" data-enabled="true" data-backoff-stage="0">
+        <td><b>wiki-rc</b><br><span class="muted small">recentchanges من واجهة ويكيبيديا العربية</span></td>
+        <td class="status-bad">فشل</td>
+        <td class="num"><b>1</b> / 2<br><span class="muted small">مستعملة في الساعة: 1</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">فشل<br><span class="muted small">0 عنصر · 1 طلب</span><br><span class="muted small">TypeError: fetch failed (ECONNRESET)</span></td>
+        <td class="num small">2 طلب · 2 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-29T01:00:27.975Z · 45.2ms</span><br><span class="status-bad small">TypeError: fetch failed (ECONNRESET)</span></td>
+      </tr>
+      <tr data-source-id="wiki-top" data-health="فشل" data-budget="2" data-used="0" data-remaining="2" data-cooling="false" data-enabled="true" data-backoff-stage="0">
+        <td><b>wiki-top</b><br><span class="muted small">مشاهدات ويكيبيديا العربية لليوم السابق</span></td>
+        <td class="status-bad">فشل</td>
+        <td class="num"><b>2</b> / 2<br><span class="muted small">مستعملة في الساعة: 0</span></td>
+        <td class="num"><span class="muted">لا تبريد</span></td>
+        <td class="num">—</td>
+        <td class="num small">1 طلب · 1 خطأ · 0 كاش<br><span class="muted">آخر استدعاء: 2026-09-27T02:07:23.404Z · 25.1ms</span><br><span class="status-bad small">TypeError: fetch failed (ECONNRESET)</span></td>
+      </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="internal-links" data-count="0" data-inventory-status="unavailable" data-inventory-urls="0">
+    <div class="panel">
+      <h2>6) الذيل — مواضعنا ذات الصلة (ربط داخلي مقترح)</h2>
+      <p class="muted small">من <span class="mono">state/inventory.json</span>: حالة الجرد <b>unavailable</b> · عناوين: 0 · أقسام: 0 · وسوم: 0 · كتّاب: 0 · آخر جلب: <span class="mono">—</span>. الاقتراحات نصّية (لا وسم ربط) وتُراجع تحريرياً قبل أي نشر.</p>
+      <div class="empty">لا ربط داخلي مقترح: الجرد فارغ (الحالة: unavailable) — تعذر تحديث جرد الموقع؛ حُفظت آخر نسخة سليمة دون استبدالها ببيانات فارغة. آخر خطأ: TypeError: fetch failed</div>
+      <p class="muted small">ملاحظة الجرد: تعذر تحديث جرد الموقع؛ حُفظت آخر نسخة سليمة دون استبدالها ببيانات فارغة.</p>
+    </div>
+  </section>
+
+  <footer id="dashboard-footer">
+    <p>مُولّدة بواسطة <b>engine/dashboard.js</b> (حزمة B4) في <span class="mono">2026-09-29T01:00:50.391Z</span> من: <span class="tag mono">state/topics-latest.json</span><span class="tag mono">state/sources-health.json</span><span class="tag mono">state/inventory.json</span><span class="tag mono">config/sources.json</span><span class="tag mono">state/radar.json</span><span class="tag mono">state/tests-latest.json</span><span class="tag mono">state/runs/</span>.</p>
+    <p>الأقسام الست: 1) الشريط العلوي — الزمن الموثق بمصدره + رقم التشغيل + مدة الغياب + بادج الزمن · 2) نوافذ ذهبية مميزة (أعلى الصفحة) · 3) فرص اليوم — بطاقات مرتبة بدرجة الفرصة · 4) تنبؤات «متوقع خلال ساعات» — موعد التحقق وحالته السابقة · 5) حالة المصادر — الصحة والميزانية المتبقية والتبريد · 6) الذيل — مواضعنا ذات الصلة من inventory.json (ربط داخلي مقترح).</p>
+    <p>اكتفاء ذاتي: CSS مضمّن في وسم واحد، صفر JavaScript، صفر وسوم ربط أو موارد خارجية (لا وسم ربط ولا link ولا script ولا img ولا iframe، ولا خواص تحميل خارجية، ولا استيراد خطوط أو أنماط من الخارج) — كل العناوين نصّ معزول للاتجاه. المقاييس والتصنيفات والتنبؤات اقتراحات تحليلية من محرك B3 ولا تنشر تلقائياً.</p>
+  </footer>
+</div>
+</body>
+</html>

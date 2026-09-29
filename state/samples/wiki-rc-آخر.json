@@ -4,12 +4,12 @@
     "notes": "عينة استجابة خام (مقتطف عند كبر الجسم) مع إسقاط العناصر المحللة لإعادة الاستخدام عبر cache-first."
   },
   "source": "wiki-rc",
-  "fetched_at": "2026-09-27T02:07:27.409Z",
+  "fetched_at": "2026-09-29T01:00:27.974Z",
   "cache_key": "{\"source\":\"wiki-rc\",\"url\":\"https://ar.wikipedia.org/w/api.php?action=query&list=recentchanges&rclimit=50&format=json&rcprop=title%7Ctimestamp%7Cuser%7Ccomment%7Cflags%7Cids\"}",
   "success": false,
   "status": "error",
   "http_status": null,
-  "response_ms": 26.3,
+  "response_ms": 45.2,
   "request_count": 1,
   "raw": null,
   "requests": [
@@ -17,7 +17,7 @@
       "url": "https://ar.wikipedia.org/w/api.php?action=query&list=recentchanges&rclimit=50&format=json&rcprop=title%7Ctimestamp%7Cuser%7Ccomment%7Cflags%7Cids",
       "status": null,
       "content_type": null,
-      "response_ms": 26.3,
+      "response_ms": 45.2,
       "ok": false,
       "error": "TypeError: fetch failed (ECONNRESET)",
       "raw": null

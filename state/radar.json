@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "format": "json",
+    "updatedAt": "2026-09-29T01:00:14.762Z",
+    "timeSource": "unverified",
+    "kind": "B3-radar",
+    "success": false,
+    "dataFresh": false
+  },
+  "lastRun": "2026-09-29T01:00:14.762Z",
+  "lastSummary": "B3: 0 topics, 0 normalized items; inventory=unavailable; success=false",
+  "nextPlanned": "مراجعة الإشارات الأعلى وترقية الموضوعات المعتمدة إلى قرارات التحرير.",
+  "pending": [
+    "مصادر متعثرة: trends-rss, gnews, telegram, wiki-rc, bing-dorks"
+  ],
+  "counters": 0,
+  "latestRunPath": "state/runs/2026-09-29T01-00-14-762Z-B3-radar.json"
+}

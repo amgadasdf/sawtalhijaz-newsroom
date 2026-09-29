@@ -1,11 +1,16 @@
 {
   "_meta": {
     "format": "json",
-    "status": "not-yet-verified",
+    "status": "unavailable",
     "rate_limit_per_hour": 2,
     "cache_ttl_seconds": 21600,
-    "request_times": [],
-    "notes": "B3 WordPress sitemap inventory is implemented. No live sitemap response has been written to this production state; deterministic sitemap fixtures are exercised only in an isolated test root, and this file will populate after a successful live radar run."
+    "request_times": [
+      "2026-09-29T01:00:34.936Z"
+    ],
+    "notes": "تعذر تحديث جرد الموقع؛ حُفظت آخر نسخة سليمة دون استبدالها ببيانات فارغة.",
+    "source": "https://sawtalhijaz.com/sitemap.xml",
+    "last_attempt_at": "2026-09-29T01:00:35.030Z",
+    "last_error": "TypeError: fetch failed"
   },
   "sitemap_url": "https://sawtalhijaz.com/sitemap.xml",
   "sitemap_content_url": "https://sawtalhijaz.com/sitemap-0.xml",
@@ -14,5 +19,7 @@
   "urls": [],
   "sections": [],
   "tags": [],
-  "authors": []
+  "authors": [],
+  "last_error": "TypeError: fetch failed",
+  "attempted_at": "2026-09-29T01:00:35.030Z"
 }

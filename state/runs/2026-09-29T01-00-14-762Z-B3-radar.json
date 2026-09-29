@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "format": "json",
+    "notes": "سجل تشغيل — الزمن الموثق بمصدره إلزامي (بروتوكول B1 الزمني)."
+  },
+  "kind": "B3-radar",
+  "actor": "radar",
+  "iso": "2026-09-29T01:00:14.762Z",
+  "source": "unverified",
+  "startedAt": "2026-09-29T01:00:14.761Z",
+  "endedAt": "2026-09-29T01:00:35.031Z",
+  "durationMs": 20270,
+  "summary": {
+    "rawItems": 0,
+    "normalizedItems": 0,
+    "topics": 0,
+    "dataFresh": false,
+    "sourceCount": 5,
+    "failedSources": 5,
+    "inventoryStatus": "unavailable"
+  },
+  "next": "مراجعة الإشارات الأعلى وترقية الموضوعات المعتمدة إلى قرارات التحرير.",
+  "pending": [
+    "مصادر متعثرة: trends-rss, gnews, telegram, wiki-rc, bing-dorks"
+  ],
+  "section": "تريند-الشارع",
+  "scope": "السعودية",
+  "depth": "quick",
+  "sourceStatuses": [
+    {
+      "sourceId": "trends-rss",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 6.7,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    },
+    {
+      "sourceId": "gnews",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 6,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    },
+    {
+      "sourceId": "telegram",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 6.6,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    },
+    {
+      "sourceId": "wiki-rc",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 45.2,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    },
+    {
+      "sourceId": "bing-dorks",
+      "status": "error",
+      "label": "فشل",
+      "count": 0,
+      "requestCount": 1,
+      "responseMs": 24.7,
+      "error": "TypeError: fetch failed (ECONNRESET)"
+    }
+  ],
+  "topicCounts": {},
+  "success": false,
+  "dataFresh": false,
+  "inventoryError": "TypeError: fetch failed",
+  "baselineLine": "التشغيلان الأولان يبنيان خط الأساس — التوقعات متحفظة"
+}

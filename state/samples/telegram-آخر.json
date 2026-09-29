@@ -4,12 +4,12 @@
     "notes": "عينة استجابة خام (مقتطف عند كبر الجسم) مع إسقاط العناصر المحللة لإعادة الاستخدام عبر cache-first."
   },
   "source": "telegram",
-  "fetched_at": "2026-09-27T02:07:19.384Z",
+  "fetched_at": "2026-09-29T01:00:21.931Z",
   "cache_key": "{\"source\":\"telegram\",\"channels\":[\"SabqOrg\",\"SaudiNews50\",\"AjelNews\"]}",
   "success": false,
   "status": "error",
   "http_status": null,
-  "response_ms": 7.5,
+  "response_ms": 6.6,
   "request_count": 1,
   "raw": null,
   "requests": [
@@ -17,7 +17,7 @@
       "url": "https://t.me/s/SabqOrg",
       "status": null,
       "content_type": null,
-      "response_ms": 7.5,
+      "response_ms": 6.6,
       "ok": false,
       "error": "TypeError: fetch failed (ECONNRESET)",
       "raw": null
