@@ -1,0 +1,979 @@
+{
+  "provenance": "تجربة على بيانات معزولة — غير حية",
+  "_meta": {
+    "format": "json",
+    "schemaVersion": "B3.1",
+    "kind": "B3-radar-latest",
+    "generatedAt": "2026-09-27T12:00:00.000Z",
+    "timeSource": "manual",
+    "runPath": "state/runs/2026-09-27T12-00-00-000Z-B3-radar.json",
+    "baselineLine": "التشغيلان الأولان يبنيان خط الأساس — التوقعات متحفظة",
+    "dataFresh": true,
+    "success": true,
+    "notes": "نتيجة رادار الأخبار؛ المصنفات تبقى اقتراحات تحليلية ولا تنشر تلقائياً."
+  },
+  "time": {
+    "iso": "2026-09-27T12:00:00.000Z",
+    "source": "manual",
+    "skewSeconds": 0,
+    "note": "B3 deterministic fixture time",
+    "line": "الزمن: 2026-09-27T12:00:00.000Z | مصدر=manual | skew=0ث | B3 deterministic fixture time"
+  },
+  "section": "تريند-الشارع",
+  "scope": "daily",
+  "depth": "quick",
+  "summary": {
+    "rawItems": 16,
+    "normalizedItems": 10,
+    "topics": 10,
+    "dataFresh": true,
+    "sourceCount": 5,
+    "failedSources": 0,
+    "inventoryStatus": "ok"
+  },
+  "sourceStatuses": [
+    {
+      "sourceId": "trends-rss",
+      "status": "ok",
+      "label": "أخضر",
+      "count": 2,
+      "requestCount": 1,
+      "responseMs": 0.3,
+      "error": null
+    },
+    {
+      "sourceId": "gnews",
+      "status": "ok",
+      "label": "أخضر",
+      "count": 4,
+      "requestCount": 2,
+      "responseMs": 0,
+      "error": null
+    },
+    {
+      "sourceId": "telegram",
+      "status": "ok",
+      "label": "أخضر",
+      "count": 6,
+      "requestCount": 3,
+      "responseMs": 0.1,
+      "error": null
+    },
+    {
+      "sourceId": "wiki-rc",
+      "status": "ok",
+      "label": "أخضر",
+      "count": 2,
+      "requestCount": 1,
+      "responseMs": 0,
+      "error": null
+    },
+    {
+      "sourceId": "bing-dorks",
+      "status": "ok",
+      "label": "أخضر",
+      "count": 2,
+      "requestCount": 2,
+      "responseMs": 0.1,
+      "error": null
+    }
+  ],
+  "inventory": {
+    "ok": true,
+    "urlCount": 5,
+    "sectionCount": 3,
+    "error": null
+  },
+  "topics": [
+    {
+      "id": "topic-60e120482202c8",
+      "title": "روشن تعلن موعد الجولة المقبلة",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "gnews"
+      ],
+      "deskGuess": "تريند-الشارع",
+      "sharedKeywords": [],
+      "memberIds": [
+        "gnews:82421896369b3b157a75"
+      ],
+      "members": [
+        {
+          "id": "gnews:82421896369b3b157a75",
+          "title": "روشن تعلن موعد الجولة المقبلة",
+          "url": "https://news.google.com/rss/articles/CBMi-fixture-2?oc=5",
+          "source": "gnews",
+          "sourceWeight": 0.9,
+          "publishedAt": "2026-09-26T15:20:00.000Z",
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": "تريند-الشارع"
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 20,
+      "score": 72.5,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 20,
+        "saturationNumerator": 0.9,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "gnews"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 90,
+        "sourceReliabilitySources": [
+          "gnews"
+        ],
+        "deskRelevancePercent": 100,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 80,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 24,
+          "deskRelevance": 15,
+          "sourceReliability": 13.5
+        },
+        "score": 72.5,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 20
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-3a02952ec6ebe3",
+      "title": "مجلس الوزراء يؤكد متابعة البرامج الوطنية",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "gnews"
+      ],
+      "deskGuess": "تريند-الشارع",
+      "sharedKeywords": [],
+      "memberIds": [
+        "gnews:f8365c20b8ecfaafc217"
+      ],
+      "members": [
+        {
+          "id": "gnews:f8365c20b8ecfaafc217",
+          "title": "مجلس الوزراء يؤكد متابعة البرامج الوطنية",
+          "url": "https://news.google.com/rss/articles/CBMi-fixture-1?oc=5",
+          "source": "gnews",
+          "sourceWeight": 0.9,
+          "publishedAt": "2026-09-26T16:15:00.000Z",
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": "تريند-الشارع"
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 20,
+      "score": 72.5,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 20,
+        "saturationNumerator": 0.9,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "gnews"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 90,
+        "sourceReliabilitySources": [
+          "gnews"
+        ],
+        "deskRelevancePercent": 100,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 80,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 24,
+          "deskRelevance": 15,
+          "sourceReliability": 13.5
+        },
+        "score": 72.5,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 20
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-f91b847132a6d8",
+      "title": "تحديث رسمي حول خبر اليوم",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "bing-dorks"
+      ],
+      "deskGuess": "تريند-الشارع",
+      "sharedKeywords": [],
+      "memberIds": [
+        "bing-dorks:2296c85088f2b0f19e55"
+      ],
+      "members": [
+        {
+          "id": "bing-dorks:2296c85088f2b0f19e55",
+          "title": "تحديث رسمي حول خبر اليوم",
+          "url": "https://x.com/SaudiNews/status/123",
+          "source": "bing-dorks",
+          "sourceWeight": 0.5,
+          "publishedAt": null,
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": "تريند-الشارع"
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 11.1111,
+      "score": 69.1667,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 11.1111,
+        "saturationNumerator": 0.5,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "bing-dorks"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 50,
+        "sourceReliabilitySources": [
+          "bing-dorks"
+        ],
+        "deskRelevancePercent": 100,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 88.8889,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 26.6667,
+          "deskRelevance": 15,
+          "sourceReliability": 7.5
+        },
+        "score": 69.1667,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 11.1111
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-ed603affe02326",
+      "title": "وكالة الأنباء السعودية: تفاصيل إضافية",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "bing-dorks"
+      ],
+      "deskGuess": "تريند-الشارع",
+      "sharedKeywords": [],
+      "memberIds": [
+        "bing-dorks:3b8129ce85a7c1ec3eef"
+      ],
+      "members": [
+        {
+          "id": "bing-dorks:3b8129ce85a7c1ec3eef",
+          "title": "وكالة الأنباء السعودية: تفاصيل إضافية",
+          "url": "https://www.spa.gov.sa/news/789",
+          "source": "bing-dorks",
+          "sourceWeight": 0.5,
+          "publishedAt": null,
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": "تريند-الشارع"
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 11.1111,
+      "score": 69.1667,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 11.1111,
+        "saturationNumerator": 0.5,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "bing-dorks"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 50,
+        "sourceReliabilitySources": [
+          "bing-dorks"
+        ],
+        "deskRelevancePercent": 100,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 88.8889,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 26.6667,
+          "deskRelevance": 15,
+          "sourceReliability": 7.5
+        },
+        "score": 69.1667,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 11.1111
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-3084baf640b9d7",
+      "title": "طقس الرياض",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "trends-rss"
+      ],
+      "deskGuess": null,
+      "sharedKeywords": [],
+      "memberIds": [
+        "trends-rss:8c2e0431184b11db4c70"
+      ],
+      "members": [
+        {
+          "id": "trends-rss:8c2e0431184b11db4c70",
+          "title": "طقس الرياض",
+          "url": "https://trends.google.com/trends/explore?geo=SA&q=طقس",
+          "source": "trends-rss",
+          "sourceWeight": 1,
+          "publishedAt": "2026-09-26T17:00:00.000Z",
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": null
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 22.2222,
+      "score": 65.8333,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 22.2222,
+        "saturationNumerator": 1,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "trends-rss"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 100,
+        "sourceReliabilitySources": [
+          "trends-rss"
+        ],
+        "deskRelevancePercent": 50,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 77.7778,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 23.3333,
+          "deskRelevance": 7.5,
+          "sourceReliability": 15
+        },
+        "score": 65.8333,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 22.2222
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-b8dfe45495a803",
+      "title": "تقرير: قراءة التفاصيل وتستمر المتابعة.",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "telegram"
+      ],
+      "deskGuess": null,
+      "sharedKeywords": [],
+      "memberIds": [
+        "telegram:ec57dac2d4432ad25d73"
+      ],
+      "members": [
+        {
+          "id": "telegram:ec57dac2d4432ad25d73",
+          "title": "تقرير: قراءة التفاصيل وتستمر المتابعة.",
+          "url": "https://t.me/SabqOrg/1002",
+          "source": "telegram",
+          "sourceWeight": 0.6,
+          "publishedAt": "2026-09-26T14:11:00.000Z",
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": null
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 13.3333,
+      "score": 62.5,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 13.3333,
+        "saturationNumerator": 0.6,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "telegram"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 60,
+        "sourceReliabilitySources": [
+          "telegram"
+        ],
+        "deskRelevancePercent": 50,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 86.6667,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 26,
+          "deskRelevance": 7.5,
+          "sourceReliability": 9
+        },
+        "score": 62.5,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 13.3333
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-0902db2a01c1a4",
+      "title": "عاجل : إعلان تحديث جديد للخدمات في المملكة",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "telegram"
+      ],
+      "deskGuess": null,
+      "sharedKeywords": [],
+      "memberIds": [
+        "telegram:1e3de83a561fe47fcacc"
+      ],
+      "members": [
+        {
+          "id": "telegram:1e3de83a561fe47fcacc",
+          "title": "عاجل : إعلان تحديث جديد للخدمات في المملكة",
+          "url": "https://t.me/SabqOrg/1001",
+          "source": "telegram",
+          "sourceWeight": 0.6,
+          "publishedAt": "2026-09-26T15:42:00.000Z",
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": null
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 13.3333,
+      "score": 62.5,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 13.3333,
+        "saturationNumerator": 0.6,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "telegram"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 60,
+        "sourceReliabilitySources": [
+          "telegram"
+        ],
+        "deskRelevancePercent": 50,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 86.6667,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 26,
+          "deskRelevance": 7.5,
+          "sourceReliability": 9
+        },
+        "score": 62.5,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 13.3333
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-526d4c147b6bfc",
+      "title": "مباراة الهلال اليوم",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "trends-rss"
+      ],
+      "deskGuess": "روشن-الرياضية",
+      "sharedKeywords": [],
+      "memberIds": [
+        "trends-rss:c71f2e16d5edd4ece355"
+      ],
+      "members": [
+        {
+          "id": "trends-rss:c71f2e16d5edd4ece355",
+          "title": "مباراة الهلال اليوم",
+          "url": "https://trends.google.com/trends/explore?geo=SA&q=الهلال",
+          "source": "trends-rss",
+          "sourceWeight": 1,
+          "publishedAt": "2026-09-26T18:00:00.000Z",
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": "روشن-الرياضية"
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 22.2222,
+      "score": 62.0833,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 22.2222,
+        "saturationNumerator": 1,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "trends-rss"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 100,
+        "sourceReliabilitySources": [
+          "trends-rss"
+        ],
+        "deskRelevancePercent": 25,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 77.7778,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 23.3333,
+          "deskRelevance": 3.75,
+          "sourceReliability": 15
+        },
+        "score": 62.0833,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 22.2222
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-bd607e19c2050d",
+      "title": "الرياض",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "wiki-rc"
+      ],
+      "deskGuess": null,
+      "sharedKeywords": [],
+      "memberIds": [
+        "wiki-rc:c3362e2eaeb8dc77e06d"
+      ],
+      "members": [
+        {
+          "id": "wiki-rc:c3362e2eaeb8dc77e06d",
+          "title": "الرياض",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6",
+          "source": "wiki-rc",
+          "sourceWeight": 0.4,
+          "publishedAt": "2026-09-27T05:10:00.000Z",
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": null
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 8.8889,
+      "score": 60.8333,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 8.8889,
+        "saturationNumerator": 0.4,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "wiki-rc"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 40,
+        "sourceReliabilitySources": [
+          "wiki-rc"
+        ],
+        "deskRelevancePercent": 50,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 91.1111,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 27.3333,
+          "deskRelevance": 7.5,
+          "sourceReliability": 6
+        },
+        "score": 60.8333,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 8.8889
+        },
+        "burstSignal": false
+      }
+    },
+    {
+      "id": "topic-3a70c423209014",
+      "title": "موسم الرياض 2026",
+      "firstSeen": "2026-09-27T12:00:00.000Z",
+      "lastSeen": "2026-09-27T12:00:00.000Z",
+      "count": 1,
+      "currentCount": 1,
+      "totalObservations": 1,
+      "sources": [
+        "wiki-rc"
+      ],
+      "deskGuess": null,
+      "sharedKeywords": [],
+      "memberIds": [
+        "wiki-rc:5532ef690d70aeb91dfb"
+      ],
+      "members": [
+        {
+          "id": "wiki-rc:5532ef690d70aeb91dfb",
+          "title": "موسم الرياض 2026",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D9%88%D8%B3%D9%85_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6_2026",
+          "source": "wiki-rc",
+          "sourceWeight": 0.4,
+          "publishedAt": "2026-09-27T05:04:00.000Z",
+          "fetchedAt": "2026-09-27T12:00:00.000Z",
+          "deskGuess": null
+        }
+      ],
+      "speed": 0,
+      "acceleration": 0,
+      "saturation": 8.8889,
+      "score": 60.8333,
+      "classification": "نافذة",
+      "metrics": {
+        "elapsedHours": 0,
+        "previousCount": 0,
+        "currentCount": 1,
+        "speedPerHour": 0,
+        "previousSpeedPerHour": 0,
+        "accelerationPerHour": 0,
+        "saturationPercent": 8.8889,
+        "saturationNumerator": 0.4,
+        "saturationDenominator": 4.5,
+        "coverageSources": [
+          "wiki-rc"
+        ],
+        "trackedSourceCount": 7,
+        "sourceReliabilityPercent": 40,
+        "sourceReliabilitySources": [
+          "wiki-rc"
+        ],
+        "deskRelevancePercent": 50,
+        "accelerationScore": 50,
+        "inverseSaturationScore": 91.1111,
+        "components": {
+          "acceleration": 20,
+          "inverseSaturation": 27.3333,
+          "deskRelevance": 7.5,
+          "sourceReliability": 6
+        },
+        "score": 60.8333,
+        "classification": "نافذة",
+        "classificationKey": "window",
+        "formula": "0.40*accelerationScore + 0.30*(100-saturationPercent) + 0.15*deskRelevance + 0.15*sourceReliability",
+        "baseline": true
+      },
+      "burst": {
+        "zScore": 0,
+        "historicalMean": 0,
+        "historicalStandardDeviation": 0,
+        "historicalSampleCount": 0,
+        "historicalCounts": [],
+        "zeroVariance": true,
+        "interest": {
+          "available": false,
+          "reason": "safe-stub-disabled: waiting for an approved free/local pytrends adapter",
+          "values": []
+        },
+        "forecast": "غير متوقع",
+        "forecastCriteria": {
+          "positiveAcrossTwoRuns": false,
+          "lowSaturation": true,
+          "previousAcceleration": 0,
+          "currentAcceleration": 0,
+          "saturationPercent": 8.8889
+        },
+        "burstSignal": false
+      }
+    }
+  ]
+}

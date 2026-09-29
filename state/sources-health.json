@@ -6,16 +6,16 @@
     "updated_at": "2026-09-27T02:07:36.405Z",
     "last_request_at": "2026-09-27T02:07:36.389Z",
     "tests": {
-      "last_run_iso": "2026-09-29T00:01:38.999Z",
+      "last_run_iso": "2026-09-29T00:24:28.911Z",
       "time_source": "unverified",
-      "sample_source": "fixtures معزولة — غير حية",
-      "report": "reports/tests-2026-09-29T00-01-38-999Z.md",
-      "report_json": "reports/tests-2026-09-29T00-01-38-999Z.json",
+      "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+      "report": "reports/tests-2026-09-29T00-24-28-911Z.md",
+      "report_json": "reports/tests-2026-09-29T00-24-28-911Z.json",
       "rows": 13,
-      "healthy": 3,
-      "failing": 0,
-      "cooling": 1,
-      "updated_at": "2026-09-29T00:01:39.207Z",
+      "healthy": 0,
+      "failing": 8,
+      "cooling": 0,
+      "updated_at": "2026-09-29T00:24:28.917Z",
       "note": "قياسات اختبار B6 — لا تلمس حقول الصحة الحية (status/requests/errors/request_times/blocked_until) التي يكتبها runtime B2."
     }
   },
@@ -37,19 +37,19 @@
         "2026-09-27T02:07:11.371Z"
       ],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
-        "verdict": "سليم",
-        "fresh": true,
-        "refresh_age_hours": 2,
-        "last_success_iso": "2026-09-27T10:00:00.000Z",
-        "last_response_ms": 5200,
-        "response_verdict": "بطيء جداً",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "verdict": "فشل",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": 8.3,
+        "response_verdict": "طبيعي",
         "cooling": false,
         "cooling_minutes_left": 0,
         "backoff_stage": 0,
-        "budget_remaining": 1,
-        "error_rate_percent": 0
+        "budget_remaining": 2,
+        "error_rate_percent": 100
       }
     },
     "gnews": {
@@ -69,19 +69,19 @@
         "2026-09-27T02:07:16.374Z"
       ],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
-        "verdict": "تبريد",
-        "fresh": true,
-        "refresh_age_hours": 0,
-        "last_success_iso": "2026-09-27T12:00:04.000Z",
-        "last_response_ms": 421.7,
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "verdict": "فشل",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": 9.5,
         "response_verdict": "طبيعي",
-        "cooling": true,
-        "cooling_minutes_left": 15,
-        "backoff_stage": 1,
+        "cooling": false,
+        "cooling_minutes_left": 0,
+        "backoff_stage": 0,
         "budget_remaining": 6,
-        "error_rate_percent": 0
+        "error_rate_percent": 100
       }
     },
     "telegram": {
@@ -101,19 +101,19 @@
         "2026-09-27T02:07:19.377Z"
       ],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
-        "verdict": "سليم",
-        "fresh": true,
-        "refresh_age_hours": 0,
-        "last_success_iso": "2026-09-27T12:00:10.000Z",
-        "last_response_ms": 0.1,
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "verdict": "فشل",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": 7.5,
         "response_verdict": "طبيعي",
         "cooling": false,
         "cooling_minutes_left": 0,
         "backoff_stage": 0,
         "budget_remaining": 4,
-        "error_rate_percent": 0
+        "error_rate_percent": 100
       }
     },
     "wiki-top": {
@@ -133,19 +133,19 @@
         "2026-09-27T02:07:23.379Z"
       ],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
-        "verdict": "بلا سجل",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "verdict": "فشل",
         "fresh": false,
         "refresh_age_hours": null,
         "last_success_iso": null,
-        "last_response_ms": null,
-        "response_verdict": "بلا قياس",
+        "last_response_ms": 25.1,
+        "response_verdict": "طبيعي",
         "cooling": false,
         "cooling_minutes_left": 0,
         "backoff_stage": 0,
         "budget_remaining": 2,
-        "error_rate_percent": null
+        "error_rate_percent": 100
       }
     },
     "wiki-rc": {
@@ -165,19 +165,19 @@
         "2026-09-27T02:07:27.382Z"
       ],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
-        "verdict": "متأخر (لم يتجدد خلال 24 ساعة)",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "verdict": "فشل",
         "fresh": false,
-        "refresh_age_hours": 48,
-        "last_success_iso": "2026-09-25T12:00:00.000Z",
-        "last_response_ms": 320,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": 26.3,
         "response_verdict": "طبيعي",
         "cooling": false,
         "cooling_minutes_left": 0,
         "backoff_stage": 0,
         "budget_remaining": 2,
-        "error_rate_percent": 0
+        "error_rate_percent": 100
       }
     },
     "wayback-cdx": {
@@ -197,19 +197,19 @@
         "2026-09-27T02:07:30.385Z"
       ],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
-        "verdict": "بلا سجل",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "verdict": "فشل",
         "fresh": false,
         "refresh_age_hours": null,
         "last_success_iso": null,
-        "last_response_ms": null,
-        "response_verdict": "بلا قياس",
+        "last_response_ms": 9.9,
+        "response_verdict": "طبيعي",
         "cooling": false,
         "cooling_minutes_left": 0,
         "backoff_stage": 0,
         "budget_remaining": 1,
-        "error_rate_percent": null
+        "error_rate_percent": 100
       }
     },
     "gdelt-files": {
@@ -229,19 +229,19 @@
         "2026-09-27T02:07:32.386Z"
       ],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
-        "verdict": "بلا سجل",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "verdict": "فشل",
         "fresh": false,
         "refresh_age_hours": null,
         "last_success_iso": null,
-        "last_response_ms": null,
-        "response_verdict": "بلا قياس",
+        "last_response_ms": 5.5,
+        "response_verdict": "طبيعي",
         "cooling": false,
         "cooling_minutes_left": 0,
         "backoff_stage": 0,
         "budget_remaining": 2,
-        "error_rate_percent": null
+        "error_rate_percent": 100
       }
     },
     "bing-dorks": {
@@ -261,19 +261,19 @@
         "2026-09-27T02:07:36.389Z"
       ],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
-        "verdict": "سليم",
-        "fresh": true,
-        "refresh_age_hours": 0,
-        "last_success_iso": "2026-09-27T12:00:16.000Z",
-        "last_response_ms": 0,
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
+        "verdict": "فشل",
+        "fresh": false,
+        "refresh_age_hours": null,
+        "last_success_iso": null,
+        "last_response_ms": 14.1,
         "response_verdict": "طبيعي",
         "cooling": false,
         "cooling_minutes_left": 0,
         "backoff_stage": 0,
         "budget_remaining": 6,
-        "error_rate_percent": 0
+        "error_rate_percent": 100
       }
     },
     "bridge": {
@@ -291,14 +291,14 @@
       "blocked_until": null,
       "request_times": [],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
         "verdict": "معطل في الإعدادات",
         "fresh": false,
         "refresh_age_hours": null,
         "last_success_iso": null,
-        "last_response_ms": null,
-        "response_verdict": "بلا قياس",
+        "last_response_ms": 0,
+        "response_verdict": "طبيعي",
         "cooling": false,
         "cooling_minutes_left": 0,
         "backoff_stage": 0,
@@ -321,8 +321,8 @@
       "blocked_until": null,
       "request_times": [],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
         "verdict": "معطل في الإعدادات",
         "fresh": false,
         "refresh_age_hours": null,
@@ -351,8 +351,8 @@
       "blocked_until": null,
       "request_times": [],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
         "verdict": "معطل في الإعدادات",
         "fresh": false,
         "refresh_age_hours": null,
@@ -381,8 +381,8 @@
       "blocked_until": null,
       "request_times": [],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
         "verdict": "معطل في الإعدادات",
         "fresh": false,
         "refresh_age_hours": null,
@@ -411,8 +411,8 @@
       "blocked_until": null,
       "request_times": [],
       "tests": {
-        "last_tested_at": "2026-09-29T00:01:38.999Z",
-        "sample_source": "fixtures معزولة — غير حية",
+        "last_tested_at": "2026-09-29T00:24:28.911Z",
+        "sample_source": "حالة المشروع الحقيقية (state/) — بلا شبكة",
         "verdict": "معطل في الإعدادات",
         "fresh": false,
         "refresh_age_hours": null,
