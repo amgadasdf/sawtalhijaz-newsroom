@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تقرير المسبار الحي — لماذا لم يعمل الرادار؟</title>
+<style>
+  :root{
+    --bg:#eef1f6;
+    --card:#ffffff;
+    --ink:#12233b;
+    --muted:#5c6d84;
+    --line:#dbe2ec;
+    --red:#b4232a;
+    --red-bg:#fdeceb;
+    --green:#0f7a44;
+    --green-bg:#e8f7ee;
+    --amber:#8a5a00;
+    --amber-bg:#fff6e5;
+    --blue:#12507f;
+    --blue-bg:#eaf3fb;
+    --shadow:0 10px 30px rgba(18,35,59,.08);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    direction:rtl;
+    text-align:right;
+    background:linear-gradient(180deg,#e7ecf4 0%, #eef1f6 320px, #eef1f6 100%);
+    color:var(--ink);
+    font-family:"Noto Naskh Arabic","Amiri","Segoe UI",Tahoma,"Helvetica Neue",Arial,sans-serif;
+    font-size:17px;
+    line-height:1.95;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:28px 20px 80px}
+
+  /* ===== الترويسة ===== */
+  header.hero{
+    background:linear-gradient(135deg,#0d2b4a 0%, #14446f 55%, #1d6aa5 100%);
+    color:#fff;
+    border-radius:20px;
+    padding:34px 30px 30px;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute; inset-inline-start:-60px; top:-60px;
+    width:220px;height:220px;border-radius:50%;
+    background:rgba(255,255,255,.07);
+  }
+  .kicker{
+    display:inline-block;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.28);
+    color:#eaf3fb;
+    border-radius:999px;
+    padding:4px 14px;
+    font-size:14px;
+    letter-spacing:.2px;
+    margin-bottom:14px;
+  }
+  header.hero h1{margin:0 0 10px;font-size:30px;line-height:1.5}
+  header.hero p{margin:6px 0 0;color:#d7e6f4;font-size:16.5px}
+  .meta{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;
+  }
+  .meta span{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:10px;
+    padding:5px 12px;
+    font-size:14px;
+    color:#eef6fd;
+  }
+
+  /* ===== البطاقات ===== */
+  section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px 26px;
+    margin-top:22px;
+    box-shadow:var(--shadow);
+  }
+  h2{
+    font-size:22px;
+    margin:0 0 6px;
+    padding-bottom:12px;
+    border-bottom:2px solid #eef2f7;
+    display:flex;align-items:center;gap:12px;
+  }
+  h2 .num{
+    flex:0 0 auto;
+    width:34px;height:34px;border-radius:11px;
+    background:var(--blue-bg);color:var(--blue);
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:16px;font-weight:700;
+  }
+  h3{font-size:18px;margin:22px 0 8px}
+  p{margin:10px 0}
+  ul,ol{margin:10px 0;padding-inline-start:26px}
+  li{margin:7px 0}
+  .lead{font-size:18px;color:#24405f}
+
+  /* ===== تنبيهات ===== */
+  .alert{
+    border-radius:14px;
+    padding:18px 20px;
+    margin:16px 0;
+    border:1px solid;
+    border-inline-start-width:6px;
+  }
+  .alert h4{margin:0 0 8px;font-size:18px}
+  .alert p{margin:6px 0}
+  .alert.red{background:var(--red-bg);border-color:#f2c9c7;border-inline-start-color:var(--red);color:#6d1a1d}
+  .alert.red h4{color:var(--red)}
+  .alert.green{background:var(--green-bg);border-color:#c4e6d2;border-inline-start-color:var(--green);color:#0c5731}
+  .alert.green h4{color:var(--green)}
+  .alert.blue{background:var(--blue-bg);border-color:#c9dff2;border-inline-start-color:var(--blue);color:#0f3f66}
+  .alert.blue h4{color:var(--blue)}
+  .alert.amber{background:var(--amber-bg);border-color:#f0dfb8;border-inline-start-color:#c98a10;color:#6b4700}
+  .alert.amber h4{color:var(--amber)}
+
+  /* ===== جدول ===== */
+  table{width:100%;border-collapse:separate;border-spacing:0;margin:14px 0;font-size:16.5px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+  thead th{background:#f5f8fc;color:#2b4767;font-weight:700;font-size:16px}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:#fafcfe}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  code, .mono{font-family:"Cascadia Mono",Consolas,"Courier New",monospace;font-size:14px}
+
+  /* ===== صناديق المخرجات الخام (من اليسار إلى اليمين) ===== */
+  pre{
+    direction:ltr;
+    text-align:left;
+    background:#0e1b2a;
+    color:#d8e6f5;
+    border-radius:14px;
+    padding:16px 18px;
+    overflow-x:auto;
+    font-family:"Cascadia Mono",Consolas,"Courier New",monospace;
+    font-size:13.5px;
+    line-height:1.7;
+    border:1px solid #16283c;
+    margin:12px 0;
+  }
+  pre .c{color:#7fa7cc}
+  pre .bad{color:#ff9a92}
+  pre .good{color:#8ee2ac}
+
+  /* ===== بطاقات صغيرة ===== */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  @media (max-width:760px){.grid{grid-template-columns:1fr}}
+  .tile{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fbfdff}
+  .tile h4{margin:0 0 8px;font-size:17px}
+  .tile p{margin:4px 0;color:var(--muted);font-size:16px}
+  .tile.bad{border-color:#f2c9c7;background:var(--red-bg)}
+  .tile.good{border-color:#c4e6d2;background:var(--green-bg)}
+
+  .pill{display:inline-block;border-radius:999px;padding:3px 12px;font-size:14px;font-weight:700}
+  .pill.no{background:var(--red);color:#fff}
+  .pill.ok{background:var(--green);color:#fff}
+
+  footer{
+    margin-top:26px;color:var(--muted);font-size:15px;text-align:center;
+    border-top:1px dashed var(--line);padding-top:20px;
+  }
+  .note{color:var(--muted);font-size:15.5px}
+  @media print{
+    body{background:#fff}
+    section,header.hero{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="kicker">جلسة الاستئناف · RESUME-B3-RADAR-LIVE</span>
+    <h1>تقرير المسبار الحي: لماذا لم يعمل الرادار؟</h1>
+    <p>تقرير مبسّط يشرح ما جرى خطوة بخطوة، مع الأدلة الخام كما خرجت من البيئة، وما لم يُنفَّذ ولماذا.</p>
+    <div class="meta">
+      <span>📅 التاريخ: 29 سبتمبر 2026</span>
+      <span>🖥️ المصدر: بيئة الجلسة الحالية فقط</span>
+      <span>🔖 الحالة: توقّف وفق البند 3</span>
+      <span>📄 ملف الأدلة: reports/live-probe-2026-09-29.md</span>
+    </div>
+  </header>
+
+  <!-- ================= 1 ================= -->
+  <section>
+    <h2><span class="num">١</span> الخلاصة في ثلاث جمل</h2>
+    <div class="alert red">
+      <h4>⛔ النتيجة النهائية: المسبار فشل بالكامل (٠ من ٣) — ولهذا توقفت.</h4>
+      <p>طُلب فحص الشبكة على ثلاثة مواقع (جوجل، ويكيبيديا، بينج). فشلت الثلاثة جميعاً، فطبّقت القاعدة: <strong>لا تشغيل للرادار، ولا بيانات وهمية، ولا بيانات من بيئة المجلس.</strong></p>
+    </div>
+    <ol class="lead">
+      <li><strong>ما جرى:</strong> فحصتُ الشبكة على المواقع الثلاثة كما هو مطلوب.</li>
+      <li><strong>النتيجة:</strong> فشلت الثلاثة فشلاً كاملاً — الرادار لا يستطيع الوصول إلى أي مصدر أخبار من هذه البيئة.</li>
+      <li><strong>القرار:</strong> توقفٌ كامل. لم أشغّل الرادار، ولم أنشئ أي بيانات بديلة، ولم أغيّر أي ملف من ملفات الذاكرة (<code>state/</code>).</li>
+    </ol>
+    <p class="note">معنى ذلك باختصار: <strong>لا أستطيع أن أعطيك أرقاماً حقيقية من هذه البيئة</strong>، ولن أعطيك أرقاماً ملفّقة.</p>
+  </section>
+
+  <!-- ================= 2 ================= -->
+  <section>
+    <h2><span class="num">٢</span> ماذا طُلب مني بالضبط؟</h2>
+    <p>ثلاث خطوات مرتّبة، والخطوة الثالثة هي التي تنطبق اليوم:</p>
+    <div class="grid">
+      <div class="tile good">
+        <h4>الخطوة ١ — المسبار (نُفِّذت ✅)</h4>
+        <p>فحص ثلاثة مواقع: جوجل، ويكيبيديا، بينج، وإخراج النتائج الخام كما هي.</p>
+      </div>
+      <div class="tile">
+        <h4>الخطوة ٢ — التشغيل (لم تُنفَّذ ⛔)</h4>
+        <p>تُنفَّذ فقط إن نجح موقع واحد على الأقل: تشغيل الرادار ثم اللوحة، وإخراج أعداد المصادر والمواضيع والفرص.</p>
+      </div>
+      <div class="tile bad">
+        <h4>الخطوة ٣ — الإعلان والتوقف (نُفِّذت ✅)</h4>
+        <p>إن فشل المسبار كله: أُعلن الفشل بالأدلة وأتوقف — بلا بيانات بديلة وبلا بيانات من بيئة المجلس.</p>
+      </div>
+      <div class="tile">
+        <h4>القاعدة الحاكمة</h4>
+        <p>الرادار الحي من بيئة الجلسة وحدها يُحتسب في الذاكرة والسجل. وبما أن الشبكة مقطوعة، فلا يوجد تشغيل حي يُحتسب.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3 ================= -->
+  <section>
+    <h2><span class="num">٣</span> نتائج المسبار — الجدول</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:56px">#</th>
+          <th>الموقع المفحوص</th>
+          <th style="width:190px">النتيجة</th>
+          <th>ما ظهر بالضبط</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>١</td>
+          <td>جوجل</td>
+          <td><span class="pill no">فشل</span></td>
+          <td class="mono" dir="ltr" style="text-align:left">TypeError: fetch failed (ECONNRESET)</td>
+        </tr>
+        <tr>
+          <td>٢</td>
+          <td>ويكيبيديا</td>
+          <td><span class="pill no">فشل</span></td>
+          <td class="mono" dir="ltr" style="text-align:left">TypeError: fetch failed (ECONNRESET)</td>
+        </tr>
+        <tr>
+          <td>٣</td>
+          <td>بينج</td>
+          <td><span class="pill no">فشل</span></td>
+          <td class="mono" dir="ltr" style="text-align:left">TypeError: fetch failed (ECONNRESET)</td>
+        </tr>
+        <tr style="background:#f7fbf8">
+          <td>—</td>
+          <td>موقع للمقارنة (GitHub) — للتأكد أن العيب ليس في أدواتي</td>
+          <td><span class="pill ok">نجح</span></td>
+          <td class="mono" dir="ltr" style="text-align:left">HTTP=200 in 0.23s</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note">أُجري الفحص مرّتين متتاليتين بنفس النتيجة، وتحقّقتُ منه أيضاً بأداة ثانية مستقلّة (curl) — النتيجة نفسها في كل مرة.</p>
+  </section>
+
+  <!-- ================= 4 ================= -->
+  <section>
+    <h2><span class="num">٤</span> لماذا فشل؟ السبب ببساطة</h2>
+    <div class="alert amber">
+      <h4>🔒 هذه البيئة «مغلقة» — الإنترنت فيها مسموح لمواقع قليلة محدّدة فقط</h4>
+      <p>البيئة التي أعمل فيها معزولة لأسباب أمنية، والخروج منها إلى الإنترنت محصور في قائمة مواقع مسموحة بأسماء محددة.</p>
+    </div>
+    <ul>
+      <li>✅ <strong>مواقع مسموحة</strong> مثل GitHub تعمل بشكل طبيعي (وهذا هو الدليل على أن الأدوات سليمة).</li>
+      <li>⛔ <strong>كل مواقع الأخبار والرادار</strong> — ومصادرنا الخمسة، وموقعنا <code dir="ltr">sawtalhijaz.com</code> نفسه — ممنوعة ومقطوعة.</li>
+    </ul>
+    <p><strong>نقطة مهمة:</strong> العيب ليس في الكود ولا في الرادار ولا في إعدادات المستودع. الفحص الفني أثبت أن الاتصال يُرفض من الخارج (الجدار الأمني للبيئة) قبل أن يصل إلى أي موقع. لذلك لا يوجد إصلاح من داخل الكود.</p>
+
+    <h3>المواقع التي نحتاجها لتشغيل الرادار</h3>
+    <table>
+      <thead>
+        <tr><th>الاستخدام</th><th>الموقع</th><th style="width:140px">الحالة</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>تريند جوجل (مصدر: تريند-الشارع)</td><td class="mono" dir="ltr" style="text-align:left">trends.google.com</td><td><span class="no">ممنوع</span></td></tr>
+        <tr><td>أخبار جوجل</td><td class="mono" dir="ltr" style="text-align:left">news.google.com</td><td><span class="no">ممنوع</span></td></tr>
+        <tr><td>مصادر ويكيبيديا وويكيميديا</td><td class="mono" dir="ltr" style="text-align:left">ar.wikipedia.org · wikimedia.org</td><td><span class="no">ممنوع</span></td></tr>
+        <tr><td>بحث بينج (الدوركس)</td><td class="mono" dir="ltr" style="text-align:left">www.bing.com</td><td><span class="no">ممنوع</span></td></tr>
+        <tr><td>مصادر أخرى (تلغرام، GDELT، الأرشيف)</td><td class="mono" dir="ltr" style="text-align:left">t.me · data.gdeltproject.org · web.archive.org</td><td><span class="no">ممنوع</span></td></tr>
+        <tr><td>موقعنا — مرجع الزمن والجرد</td><td class="mono" dir="ltr" style="text-align:left">sawtalhijaz.com</td><td><span class="no">ممنوع</span></td></tr>
+        <tr><td>للمقارنة فقط (ليس من مصادرنا)</td><td class="mono" dir="ltr" style="text-align:left">api.github.com</td><td><span class="ok">مسموح ✔</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= 5 ================= -->
+  <section>
+    <h2><span class="num">٥</span> المخرجات الخام كما هي (بلا تعديل)</h2>
+    <p>هذه هي نتائج الفحص الحقيقية كما ظهرت في شاشة التنفيذ، بالحرف:</p>
+
+    <h3>المحاولة الأولى</h3>
+    <pre>[probe google]    reachable=false status=— response_ms=58.3 error=TypeError: fetch failed (ECONNRESET)
+[probe wikipedia] reachable=false status=— response_ms=6.6  error=TypeError: fetch failed (ECONNRESET)
+[probe bing]      reachable=false status=— response_ms=7.5  error=TypeError: fetch failed (ECONNRESET)</pre>
+
+    <h3>المحاولة الثانية (للتأكد من أن الفشل ليس عارضاً)</h3>
+    <pre>[probe google]    reachable=false response_ms=58.4 error=TypeError: fetch failed (ECONNRESET)
+[probe wikipedia] reachable=false response_ms=24.7 error=TypeError: fetch failed (ECONNRESET)
+[probe bing]      reachable=false response_ms=14.9 error=TypeError: fetch failed (ECONNRESET)</pre>
+
+    <h3>فحص مستقل بأداة أخرى (curl) — نفس النتيجة</h3>
+    <pre><span class="c"># المواقع الثلاثة</span>
+google:    curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to www.google.com:443
+wikipedia: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to ar.wikipedia.org:443
+bing:      curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to www.bing.com:443
+
+<span class="c"># موقع للمقارنة — يعمل بشكل طبيعي</span>
+<span class="good">github:    HTTP=200 tls=0.029s</span></pre>
+
+    <h3>ما معنى هذه الرسائل؟</h3>
+    <table>
+      <thead><tr><th style="width:260px">الرسالة</th><th>معناها بلغة بسيطة</th></tr></thead>
+      <tbody>
+        <tr><td class="mono" dir="ltr" style="text-align:left">ECONNRESET</td><td>الاتصال قُطع فوراً من الجانب الآخر — كأن الباب أُغلق في وجه الطلب.</td></tr>
+        <tr><td class="mono" dir="ltr" style="text-align:left">SSL_ERROR_SYSCALL</td><td>فشل تأمين الاتصال (TLS) لأن الجدار الأمني للبيئة رفض المضيف قبل بدء أي تبادل.</td></tr>
+        <tr><td class="mono" dir="ltr" style="text-align:left">HTTP=200</td><td>نجاح كامل: الموقع ردّ فعلاً. ظهر مع GitHub فقط، وهو الدليل أن الأدوات سليمة.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= 6 ================= -->
+  <section>
+    <h2><span class="num">٦</span> ما لم أفعله — وهذا هو الأهم</h2>
+    <div class="alert green">
+      <h4>✔ التزمتُ بقاعدتك حرفياً ولم أُنتج أي رقم غير حقيقي</h4>
+    </div>
+    <table>
+      <thead><tr><th>البند</th><th style="width:190px">الحالة</th></tr></thead>
+      <tbody>
+        <tr><td>تشغيل الرادار <code dir="ltr">radar</code> وإخراج أعداد المصادر والمواضيع والفرص</td><td><span class="no">لم يُنفَّذ</span></td></tr>
+        <tr><td>تشغيل اللوحة <code dir="ltr">dashboard</code></td><td><span class="no">لم يُنفَّذ</span></td></tr>
+        <tr><td>إنشاء أي بيانات تجريبية بديلة (fixtures)</td><td><span class="no">لم يُنشأ</span></td></tr>
+        <tr><td>نقل أي رقم أو نتيجة من بيئة المجلس</td><td><span class="no">لم يُنقل</span></td></tr>
+        <tr><td>تعديل ملفات الذاكرة والسجل في <code dir="ltr">state/</code></td><td><span class="ok">لم تُمَسّ ✔</span></td></tr>
+        <tr><td>تثبيت زمن يدوي</td><td><span class="ok">بقي فارغاً ✔</span></td></tr>
+        <tr><td>تسجيل أدلة الفحص الخام داخل المستودع</td><td><span class="ok">تم ✔</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">لهذا لن تجد في هذا التقرير عدد مصادر ولا عدد مواضيع ولا قائمة فرص — لأن كل تشغيل حقيقي كان مستحيلاً من هذه البيئة، وأي رقم كنت سأكتبه هنا سيكون غير صحيح.</p>
+  </section>
+
+  <!-- ================= 7 ================= -->
+  <section>
+    <h2><span class="num">٧</span> كيف نفتح التشغيل؟ (اختيارك من اثنين)</h2>
+    <div class="grid">
+      <div class="tile good">
+        <h4>الخيار ١ — السماح بالمواقع <span class="pill ok">الأبسط</span></h4>
+        <p>إضافة مواقع الرادار إلى قائمة السماح في بيئة الجلسة:</p>
+        <p class="mono" dir="ltr" style="text-align:left;font-size:13px;line-height:1.8">trends.google.com<br>news.google.com<br>ar.wikipedia.org<br>wikimedia.org<br>www.bing.com<br>t.me<br>data.gdeltproject.org<br>web.archive.org<br>sawtalhijaz.com</p>
+      </div>
+      <div class="tile">
+        <h4>الخيار ٢ — تمرير الاتصال عبر وسيط</h4>
+        <p>تزويد البيئة بوسيط اتصال (Proxy) مسموح، مع تعريف شهادته الأمنية للنظام حتى يثق بها.</p>
+      </div>
+    </div>
+    <div class="alert blue">
+      <h4>بمجرد تنفيذ أي من الخيارين</h4>
+      <p>أُعيد تنفيذ الخطوتين الأولى والثانية كاملتين في نفس الجلسة: المسبار، ثم الرادار، ثم اللوحة — وبعدها فقط تُحتسب الأرقام في الذاكرة والسجل، كما تنص قاعدتك.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>📄 ملف الأدلة الخام الكامل داخل المستودع: <code dir="ltr">reports/live-probe-2026-09-29.md</code></p>
+    <p>🌿 الفرع: <code dir="ltr">arena/01a0eac9-sawtalhijaz-newsroom</code> · رقم الحفظ: <code dir="ltr">0bbe19a</code></p>
+    <p class="note">هذا التقرير سجل أدلة لشبكة الجلسة، وليس تشغيلاً حياً للرادار ولا يُحتسب في سجل الرادار.</p>
+  </footer>
+
+</div>
+</body>
+</html>
